@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{68AA885A-9F6C-4AFC-A5F8-E53190B3DC8F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DCafeKiosk</RootNamespace>
+    <AssemblyName>DCafeKiosk</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>..\..\Bunifu_UI_v1.5.3\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Enum.cs" />
+    <Compile Include="Classes\EventArgs.cs" />
+    <Compile Include="Classes\IEventHandler.cs" />
+    <Compile Include="FormLoadingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLoadingDialog.Designer.cs">
+      <DependentUpon>FormLoadingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenuOptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenuOptionDialog.Designer.cs">
+      <DependentUpon>FormMenuOptionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOrderResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOrderResult.Designer.cs">
+      <DependentUpon>FormOrderResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRFRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRFRead.Designer.cs">
+      <DependentUpon>FormRFRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenuBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenuBoard.Designer.cs">
+      <DependentUpon>FormMenuBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPayType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPayType.Designer.cs">
+      <DependentUpon>FormPayType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\CMenu.cs" />
+    <Compile Include="Classes\COrderCart.cs" />
+    <Compile Include="FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTest.Designer.cs">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\GlobalVariable.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controls\UCOrderItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCOrderItem.Designer.cs">
+      <DependentUpon>UCOrderItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCTransparentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\UCCircleLoading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCCircleLoading.Designer.cs">
+      <DependentUpon>UCCircleLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCLoadingDialogBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCLoadingDialogBox.Designer.cs">
+      <DependentUpon>UCLoadingDialogBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCMenuButtonVertical.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCMenuButtonVertical.Designer.cs">
+      <DependentUpon>UCMenuButtonVertical.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCMenuButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCMenuButton.Designer.cs">
+      <DependentUpon>UCMenuButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCOrderTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCOrderTitle.Designer.cs">
+      <DependentUpon>UCOrderTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCPayTypeButton2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCPayTypeButton2.Designer.cs">
+      <DependentUpon>UCPayTypeButton2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCScrollingLeftText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCScrollingLeftText.Designer.cs">
+      <DependentUpon>UCScrollingLeftText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Win32\Win32AppCommand.cs" />
+    <Compile Include="Win32\Win32CreateFile.cs" />
+    <Compile Include="Win32\Win32DeviceManagement.cs" />
+    <Compile Include="Win32\Win32Fsctls.cs" />
+    <Compile Include="Win32\Win32Hid.cs" />
+    <Compile Include="Win32\Win32Ioctls.cs" />
+    <Compile Include="Win32\Win32RawInput.cs" />
+    <Compile Include="Win32\Win32SendMessage.cs" />
+    <Compile Include="Win32\Win32SystemCommands.cs" />
+    <Compile Include="Win32\Win32WindowMessages.cs" />
+    <Compile Include="Win32\Windef.cs" />
+    <Compile Include="Win32\Winuser.cs" />
+    <EmbeddedResource Include="FormLoadingDialog.resx">
+      <DependentUpon>FormLoadingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenuOptionDialog.resx">
+      <DependentUpon>FormMenuOptionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOrderResult.resx">
+      <DependentUpon>FormOrderResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRFRead.resx">
+      <DependentUpon>FormRFRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenuBoard.resx">
+      <DependentUpon>FormMenuBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPayType.resx">
+      <DependentUpon>FormPayType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTest.resx">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Controls\UCOrderItem.resx">
+      <DependentUpon>UCOrderItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCTransparentPanel.resx">
+      <DependentUpon>UCTransparentPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCCircleLoading.resx">
+      <DependentUpon>UCCircleLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCLoadingDialogBox.resx">
+      <DependentUpon>UCLoadingDialogBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCMenuButtonVertical.resx">
+      <DependentUpon>UCMenuButtonVertical.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCMenuButton.resx">
+      <DependentUpon>UCMenuButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCOrderTitle.resx">
+      <DependentUpon>UCOrderTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCPayTypeButton2.resx">
+      <DependentUpon>UCPayTypeButton2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCScrollingLeftText.resx">
+      <DependentUpon>UCScrollingLeftText.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\Spoqa Han Sans Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Spoqa Han Sans Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Spoqa Han Sans Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Spoqa Han Sans Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
