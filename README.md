@@ -20,10 +20,12 @@ Spoqa Han Sans - KR Original
 > 무료로 사용 가능한 폰트 중에서 한글/영문 등의 동일한 다국어 폰트가 필요했다.
 > 
 > Google Noto Sans CJK Font
+> 
 > 구글과 어도비에 의해 제작된 본고딕(Noto Sans CJK/Source Han Sans)으로 한국어, 중국어 번체와 간체, 일본어와 라틴어, 그리스어, 키릴 자모를 지원하는 한중일 공통 오픈소스 글꼴이다. 개발기간만 3년이 걸렸을 만큼 완성도가 높은 폰트라고 한다.
 > > Noto Sans는 OTF 포멧만 지원하여 .NET에서 사용을 할 수가 없다.
 > 
 > Spoqa Han Sans Font
+> 
 > 스포카 한 산스는 스포카의 제품의 다국어 UI에 대응하기 위해 Noto Sans와 Lato를 바탕으로 커스텀한 글꼴이다.
 > > OTF, TTF 포멧을 지원하며, NOTO 기반이며 다국어 폰트를 지원한다.
 
