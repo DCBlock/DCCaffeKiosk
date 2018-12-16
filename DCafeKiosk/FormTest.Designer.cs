@@ -66,6 +66,7 @@
             this.ucOrderItem1.TabIndex = 1;
             this.ucOrderItem1.XForeTextColor = System.Drawing.Color.Black;
             this.ucOrderItem1.XMenuAmount = 1;
+            this.ucOrderItem1.XMenuButtonObject = null;
             this.ucOrderItem1.XMenuNameKR = "Menu Item Name";
             this.ucOrderItem1.XMenuSize = "Regular";
             this.ucOrderItem1.XMenuTotalAmount = 0;
@@ -78,10 +79,11 @@
             this.ucOrderItem2.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ucOrderItem2.Location = new System.Drawing.Point(3, 108);
             this.ucOrderItem2.Name = "ucOrderItem2";
-            this.ucOrderItem2.Size = new System.Drawing.Size(618, 55);
+            this.ucOrderItem2.Size = new System.Drawing.Size(618, 50);
             this.ucOrderItem2.TabIndex = 2;
             this.ucOrderItem2.XForeTextColor = System.Drawing.Color.Black;
             this.ucOrderItem2.XMenuAmount = 1;
+            this.ucOrderItem2.XMenuButtonObject = null;
             this.ucOrderItem2.XMenuNameKR = "Menu Item Name";
             this.ucOrderItem2.XMenuSize = "Regular";
             this.ucOrderItem2.XMenuTotalAmount = 0;

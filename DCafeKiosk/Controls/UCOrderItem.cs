@@ -80,6 +80,12 @@ namespace DCafeKiosk
         [Browsable(false)]
         public int XMenuTotalAmount { get; set; } = 0;
 
+        /// <summary>
+        /// 메뉴 버튼 객체
+        /// </summary>
+        [Browsable(false)]
+        public UCMenuButton XMenuButtonObject { get; set; }
+
         //---------------------------------------------------------------------------
 
 

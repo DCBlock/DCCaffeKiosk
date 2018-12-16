@@ -57,6 +57,12 @@ namespace DCafeKiosk
         [Browsable(false)]
         public int XDCCovisionPrice { get; set; } = 0;
 
+        [Browsable(false)]
+        public int XCategoryCode { get; set; } = 0;
+
+        [Browsable(false)]
+        public int XMenuCode { get; set; } = 0;
+
         //---------------------------------------------------------------------------
 
         public Color borderColor = Color.Gainsboro;

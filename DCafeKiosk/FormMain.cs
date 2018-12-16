@@ -13,12 +13,12 @@ namespace DCafeKiosk
     public partial class FormMain : Form
     {
         /// <summary>
-        /// 현재 결제 타입
+        /// 현재 결제 타입 저장
         /// </summary>
-        private PAYTYPE CurrentPayType;
+        private PAY_TYPE CurrentPayType;
 
         /// <summary>
-        /// 월말 공제 페이지 순서
+        /// 월말 공제 페이지 순서 지정
         /// </summary>
         List<PAGES> ListMonthlyDeductionSequence = new List<PAGES>
             {
@@ -26,10 +26,11 @@ namespace DCafeKiosk
                 PAGES.FormRFRead,
                 PAGES.FormMenuBoard,
                 PAGES.FormOrderResult,
+                PAGES.FormPayType,
             };
 
         /// <summary>
-        /// 손님 결제 페이지 순서
+        /// 손님 결제 페이지 순서 지정
         /// </summary>
         List<PAGES> ListCustomerPayment = new List<PAGES>
             {
@@ -37,40 +38,51 @@ namespace DCafeKiosk
                 PAGES.FormRFRead,
                 PAGES.FormMenuBoard,
                 PAGES.FormOrderResult,
+                PAGES.FormPayType,
             };
 
         public FormMain()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-            // 페이지 생성
+            // 결제 방식 폼
             FormPayType _formPayType = new FormPayType();
             {
                 _formPayType.OnSelectedPayType += OnSelectedPayType;
             }
 
+            // RFID 폼
             FormRFRead _formRFRead = new FormRFRead();
             {
                 _formRFRead.PageSuccess += OnPageSuccess;
                 _formRFRead.PageCancle += OnPageCancle;
             }
 
+            // 메뉴 폼
             FormMenuBoard _formMenuBoard = new FormMenuBoard();
             {
                 _formMenuBoard.PageSuccess += OnPageSuccess;
                 _formMenuBoard.PageCancle += OnPageCancle;
+
+                //----------------------------------------
+                //DataSet ds = APIController.API_GetMenus();
+                //_formMenuBoard.CategoriesAndMenusDataset = ds;
+                //_formMenuBoard.CategoriesAndMenusReload(ds);
             }
 
+            // 결제 완료 폼
             FormOrderResult _formOrderResult = new FormOrderResult();
             {
                 _formOrderResult.PageSuccess += OnPageSuccess;
                 _formOrderResult.PageCancle += OnPageCancle;
             }
 
-            // 페이지 추가
+            // 판넬에 페이지 추가
             AddForms2Panel(_formPayType);
             AddForms2Panel(_formRFRead);
             AddForms2Panel(_formMenuBoard);
+            AddForms2Panel(_formOrderResult);
 
             // 시작 페이지 보이기
             DisplayPage(nameof(FormPayType));
@@ -86,35 +98,9 @@ namespace DCafeKiosk
             // 현재 결제 방법 저장
             CurrentPayType = e.selected_paytype;
 
-            switch (e.selected_paytype)
-            {
-                case PAYTYPE.MonthlyDeduction:
-                    {
-                        DisplayPage(PAGES.FormRFRead.ToString());
-                    }
-                    break;
-
-                case PAYTYPE.CustomerPayment:
-                    {   
-
-                    }
-                    break;
-
-                case PAYTYPE.DigicapTokenPayment:
-                    {
-                    }
-                    break;
-
-                case PAYTYPE.OderCancellation:
-                    {
-                    }
-                    break;
-
-                case PAYTYPE.UserUsageHistoryInquiry:
-                    {
-                    }
-                    break;
-            }
+            // 결제 방법에 따른 다음 페이지 표시
+            string nextPageName = NextPage(this.CurrentPayType, PAGES.FormPayType);
+            DisplayPage(nextPageName);
         }
 
         /// <summary>
@@ -142,9 +128,9 @@ namespace DCafeKiosk
         }
 
         /// <summary>
-        /// 페이모드에 따른 다음 페이지 이름 얻기
+        /// 결제 모드에 따른 다음 페이지 이름 얻기
         /// </summary>
-        private string NextPage(PAYTYPE aPayType, PAGES aCurrentPages)
+        private string NextPage(PAY_TYPE aPayType, PAGES aCurrentPages)
         {
             //string currentPageName = Enum.GetName(typeof(PAGES), aCurrentPages);
             int pageIdx = this.ListMonthlyDeductionSequence.IndexOf(aCurrentPages);
@@ -195,12 +181,14 @@ namespace DCafeKiosk
 
             if ((sender.GetType()).Name.CompareTo(PAGES.FormMenuBoard.ToString()) == 0)
             {
-
+                string nextPageName = NextPage(this.CurrentPayType, PAGES.FormMenuBoard);
+                DisplayPage(nextPageName);
             }
 
             if ((sender.GetType()).Name.CompareTo(PAGES.FormOrderResult.ToString()) == 0)
             {
-
+                string nextPageName = NextPage(this.CurrentPayType, PAGES.FormOrderResult);
+                DisplayPage(nextPageName);
             }
 
             if ((sender.GetType()).Name.CompareTo(PAGES.FormKeyPad.ToString()) == 0)

@@ -18,6 +18,7 @@ namespace DCafeKiosk
         public FormLoadingDialog(Action worker, Action callback)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             if (worker == null)
                 throw new ArgumentNullException();

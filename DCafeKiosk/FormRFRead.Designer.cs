@@ -37,9 +37,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnNext = new Bunifu.Framework.UI.BunifuThinButton2();
             this.btnCancle = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.btnTestRF = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnTestRFStart = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btnTestRFStop = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -116,31 +116,6 @@
             this.pictureBox1.TabIndex = 22;
             this.pictureBox1.TabStop = false;
             // 
-            // btnNext
-            // 
-            this.btnNext.ActiveBorderThickness = 1;
-            this.btnNext.ActiveCornerRadius = 20;
-            this.btnNext.ActiveFillColor = System.Drawing.Color.Crimson;
-            this.btnNext.ActiveForecolor = System.Drawing.Color.White;
-            this.btnNext.ActiveLineColor = System.Drawing.Color.Crimson;
-            this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
-            this.btnNext.ButtonText = "Test Next";
-            this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNext.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnNext.IdleBorderThickness = 1;
-            this.btnNext.IdleCornerRadius = 15;
-            this.btnNext.IdleFillColor = System.Drawing.Color.Transparent;
-            this.btnNext.IdleForecolor = System.Drawing.Color.Crimson;
-            this.btnNext.IdleLineColor = System.Drawing.Color.Crimson;
-            this.btnNext.Location = new System.Drawing.Point(1707, 855);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(5);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(181, 80);
-            this.btnNext.TabIndex = 27;
-            this.btnNext.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnCancle
             // 
             this.btnCancle.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
@@ -177,41 +152,77 @@
             this.btnCancle.TextFont = new System.Drawing.Font("SpoqaHanSans-Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
-            // btnTestRF
+            // btnTestRFStart
             // 
-            this.btnTestRF.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
-            this.btnTestRF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
-            this.btnTestRF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTestRF.BorderRadius = 7;
-            this.btnTestRF.ButtonText = "RFReader";
-            this.btnTestRF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestRF.DisabledColor = System.Drawing.Color.Gray;
-            this.btnTestRF.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTestRF.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnTestRF.Iconimage = null;
-            this.btnTestRF.Iconimage_right = null;
-            this.btnTestRF.Iconimage_right_Selected = null;
-            this.btnTestRF.Iconimage_Selected = null;
-            this.btnTestRF.IconMarginLeft = 0;
-            this.btnTestRF.IconMarginRight = 0;
-            this.btnTestRF.IconRightVisible = true;
-            this.btnTestRF.IconRightZoom = 0D;
-            this.btnTestRF.IconVisible = true;
-            this.btnTestRF.IconZoom = 90D;
-            this.btnTestRF.IsTab = false;
-            this.btnTestRF.Location = new System.Drawing.Point(1508, 965);
-            this.btnTestRF.Name = "btnTestRF";
-            this.btnTestRF.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
-            this.btnTestRF.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
-            this.btnTestRF.OnHoverTextColor = System.Drawing.Color.White;
-            this.btnTestRF.selected = false;
-            this.btnTestRF.Size = new System.Drawing.Size(181, 70);
-            this.btnTestRF.TabIndex = 52;
-            this.btnTestRF.Text = "RFReader";
-            this.btnTestRF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnTestRF.Textcolor = System.Drawing.Color.White;
-            this.btnTestRF.TextFont = new System.Drawing.Font("SpoqaHanSans-Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnTestRF.Click += new System.EventHandler(this.btnTestRF_Click_1);
+            this.btnTestRFStart.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.btnTestRFStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.btnTestRFStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTestRFStart.BorderRadius = 7;
+            this.btnTestRFStart.ButtonText = "RFReader Start";
+            this.btnTestRFStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTestRFStart.DisabledColor = System.Drawing.Color.Gray;
+            this.btnTestRFStart.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTestRFStart.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnTestRFStart.Iconimage = null;
+            this.btnTestRFStart.Iconimage_right = null;
+            this.btnTestRFStart.Iconimage_right_Selected = null;
+            this.btnTestRFStart.Iconimage_Selected = null;
+            this.btnTestRFStart.IconMarginLeft = 0;
+            this.btnTestRFStart.IconMarginRight = 0;
+            this.btnTestRFStart.IconRightVisible = true;
+            this.btnTestRFStart.IconRightZoom = 0D;
+            this.btnTestRFStart.IconVisible = true;
+            this.btnTestRFStart.IconZoom = 90D;
+            this.btnTestRFStart.IsTab = false;
+            this.btnTestRFStart.Location = new System.Drawing.Point(1707, 797);
+            this.btnTestRFStart.Name = "btnTestRFStart";
+            this.btnTestRFStart.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.btnTestRFStart.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
+            this.btnTestRFStart.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnTestRFStart.selected = false;
+            this.btnTestRFStart.Size = new System.Drawing.Size(181, 38);
+            this.btnTestRFStart.TabIndex = 52;
+            this.btnTestRFStart.Text = "RFReader Start";
+            this.btnTestRFStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnTestRFStart.Textcolor = System.Drawing.Color.White;
+            this.btnTestRFStart.TextFont = new System.Drawing.Font("SpoqaHanSans-Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnTestRFStart.Click += new System.EventHandler(this.btnTestRFStart_Click);
+            // 
+            // btnTestRFStop
+            // 
+            this.btnTestRFStop.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.btnTestRFStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.btnTestRFStop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTestRFStop.BorderRadius = 7;
+            this.btnTestRFStop.ButtonText = "RFReader Stop";
+            this.btnTestRFStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTestRFStop.DisabledColor = System.Drawing.Color.Gray;
+            this.btnTestRFStop.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTestRFStop.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnTestRFStop.Iconimage = null;
+            this.btnTestRFStop.Iconimage_right = null;
+            this.btnTestRFStop.Iconimage_right_Selected = null;
+            this.btnTestRFStop.Iconimage_Selected = null;
+            this.btnTestRFStop.IconMarginLeft = 0;
+            this.btnTestRFStop.IconMarginRight = 0;
+            this.btnTestRFStop.IconRightVisible = true;
+            this.btnTestRFStop.IconRightZoom = 0D;
+            this.btnTestRFStop.IconVisible = true;
+            this.btnTestRFStop.IconZoom = 90D;
+            this.btnTestRFStop.IsTab = false;
+            this.btnTestRFStop.Location = new System.Drawing.Point(1707, 841);
+            this.btnTestRFStop.Name = "btnTestRFStop";
+            this.btnTestRFStop.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.btnTestRFStop.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
+            this.btnTestRFStop.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnTestRFStop.selected = false;
+            this.btnTestRFStop.Size = new System.Drawing.Size(181, 38);
+            this.btnTestRFStop.TabIndex = 52;
+            this.btnTestRFStop.Text = "RFReader Stop";
+            this.btnTestRFStop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnTestRFStop.Textcolor = System.Drawing.Color.White;
+            this.btnTestRFStop.TextFont = new System.Drawing.Font("SpoqaHanSans-Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnTestRFStop.Click += new System.EventHandler(this.btnTestRFStop_Click);
             // 
             // FormRFRead
             // 
@@ -219,9 +230,9 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1920, 1061);
-            this.Controls.Add(this.btnTestRF);
+            this.Controls.Add(this.btnTestRFStop);
+            this.Controls.Add(this.btnTestRFStart);
             this.Controls.Add(this.btnCancle);
-            this.Controls.Add(this.btnNext);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -246,9 +257,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnNext;
         private Bunifu.Framework.UI.BunifuFlatButton btnCancle;
-        private Bunifu.Framework.UI.BunifuFlatButton btnTestRF;
+        private Bunifu.Framework.UI.BunifuFlatButton btnTestRFStart;
+        private Bunifu.Framework.UI.BunifuFlatButton btnTestRFStop;
     }
 }
 

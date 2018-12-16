@@ -24,7 +24,7 @@ namespace DCafeKiosk
             if (OnSelectedPayType == null)
                 return;
 
-            OnSelectedPayType(this, new PayTypeEventArgs(PAYTYPE.MonthlyDeduction));
+            OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.MonthlyDeduction));
         }
 
         private void ucPayTypeButton_DigicapTokenPayment_Click(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace DCafeKiosk
             if (OnSelectedPayType == null)
                 return;
 
-            OnSelectedPayType(this, new PayTypeEventArgs(PAYTYPE.DigicapTokenPayment));
+            OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.DigicapTokenPayment));
         }
 
         private void ucPayTypeButton_CustomerPayment_Click(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace DCafeKiosk
             if (OnSelectedPayType == null)
                 return;
 
-            OnSelectedPayType(this, new PayTypeEventArgs(PAYTYPE.CustomerPayment));
+            OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.CustomerPayment));
         }
 
         private void ucPayTypeButton_OderCancellation_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace DCafeKiosk
             if (OnSelectedPayType == null)
                 return;
 
-            OnSelectedPayType(this, new PayTypeEventArgs(PAYTYPE.OderCancellation));
+            OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.OderCancellation));
         }
 
         private void ucPayTypeButton_UserUsageHistoryInquiry_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace DCafeKiosk
             if (OnSelectedPayType == null)
                 return;
 
-            OnSelectedPayType(this, new PayTypeEventArgs(PAYTYPE.UserUsageHistoryInquiry));
+            OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.UserUsageHistoryInquiry));
         }
     }
 }

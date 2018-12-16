@@ -19,8 +19,7 @@ namespace DCafeKiosk
         BOTH,
     }
 
-    #region 'FormPayType'
-    public enum PAYTYPE
+    public enum PAY_TYPE
     {
         MonthlyDeduction,           // 월공제
         CustomerPayment,            // 손님결제
@@ -44,5 +43,4 @@ namespace DCafeKiosk
         FormCancleResult,
         FormInqueryResult,
     }
-    #endregion
 }

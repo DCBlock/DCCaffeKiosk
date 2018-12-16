@@ -16,8 +16,7 @@ namespace DCafeKiosk
 {
     public partial class FormRFRead : Form, IPageEventHandler
     {
-        #region 'EVENT'
-        //++++++++++++++++++++++++++++++++++++++++++++++++
+        #region 'IPageEventHandler'
         public event EventHandler<EventArgs> PageSuccess;
         public event EventHandler<EventArgs> PageCancle;
 
@@ -32,7 +31,6 @@ namespace DCafeKiosk
             if (PageCancle != null)
                 PageCancle(this, EventArgs.Empty);
         }
-        //++++++++++++++++++++++++++++++++++++++++++++++++
         #endregion
 
 
@@ -45,11 +43,12 @@ namespace DCafeKiosk
         public FormRFRead()
         {            
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             strRfid = new StringBuilder();
 
             // RFID 읽기 시작
-            StartEventCapture();
+            // StartEventCapture();
         }
 
         /// <summary>
@@ -73,32 +72,27 @@ namespace DCafeKiosk
             OnPageCancle();
         }
 
-        /// <summary>
-        /// RFID 리더 켜기
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonOn_Click(object sender, EventArgs e)
-        {
-            strRfid.Clear();
-            StartEventCapture();
-        }
+        ///// <summary>
+        ///// RFID 리더 켜기
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void buttonOn_Click(object sender, EventArgs e)
+        //{
+        //    strRfid.Clear();
+        //    StartEventCapture();
+        //}
 
-        /// <summary>
-        /// RFID 리더 끄기
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonOff_Click(object sender, EventArgs e)
-        {
-            strRfid.Clear();
-            EndEventCapture();
-        }
-
-        private void btnTestRF_Click_1(object sender, EventArgs e)
-        {
-            CompleatedRFRead("abcdefg");
-        }
+        ///// <summary>
+        ///// RFID 리더 끄기
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void buttonOff_Click(object sender, EventArgs e)
+        //{
+        //    strRfid.Clear();
+        //    EndEventCapture();
+        //}
 
         #region 'HID MONITORING'
         /// <summary>
@@ -321,5 +315,19 @@ namespace DCafeKiosk
             return success;
         }
         #endregion 'HID MONITORING'
+
+
+
+        private void btnTestRFStart_Click(object sender, EventArgs e)
+        {
+            strRfid.Clear();
+            StartEventCapture();
+        }
+
+        private void btnTestRFStop_Click(object sender, EventArgs e)
+        {
+            strRfid.Clear();
+            EndEventCapture();
+        }
     }
 }

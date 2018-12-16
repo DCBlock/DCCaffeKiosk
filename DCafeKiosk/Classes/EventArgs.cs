@@ -12,12 +12,12 @@ namespace DCafeKiosk
     /// </summary>
     public class PayTypeEventArgs : EventArgs
     {
-        public PayTypeEventArgs(PAYTYPE aPayType)
+        public PayTypeEventArgs(PAY_TYPE aPayType)
         {
             this.selected_paytype = aPayType;
         }
 
-        public PAYTYPE selected_paytype { get; set; }
+        public PAY_TYPE selected_paytype { get; set; }
     }
     #endregion
 }

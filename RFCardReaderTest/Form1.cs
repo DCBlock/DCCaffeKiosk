@@ -233,7 +233,7 @@ namespace RFCardReaderTest
         /// <param name="e"></param>
         private void buttonOn_Click(object sender, EventArgs e)
         {
-            strRfid.Clear();
+            strRfid.Clear();            
             StartEventCapture();
         }
 
@@ -244,7 +244,7 @@ namespace RFCardReaderTest
         /// <param name="e"></param>
         private void buttonOff_Click(object sender, EventArgs e)
         {
-            strRfid.Clear();
+            strRfid.Clear();            
             EndEventCapture();
         }
     }

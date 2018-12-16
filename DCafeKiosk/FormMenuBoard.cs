@@ -12,8 +12,7 @@ namespace DCafeKiosk
 {
     public partial class FormMenuBoard : Form, IPageEventHandler
     {
-        #region 'EVENT'
-        //++++++++++++++++++++++++++++++++++++++++++++++++
+        #region 'IPageEventHandler'
         public event EventHandler<EventArgs> PageSuccess;
         public event EventHandler<EventArgs> PageCancle;
 
@@ -26,8 +25,9 @@ namespace DCafeKiosk
             if (PageCancle != null)
                 PageCancle(this, EventArgs.Empty);
         }
-        //++++++++++++++++++++++++++++++++++++++++++++++++
         #endregion
+
+
 
         /// <summary>
         /// category name : flowlayoutpanel menus page 맵핑 저장
@@ -38,60 +38,123 @@ namespace DCafeKiosk
         /// 현재 포커스된 카테고리
         /// </summary>
         private string CurrentCategoryName;
-        
-        #region 4Test Data
-        /*
-          "Coffee": 
-          [
-            {
-                "category": 100,
-                "code": 1,
-                "name_en": "Americano",
-                "name_kr": "아메리카노",
-                "size":"REGULAR",
-                "type":"BOTH",
-                "price": 2500,
-                "dc_digicap": 1500,
-                "dc_covision": 0
-             },
-          ],
-        */
-        string[] Categories = { "Coffee", "Non-Coffee", "Bubble Tea", "Ade", "Smoothie", "Drink", "Tea" };
 
-        string[,] Menus = { 
-            { "상장 기념 무료 이벤트", "아메리카노", "REGULAR", "BOTH", "0", "1500", "0" }, 
-            { "", "아메리카노", "REGULAR", "BOTH", "2500", "1500", "0" }, 
-            { "", "라떼", "REGULAR", "BOTH", "3000", "2000", "0"}
-        };
-        #endregion
-
-
+        /// <summary>
+        /// 카테고리당 메뉴정보 외부 주입
+        /// </summary>
+        [Browsable(false)]
+        public DataSet CategoriesAndMenusDataset { get; set; }
 
         public FormMenuBoard()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-            // 4TEST: 카테고리 버튼 추가
-            Array.ForEach(Categories, t => AddCategory(t));
-
-            // 4TEST: 카테고리 페이지에 메뉴 추가
-            for (int i=0; i < Menus.GetLength(0); i++) {
-                AddMenu("Coffee", Menus[i, 0], Menus[i, 1], Menus[i, 2], Menus[i, 3], Int32.Parse(Menus[i, 4]), Int32.Parse(Menus[i, 5]), Int32.Parse(Menus[i, 6]));
-            }
-
-            // 카테고리 추가하고 첫번째 항목에 포커스
-            CurrentCategoryName = ((Bunifu.Framework.UI.BunifuThinButton2)this.flowLayoutPanel_Category.Controls[2]).ButtonText;
-            dicMenuPages[CurrentCategoryName].BringToFront();
-
-            // 주문 콘트롤 버튼 이벤트
-            ucOrderItem1.OnMinusButtonClicked += UcOrderItem1_OnMinusButtonClicked;
-            ucOrderItem1.OnPlusButtonClicked += UcOrderItem1_OnPlusButtonClicked;
+            // 주문취소 / 주문완료
+            bunifuFlatButton_Cancle.Click += OnCancleButton;
+            bunifuFlatButton_Ok.Click += OnOkButton;
 
             // 주문 카트 내역 초기화
             OrderCartClearAll();
+
+            // 카테고리 메뉴 UI 구성
+            CategoriesAndMenusReload(CategoriesAndMenusDataset);
         }
 
-        #region '주문 카트 영역'
+        /// <summary>
+        /// 메뉴를 초기화하고 다시 생성
+        /// </summary>
+        public void CategoriesAndMenusReload(DataSet ds)
+        {
+            // 메뉴 데이터 설정 초기화
+            CategoriesAndMenusClearAll();
+
+            // 
+            if (ds == null)
+                return;
+
+            int category_cnt = ds.Tables.Count;
+            for (int i = 0; i < category_cnt; i++)
+            {
+                // Add categories
+                AddCategory(ds.Tables[i].TableName);
+                //-----------------------------------
+                {
+                    // Add menus
+                    foreach (DataRow dr in ds.Tables[i].Rows)
+                    {
+                        /*
+                        'Coffee':[
+                          {
+                            'category':100,
+                            'code': 1,
+                            'name_en': 'americano',
+                            'name_kr': '아메리카노',
+                            'price': 2500,
+                            'dc_digicap': 1500,
+                            'dc_covision': 0,
+                            'type': 'HOT',
+                            'size': 'REGULAR',
+                            'event_name': ''
+                          },
+                        */
+
+                        AddMenu(
+                            ds.Tables[i].TableName,         // category_name
+                            Int32.Parse(dr["category"].ToString()),
+                            Int32.Parse(dr["code"].ToString()),
+                            dr["event_name"].ToString(),    // event_name
+                            dr["name_kr"].ToString(),
+                            dr["size"].ToString(),
+                            dr["type"].ToString(),
+                            Int32.Parse(dr["price"].ToString()),
+                            Int32.Parse(dr["dc_digicap"].ToString()),
+                            Int32.Parse(dr["dc_covision"].ToString())
+                            );
+                        //----------------------------------
+                    }
+                }
+            }
+
+            //
+            // 카테고리 추가하고 첫번째 항목에 포커스
+            if(this.flowLayoutPanel_Category.Controls.Count > 0)
+                CurrentCategoryName = ((Bunifu.Framework.UI.BunifuThinButton2)this.flowLayoutPanel_Category.Controls[0]).ButtonText;
+
+            if (dicMenuPages.Count > 0)
+                dicMenuPages[CurrentCategoryName].BringToFront();
+        }
+
+
+
+
+        #region '버튼 이벤트'
+        /// <summary>
+        /// 주문 취소 버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCancleButton(object sender, EventArgs e)
+        {
+            OnPageCancle();
+        }
+
+        /// <summary>
+        /// 주문 완료 버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOkButton(object sender, EventArgs e)
+        {
+            OnPageSuccess();
+        }
+        #endregion
+
+
+
+
+
+        #region '주문 카트 추가/삭제 영역'
         /// <summary>
         /// 주문 내역 전체 지우기
         /// </summary>
@@ -112,18 +175,23 @@ namespace DCafeKiosk
         /// NAME, SIZE, TYPE 조합으로 주문 카트 내역 추가
         /// CartOrderItem.Name = aItemName+aItemSize+aItemType 으로 CartOrderItem 객체 식별
         /// </summary>
+        /// <param name="aMenuButtonObj"></param>
         /// <param name="aMenuNameKR"></param>
         /// <param name="aMenuSize"></param>
         /// <param name="aMenuType"></param>
         /// <param name="aMenuUnitPrice"></param>
         /// <param name="aMenuAmount"></param>
-        private void OrderCartAdd(string aMenuNameKR, string aMenuSize, string aMenuType, int aMenuUnitPrice, int aMenuAmount=1)
+        private void OrderCartAdd(UCMenuButton aMenuButtonObj, string aMenuNameKR, string aMenuSize, string aMenuType, int aMenuUnitPrice, int aMenuAmount=1)
         {
+            // 카트 콘트롤 이름
             string keyName = string.Format("{0}{1}{2}", aMenuNameKR, aMenuSize, aMenuType);
 
-            // 카트에 주문이 있으면 추가 하지 않음
+            // 카트에 주문이 있으면 추가 하지 않고, 주문 개수 증가 시킴
             if (this.flowLayoutPanel_OrderCartLayout.Controls.ContainsKey(keyName) == true)
             {
+                UCOrderItem control = this.flowLayoutPanel_OrderCartLayout.Controls[keyName] as UCOrderItem;
+                control.XMenuAmount++;
+
                 return;
             }
 
@@ -141,7 +209,7 @@ namespace DCafeKiosk
                 //----------------------------------------------------------
                 _OrderItem.BackColor = System.Drawing.Color.Transparent;
                 _OrderItem.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-                _OrderItem.Size = new System.Drawing.Size(539, 60);
+                _OrderItem.Size = new System.Drawing.Size(539, 50);
                 _OrderItem.XForeTextColor = System.Drawing.Color.White;
                 
                 //----------------------------------------------------------
@@ -153,6 +221,9 @@ namespace DCafeKiosk
                 //----------------------------------------------------------
                 _OrderItem.XMenuAmount = aMenuAmount;
                 _OrderItem.XMenuTotalAmount = aMenuUnitPrice * aMenuAmount;
+
+                //----------------------------------------------------------
+                _OrderItem.XMenuButtonObject = aMenuButtonObj;
             }
 
             this.flowLayoutPanel_OrderCartLayout.Controls.Add(_OrderItem);
@@ -192,7 +263,17 @@ namespace DCafeKiosk
 
 
 
-        #region '카테고리 영역'
+
+
+        #region '카테고리 추가 & 메뉴버튼 추가 영역'
+        /*
+            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            [flowLayoutPanel_Category]  Category Button을 flowLayoutPanel_Category에 동적 생성 추가
+            [panel_MenuPageLayout]      Category별 Menus를 담을 FlowLayoutPanel을 panel_pageLayout에 동적 생성 추가
+            [panel_MenuPageLayout]      
+            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        */
+
         /// <summary>
         /// 카테고리 버튼 추가
         /// </summary>
@@ -209,7 +290,7 @@ namespace DCafeKiosk
                 _categoryButton.ActiveLineColor = System.Drawing.Color.Transparent;
                 _categoryButton.BackColor = System.Drawing.Color.White;                
                 _categoryButton.Cursor = System.Windows.Forms.Cursors.Hand;
-                _categoryButton.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                _categoryButton.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 _categoryButton.ForeColor = System.Drawing.Color.SeaGreen;
                 _categoryButton.IdleBorderThickness = 1;
                 _categoryButton.IdleCornerRadius = 1;
@@ -229,15 +310,13 @@ namespace DCafeKiosk
             FlowLayoutPanel flp = new FlowLayoutPanel();
             {
                 flp.BackColor = System.Drawing.Color.White;
-                flp.Controls.Add(this.ucMenuButton1);
-                flp.Controls.Add(this.ucMenuButton2);
                 flp.Dock = System.Windows.Forms.DockStyle.Fill;                
                 flp.Padding = new System.Windows.Forms.Padding(20, 20, 5, 5);
 
                 //----------------------------------------------------------
                 flp.Name = aCategoryName;
             }
-            this.panel_pageLayout.Controls.Add(flp);
+            this.panel_MenuPageLayout.Controls.Add(flp);
                         
             // 딕셔너리에 메뉴 페이지 저장
             dicMenuPages.Add(aCategoryName, flp);
@@ -274,6 +353,8 @@ namespace DCafeKiosk
         /// 카테고리별 페이지에 메뉴 추가
         /// </summary>
         /// <param name="aCategoryName"></param>
+        /// <param name="aCategoryCode"></param>
+        /// <param name="aMenuCode"></param>
         /// <param name="aEventName"></param>
         /// <param name="aMenuName"></param>
         /// <param name="aSize"></param>
@@ -282,7 +363,9 @@ namespace DCafeKiosk
         /// <param name="aDCDigicap"></param>
         /// <param name="aDCCovision"></param>
         private void AddMenu(
-            string aCategoryName, 
+            string aCategoryName,
+            int aCategoryCode,
+            int aMenuCode,
             string aEventName, 
             string aMenuName, 
             string aSize, 
@@ -302,12 +385,14 @@ namespace DCafeKiosk
                 _menuButton.XOnHoverBackColor = System.Drawing.Color.DarkOrchid;
 
                 //----------------------------------------------------------
+                _menuButton.XCategoryCode = aCategoryCode;
+                _menuButton.XMenuCode = aMenuCode;
                 _menuButton.XEventName = aEventName;
                 _menuButton.XMenuNameKR = aMenuName;
                 _menuButton.XMenuNameEN = "Product Name";
                 _menuButton.XMenuSize = aSize;
                 _menuButton.XMenuType = aType;
-                _menuButton.XMenuPrice = aPrice;                
+                _menuButton.XMenuPrice = aPrice;
             }
 
             // 해당 카테고리 페이지에 메뉴 추가
@@ -327,14 +412,57 @@ namespace DCafeKiosk
         private void _menuButton_Click(object sender, EventArgs e)
         {
             UCMenuButton obj = sender as UCMenuButton;
-            OrderCartAdd(obj.XMenuNameKR, obj.XMenuSize, obj.XMenuType, obj.XMenuPrice);
+            OrderCartAdd(obj, obj.XMenuNameKR, obj.XMenuSize, obj.XMenuType, obj.XMenuPrice);
         }
 
         /// <summary>
-        /// 카테고리 페이지별 메뉴 지우기
+        /// 동적 카테고리와 동적 메뉴 전체 제거하기
         /// </summary>
-        private void CategoryMenusClearAll()
+        private void CategoriesAndMenusClearAll()
         {
+            // panel_MenuPageLayout > FlowLayoutPanel > UCMenuButton
+
+            // 메뉴 동적 콘트롤 제거
+            int categoryCount = this.panel_MenuPageLayout.Controls.Count;
+
+            while (this.panel_MenuPageLayout.Controls.Count > 0)
+            {
+                while (this.panel_MenuPageLayout.Controls[0].Controls.Count > 0)
+                {
+                    UCMenuButton control = this.panel_MenuPageLayout.Controls[0].Controls[0] as UCMenuButton;
+                    
+                    // 메뉴 이벤트 제거
+                    control.Click -= _menuButton_Click;
+
+                    // 메뉴 객체 제거
+                    this.panel_MenuPageLayout.Controls[0].Controls.RemoveAt(0);
+
+                    // 메뉴 객체 릴리즈
+                    control.Dispose();
+                }
+
+                FlowLayoutPanel flp = this.panel_MenuPageLayout.Controls[0] as FlowLayoutPanel;
+                this.panel_MenuPageLayout.Controls.RemoveAt(0);
+                flp.Dispose();
+            }
+
+            // 카테고리 동적 콘트롤 제거
+            while(this.flowLayoutPanel_Category.Controls.Count > 0)
+            {
+                Control control = this.flowLayoutPanel_Category.Controls[0];
+
+                // 카테고리 이벤트 제거
+                control.Click -= _categoryButton_Click;
+
+                // 카테고리 객체 제거
+                this.flowLayoutPanel_Category.Controls.RemoveAt(0);
+
+                // 카테고리 객체 릴리즈
+                control.Dispose();
+            }
+
+            // 카테고리 페이지 맵핑 제거
+            dicMenuPages.Clear();
         }
         #endregion
     }

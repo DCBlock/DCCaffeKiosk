@@ -44,10 +44,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.bunifuFlatButton2 = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.bunifuFlatButton_Ok = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.bunifuFlatButton_Cancle = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel_main = new System.Windows.Forms.Panel();
-            this.panel_pageLayout = new System.Windows.Forms.Panel();
+            this.panel_MenuPageLayout = new System.Windows.Forms.Panel();
             this.flowLayoutPanel_Menu = new System.Windows.Forms.FlowLayoutPanel();
             this.ucMenuButton1 = new DCafeKiosk.UCMenuButton();
             this.ucMenuButton2 = new DCafeKiosk.UCMenuButton();
@@ -63,7 +63,7 @@
             this.panel4.SuspendLayout();
             this.flowLayoutPanel_OrderCartLayout.SuspendLayout();
             this.panel_main.SuspendLayout();
-            this.panel_pageLayout.SuspendLayout();
+            this.panel_MenuPageLayout.SuspendLayout();
             this.flowLayoutPanel_Menu.SuspendLayout();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel_Category.SuspendLayout();
@@ -81,8 +81,8 @@
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.bunifuFlatButton2);
-            this.panel4.Controls.Add(this.bunifuFlatButton1);
+            this.panel4.Controls.Add(this.bunifuFlatButton_Ok);
+            this.panel4.Controls.Add(this.bunifuFlatButton_Cancle);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(1350, 0);
             this.panel4.Name = "panel4";
@@ -152,10 +152,11 @@
             this.ucOrderItem1.TabIndex = 9;
             this.ucOrderItem1.XForeTextColor = System.Drawing.Color.White;
             this.ucOrderItem1.XMenuAmount = 10;
+            this.ucOrderItem1.XMenuButtonObject = null;
             this.ucOrderItem1.XMenuNameKR = "Menu Item Name";
             this.ucOrderItem1.XMenuSize = "REGULAR";
-            this.ucOrderItem1.XMenuType = "COLD";
             this.ucOrderItem1.XMenuTotalAmount = 0;
+            this.ucOrderItem1.XMenuType = "COLD";
             this.ucOrderItem1.XMenuUnitPrice = 2500;
             // 
             // ucOrderItem2
@@ -168,10 +169,11 @@
             this.ucOrderItem2.TabIndex = 10;
             this.ucOrderItem2.XForeTextColor = System.Drawing.Color.White;
             this.ucOrderItem2.XMenuAmount = 10;
+            this.ucOrderItem2.XMenuButtonObject = null;
             this.ucOrderItem2.XMenuNameKR = "Menu Item Name";
             this.ucOrderItem2.XMenuSize = "REGULAR";
-            this.ucOrderItem2.XMenuType = "COLD";
             this.ucOrderItem2.XMenuTotalAmount = 0;
+            this.ucOrderItem2.XMenuType = "COLD";
             this.ucOrderItem2.XMenuUnitPrice = 2500;
             // 
             // ucOrderItem3
@@ -184,10 +186,11 @@
             this.ucOrderItem3.TabIndex = 11;
             this.ucOrderItem3.XForeTextColor = System.Drawing.Color.White;
             this.ucOrderItem3.XMenuAmount = 10;
+            this.ucOrderItem3.XMenuButtonObject = null;
             this.ucOrderItem3.XMenuNameKR = "Menu Item Name";
             this.ucOrderItem3.XMenuSize = "REGULAR";
-            this.ucOrderItem3.XMenuType = "COLD";
             this.ucOrderItem3.XMenuTotalAmount = 0;
+            this.ucOrderItem3.XMenuType = "COLD";
             this.ucOrderItem3.XMenuUnitPrice = 2500;
             // 
             // ucOrderItem6
@@ -200,10 +203,11 @@
             this.ucOrderItem6.TabIndex = 14;
             this.ucOrderItem6.XForeTextColor = System.Drawing.Color.White;
             this.ucOrderItem6.XMenuAmount = 10;
+            this.ucOrderItem6.XMenuButtonObject = null;
             this.ucOrderItem6.XMenuNameKR = "Menu Item Name";
             this.ucOrderItem6.XMenuSize = "REGULAR";
-            this.ucOrderItem6.XMenuType = "COLD";
             this.ucOrderItem6.XMenuTotalAmount = 0;
+            this.ucOrderItem6.XMenuType = "COLD";
             this.ucOrderItem6.XMenuUnitPrice = 2500;
             // 
             // label8
@@ -254,80 +258,80 @@
             this.label2.TabIndex = 52;
             this.label2.Text = "주문 내역";
             // 
-            // bunifuFlatButton2
+            // bunifuFlatButton_Ok
             // 
-            this.bunifuFlatButton2.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(156)))), ((int)(((byte)(188)))));
-            this.bunifuFlatButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(156)))), ((int)(((byte)(188)))));
-            this.bunifuFlatButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuFlatButton2.BorderRadius = 7;
-            this.bunifuFlatButton2.ButtonText = "주문 완료";
-            this.bunifuFlatButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuFlatButton2.DisabledColor = System.Drawing.Color.Gray;
-            this.bunifuFlatButton2.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.bunifuFlatButton2.Iconcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton2.Iconimage = null;
-            this.bunifuFlatButton2.Iconimage_right = null;
-            this.bunifuFlatButton2.Iconimage_right_Selected = null;
-            this.bunifuFlatButton2.Iconimage_Selected = null;
-            this.bunifuFlatButton2.IconMarginLeft = 0;
-            this.bunifuFlatButton2.IconMarginRight = 0;
-            this.bunifuFlatButton2.IconRightVisible = true;
-            this.bunifuFlatButton2.IconRightZoom = 0D;
-            this.bunifuFlatButton2.IconVisible = true;
-            this.bunifuFlatButton2.IconZoom = 90D;
-            this.bunifuFlatButton2.IsTab = false;
-            this.bunifuFlatButton2.Location = new System.Drawing.Point(336, 915);
-            this.bunifuFlatButton2.Name = "bunifuFlatButton2";
-            this.bunifuFlatButton2.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(156)))), ((int)(((byte)(188)))));
-            this.bunifuFlatButton2.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(176)))), ((int)(((byte)(208)))));
-            this.bunifuFlatButton2.OnHoverTextColor = System.Drawing.Color.White;
-            this.bunifuFlatButton2.selected = false;
-            this.bunifuFlatButton2.Size = new System.Drawing.Size(190, 70);
-            this.bunifuFlatButton2.TabIndex = 51;
-            this.bunifuFlatButton2.Text = "주문 완료";
-            this.bunifuFlatButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuFlatButton2.Textcolor = System.Drawing.Color.White;
-            this.bunifuFlatButton2.TextFont = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.bunifuFlatButton_Ok.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(156)))), ((int)(((byte)(188)))));
+            this.bunifuFlatButton_Ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(156)))), ((int)(((byte)(188)))));
+            this.bunifuFlatButton_Ok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuFlatButton_Ok.BorderRadius = 7;
+            this.bunifuFlatButton_Ok.ButtonText = "주문 완료";
+            this.bunifuFlatButton_Ok.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuFlatButton_Ok.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuFlatButton_Ok.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.bunifuFlatButton_Ok.Iconcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton_Ok.Iconimage = null;
+            this.bunifuFlatButton_Ok.Iconimage_right = null;
+            this.bunifuFlatButton_Ok.Iconimage_right_Selected = null;
+            this.bunifuFlatButton_Ok.Iconimage_Selected = null;
+            this.bunifuFlatButton_Ok.IconMarginLeft = 0;
+            this.bunifuFlatButton_Ok.IconMarginRight = 0;
+            this.bunifuFlatButton_Ok.IconRightVisible = true;
+            this.bunifuFlatButton_Ok.IconRightZoom = 0D;
+            this.bunifuFlatButton_Ok.IconVisible = true;
+            this.bunifuFlatButton_Ok.IconZoom = 90D;
+            this.bunifuFlatButton_Ok.IsTab = false;
+            this.bunifuFlatButton_Ok.Location = new System.Drawing.Point(336, 915);
+            this.bunifuFlatButton_Ok.Name = "bunifuFlatButton_Ok";
+            this.bunifuFlatButton_Ok.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(156)))), ((int)(((byte)(188)))));
+            this.bunifuFlatButton_Ok.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(176)))), ((int)(((byte)(208)))));
+            this.bunifuFlatButton_Ok.OnHoverTextColor = System.Drawing.Color.White;
+            this.bunifuFlatButton_Ok.selected = false;
+            this.bunifuFlatButton_Ok.Size = new System.Drawing.Size(190, 70);
+            this.bunifuFlatButton_Ok.TabIndex = 51;
+            this.bunifuFlatButton_Ok.Text = "주문 완료";
+            this.bunifuFlatButton_Ok.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bunifuFlatButton_Ok.Textcolor = System.Drawing.Color.White;
+            this.bunifuFlatButton_Ok.TextFont = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             // 
-            // bunifuFlatButton1
+            // bunifuFlatButton_Cancle
             // 
-            this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
-            this.bunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
-            this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuFlatButton1.BorderRadius = 7;
-            this.bunifuFlatButton1.ButtonText = "주문 취소";
-            this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuFlatButton1.DisabledColor = System.Drawing.Color.Gray;
-            this.bunifuFlatButton1.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.bunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton1.Iconimage = null;
-            this.bunifuFlatButton1.Iconimage_right = null;
-            this.bunifuFlatButton1.Iconimage_right_Selected = null;
-            this.bunifuFlatButton1.Iconimage_Selected = null;
-            this.bunifuFlatButton1.IconMarginLeft = 0;
-            this.bunifuFlatButton1.IconMarginRight = 0;
-            this.bunifuFlatButton1.IconRightVisible = true;
-            this.bunifuFlatButton1.IconRightZoom = 0D;
-            this.bunifuFlatButton1.IconVisible = true;
-            this.bunifuFlatButton1.IconZoom = 90D;
-            this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(83, 915);
-            this.bunifuFlatButton1.Name = "bunifuFlatButton1";
-            this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
-            this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
-            this.bunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.White;
-            this.bunifuFlatButton1.selected = false;
-            this.bunifuFlatButton1.Size = new System.Drawing.Size(190, 70);
-            this.bunifuFlatButton1.TabIndex = 50;
-            this.bunifuFlatButton1.Text = "주문 취소";
-            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuFlatButton1.Textcolor = System.Drawing.Color.White;
-            this.bunifuFlatButton1.TextFont = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.bunifuFlatButton_Cancle.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.bunifuFlatButton_Cancle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.bunifuFlatButton_Cancle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuFlatButton_Cancle.BorderRadius = 7;
+            this.bunifuFlatButton_Cancle.ButtonText = "주문 취소";
+            this.bunifuFlatButton_Cancle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuFlatButton_Cancle.DisabledColor = System.Drawing.Color.Gray;
+            this.bunifuFlatButton_Cancle.Font = new System.Drawing.Font("Gulim", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.bunifuFlatButton_Cancle.Iconcolor = System.Drawing.Color.Transparent;
+            this.bunifuFlatButton_Cancle.Iconimage = null;
+            this.bunifuFlatButton_Cancle.Iconimage_right = null;
+            this.bunifuFlatButton_Cancle.Iconimage_right_Selected = null;
+            this.bunifuFlatButton_Cancle.Iconimage_Selected = null;
+            this.bunifuFlatButton_Cancle.IconMarginLeft = 0;
+            this.bunifuFlatButton_Cancle.IconMarginRight = 0;
+            this.bunifuFlatButton_Cancle.IconRightVisible = true;
+            this.bunifuFlatButton_Cancle.IconRightZoom = 0D;
+            this.bunifuFlatButton_Cancle.IconVisible = true;
+            this.bunifuFlatButton_Cancle.IconZoom = 90D;
+            this.bunifuFlatButton_Cancle.IsTab = false;
+            this.bunifuFlatButton_Cancle.Location = new System.Drawing.Point(83, 915);
+            this.bunifuFlatButton_Cancle.Name = "bunifuFlatButton_Cancle";
+            this.bunifuFlatButton_Cancle.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.bunifuFlatButton_Cancle.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
+            this.bunifuFlatButton_Cancle.OnHoverTextColor = System.Drawing.Color.White;
+            this.bunifuFlatButton_Cancle.selected = false;
+            this.bunifuFlatButton_Cancle.Size = new System.Drawing.Size(190, 70);
+            this.bunifuFlatButton_Cancle.TabIndex = 50;
+            this.bunifuFlatButton_Cancle.Text = "주문 취소";
+            this.bunifuFlatButton_Cancle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bunifuFlatButton_Cancle.Textcolor = System.Drawing.Color.White;
+            this.bunifuFlatButton_Cancle.TextFont = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             // 
             // panel_main
             // 
             this.panel_main.BackColor = System.Drawing.Color.White;
-            this.panel_main.Controls.Add(this.panel_pageLayout);
+            this.panel_main.Controls.Add(this.panel_MenuPageLayout);
             this.panel_main.Controls.Add(this.panel3);
             this.panel_main.Controls.Add(this.panel1);
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -336,14 +340,14 @@
             this.panel_main.Size = new System.Drawing.Size(1350, 1061);
             this.panel_main.TabIndex = 56;
             // 
-            // panel_pageLayout
+            // panel_MenuPageLayout
             // 
-            this.panel_pageLayout.Controls.Add(this.flowLayoutPanel_Menu);
-            this.panel_pageLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_pageLayout.Location = new System.Drawing.Point(0, 166);
-            this.panel_pageLayout.Name = "panel_pageLayout";
-            this.panel_pageLayout.Size = new System.Drawing.Size(1350, 895);
-            this.panel_pageLayout.TabIndex = 54;
+            this.panel_MenuPageLayout.Controls.Add(this.flowLayoutPanel_Menu);
+            this.panel_MenuPageLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_MenuPageLayout.Location = new System.Drawing.Point(0, 166);
+            this.panel_MenuPageLayout.Name = "panel_MenuPageLayout";
+            this.panel_MenuPageLayout.Size = new System.Drawing.Size(1350, 895);
+            this.panel_MenuPageLayout.TabIndex = 54;
             // 
             // flowLayoutPanel_Menu
             // 
@@ -367,17 +371,18 @@
             this.ucMenuButton1.Name = "ucMenuButton1";
             this.ucMenuButton1.Size = new System.Drawing.Size(250, 250);
             this.ucMenuButton1.TabIndex = 0;
-            this.ucMenuButton1.Visible = false;
             this.ucMenuButton1.XBorderColor = System.Drawing.Color.Gainsboro;
+            this.ucMenuButton1.XCategoryCode = 0;
             this.ucMenuButton1.XDCCovisionPrice = 0;
             this.ucMenuButton1.XDCDigicapPrice = 1000;
             this.ucMenuButton1.XEventName = "상장 기념 이벤트";
+            this.ucMenuButton1.XMenuCode = 0;
             this.ucMenuButton1.XMenuNameEN = "Product Name";
             this.ucMenuButton1.XMenuNameKR = "제품명";
             this.ucMenuButton1.XMenuPrice = 2500;
-            this.ucMenuButton1.XOnHoverBackColor = System.Drawing.Color.DarkOrchid;
             this.ucMenuButton1.XMenuSize = "REGULAR";
             this.ucMenuButton1.XMenuType = "BOTH";
+            this.ucMenuButton1.XOnHoverBackColor = System.Drawing.Color.DarkOrchid;
             // 
             // ucMenuButton2
             // 
@@ -389,17 +394,18 @@
             this.ucMenuButton2.Name = "ucMenuButton2";
             this.ucMenuButton2.Size = new System.Drawing.Size(250, 250);
             this.ucMenuButton2.TabIndex = 1;
-            this.ucMenuButton2.Visible = false;
             this.ucMenuButton2.XBorderColor = System.Drawing.Color.Gainsboro;
+            this.ucMenuButton2.XCategoryCode = 0;
             this.ucMenuButton2.XDCCovisionPrice = 0;
             this.ucMenuButton2.XDCDigicapPrice = 1000;
             this.ucMenuButton2.XEventName = "20주년 이벤트";
+            this.ucMenuButton2.XMenuCode = 0;
             this.ucMenuButton2.XMenuNameEN = "Product Name";
             this.ucMenuButton2.XMenuNameKR = "제품명";
             this.ucMenuButton2.XMenuPrice = 2500;
-            this.ucMenuButton2.XOnHoverBackColor = System.Drawing.Color.DarkOrchid;
             this.ucMenuButton2.XMenuSize = "REGULAR";
             this.ucMenuButton2.XMenuType = "BOTH";
+            this.ucMenuButton2.XOnHoverBackColor = System.Drawing.Color.DarkOrchid;
             // 
             // panel3
             // 
@@ -418,7 +424,7 @@
             // 
             this.bunifuSeparator_SelectedCategoryLine.BackColor = System.Drawing.Color.Transparent;
             this.bunifuSeparator_SelectedCategoryLine.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(144)))), ((int)(((byte)(255)))));
-            this.bunifuSeparator_SelectedCategoryLine.LineThickness = 4;
+            this.bunifuSeparator_SelectedCategoryLine.LineThickness = 14;
             this.bunifuSeparator_SelectedCategoryLine.Location = new System.Drawing.Point(-1, 92);
             this.bunifuSeparator_SelectedCategoryLine.Margin = new System.Windows.Forms.Padding(3, 207, 3, 207);
             this.bunifuSeparator_SelectedCategoryLine.Name = "bunifuSeparator_SelectedCategoryLine";
@@ -448,7 +454,7 @@
             this.bunifuThinButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton21.BackgroundImage")));
             this.bunifuThinButton21.ButtonText = "Category1";
             this.bunifuThinButton21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton21.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuThinButton21.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.bunifuThinButton21.ForeColor = System.Drawing.Color.SeaGreen;
             this.bunifuThinButton21.IdleBorderThickness = 1;
             this.bunifuThinButton21.IdleCornerRadius = 20;
@@ -462,7 +468,6 @@
             this.bunifuThinButton21.Size = new System.Drawing.Size(160, 50);
             this.bunifuThinButton21.TabIndex = 0;
             this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuThinButton21.Visible = false;
             // 
             // bunifuThinButton22
             // 
@@ -475,7 +480,7 @@
             this.bunifuThinButton22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton22.BackgroundImage")));
             this.bunifuThinButton22.ButtonText = "Category2";
             this.bunifuThinButton22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton22.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuThinButton22.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.bunifuThinButton22.ForeColor = System.Drawing.Color.SeaGreen;
             this.bunifuThinButton22.IdleBorderThickness = 1;
             this.bunifuThinButton22.IdleCornerRadius = 20;
@@ -489,14 +494,13 @@
             this.bunifuThinButton22.Size = new System.Drawing.Size(160, 50);
             this.bunifuThinButton22.TabIndex = 0;
             this.bunifuThinButton22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuThinButton22.Visible = false;
             // 
             // bunifuSeparator1
             // 
             this.bunifuSeparator1.BackColor = System.Drawing.Color.Transparent;
             this.bunifuSeparator1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bunifuSeparator1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.bunifuSeparator1.LineThickness = 14;
+            this.bunifuSeparator1.LineThickness = 48;
             this.bunifuSeparator1.Location = new System.Drawing.Point(0, 107);
             this.bunifuSeparator1.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
             this.bunifuSeparator1.Name = "bunifuSeparator1";
@@ -551,7 +555,7 @@
             this.panel4.PerformLayout();
             this.flowLayoutPanel_OrderCartLayout.ResumeLayout(false);
             this.panel_main.ResumeLayout(false);
-            this.panel_pageLayout.ResumeLayout(false);
+            this.panel_MenuPageLayout.ResumeLayout(false);
             this.flowLayoutPanel_Menu.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.flowLayoutPanel_Category.ResumeLayout(false);
@@ -572,12 +576,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton2;
-        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
+        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton_Ok;
+        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton_Cancle;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private Bunifu.Framework.UI.BunifuSeparator bunifuSeparator1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panel_pageLayout;
+        private System.Windows.Forms.Panel panel_MenuPageLayout;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_Menu;
         private UCMenuButton ucMenuButton1;
         private UCMenuButton ucMenuButton2;
