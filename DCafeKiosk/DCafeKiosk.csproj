@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bixolon\BXLAPI.cs" />
     <Compile Include="Classes\APIController.cs" />
     <Compile Include="Classes\Enum.cs" />
     <Compile Include="Classes\EventArgs.cs" />
@@ -272,4 +273,8 @@
     <Content Include="Resources\Bunifu_UI_v1.5.3.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy /Y "$(ProjectDir)\Resources\*.dll" "$(TargetDir)"
+copy /Y "$(ProjectDir)\Resources\*.lib" "$(TargetDir)"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

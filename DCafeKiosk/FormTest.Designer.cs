@@ -41,10 +41,10 @@
             this.flowLayoutPanel1.Controls.Add(this.ucOrderTitle1);
             this.flowLayoutPanel1.Controls.Add(this.ucOrderItem1);
             this.flowLayoutPanel1.Controls.Add(this.ucOrderItem2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 13);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(622, 183);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(604, 198);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // ucOrderTitle1
@@ -53,16 +53,16 @@
             this.ucOrderTitle1.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ucOrderTitle1.Location = new System.Drawing.Point(3, 3);
             this.ucOrderTitle1.Name = "ucOrderTitle1";
-            this.ucOrderTitle1.Size = new System.Drawing.Size(618, 38);
+            this.ucOrderTitle1.Size = new System.Drawing.Size(598, 41);
             this.ucOrderTitle1.TabIndex = 0;
             // 
             // ucOrderItem1
             // 
             this.ucOrderItem1.BackColor = System.Drawing.Color.Transparent;
             this.ucOrderItem1.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucOrderItem1.Location = new System.Drawing.Point(3, 47);
+            this.ucOrderItem1.Location = new System.Drawing.Point(3, 50);
             this.ucOrderItem1.Name = "ucOrderItem1";
-            this.ucOrderItem1.Size = new System.Drawing.Size(618, 55);
+            this.ucOrderItem1.Size = new System.Drawing.Size(598, 60);
             this.ucOrderItem1.TabIndex = 1;
             this.ucOrderItem1.XForeTextColor = System.Drawing.Color.Black;
             this.ucOrderItem1.XMenuAmount = 1;
@@ -77,9 +77,9 @@
             // 
             this.ucOrderItem2.BackColor = System.Drawing.Color.Transparent;
             this.ucOrderItem2.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucOrderItem2.Location = new System.Drawing.Point(3, 108);
+            this.ucOrderItem2.Location = new System.Drawing.Point(3, 116);
             this.ucOrderItem2.Name = "ucOrderItem2";
-            this.ucOrderItem2.Size = new System.Drawing.Size(618, 50);
+            this.ucOrderItem2.Size = new System.Drawing.Size(598, 54);
             this.ucOrderItem2.TabIndex = 2;
             this.ucOrderItem2.XForeTextColor = System.Drawing.Color.Black;
             this.ucOrderItem2.XMenuAmount = 1;
@@ -92,9 +92,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 223);
+            this.button1.Location = new System.Drawing.Point(10, 242);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(174, 23);
+            this.button1.Size = new System.Drawing.Size(149, 25);
             this.button1.TabIndex = 1;
             this.button1.Text = "음료 타입 선택 다이얼로그";
             this.button1.UseVisualStyleBackColor = true;
@@ -102,9 +102,9 @@
             // 
             // FormTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 594);
+            this.ClientSize = new System.Drawing.Size(623, 644);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "FormTest";

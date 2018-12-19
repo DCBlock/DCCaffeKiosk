@@ -97,6 +97,7 @@ namespace DCafeKiosk
             request.Method = RestSharp.Method.GET;
             request.RequestFormat = RestSharp.DataFormat.Json;
             request.Resource = GET_MENUS;
+            request.Timeout = 3000;
 
             //
             var t1 = client.ExecuteTaskAsync(request);

@@ -1,3 +1,5 @@
+http://bixolon.com/html/ko/download/download_product.xhtml?prod_id=122
+
 
 ## DCaffeKios .Net Client
 
@@ -12,6 +14,10 @@
 .
 
 ## Running Application
+
+### 'BIXOLON SRP-330II' 프린터 드라이버 설치
+
+[Windows Driver 다운로드 - software_srp-330ii_332ii_windows_driver_v1.2.0.zip](http://bixolon.com/upload/download/software_srp-330ii_332ii_windows_driver_v1.2.0.zip)
 
 ### font 설치
 

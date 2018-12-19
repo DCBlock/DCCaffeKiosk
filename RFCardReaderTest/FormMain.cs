@@ -14,17 +14,17 @@ using SharpLib.Win32;
 
 namespace RFCardReaderTest
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
         private StringBuilder strRfid = null;
 
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
             strRfid = new StringBuilder();
         }
 
-        ~Form1()
+        ~FormMain()
         {
             EndEventCapture();
         }

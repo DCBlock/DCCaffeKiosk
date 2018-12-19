@@ -97,7 +97,10 @@ namespace DCafeKiosk
                     mFormMenuBoard.InitializeForm();
                 }
                 else {
-                    MessageBox.Show("메뉴 정보를 가져오지 못했습니다.\n\r인터넷 연결을 점검해야 합니다.", "문제 보고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("DCCaffe 서버로 부터 메뉴 정보를 가져오지 못했습니다.\n\r인터넷 연결을 점검한 후 다시 실행해야 합니다.", "문제 보고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Application.ExitThread();
+                    Environment.Exit(0);
+                    return;
                 }
             }
 
