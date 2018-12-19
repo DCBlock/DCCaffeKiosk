@@ -15,7 +15,7 @@ namespace DCafeKiosk
         private Action Worker { get; set; }
         private Action Callback { get; set; }
         
-        public FormLoadingDialog(Action worker, Action callback)
+        public FormLoadingDialog(Action worker/*, Action callback*/)
         {
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -24,9 +24,9 @@ namespace DCafeKiosk
                 throw new ArgumentNullException();
             Worker = worker;
 
-            if (callback == null)
-                throw new ArgumentNullException();
-            Callback = callback;
+            //if (callback == null)
+            //    throw new ArgumentNullException();
+            //Callback = callback;
         }
 
         protected override void OnLoad(System.EventArgs e)
@@ -35,9 +35,9 @@ namespace DCafeKiosk
 
             Task.Factory.StartNew(Worker).ContinueWith(
                 t => {
-                    this.Callback(); // StartEventCapture :: 다시 RF Reader 시작
+                    //this.Callback(); // StartEventCapture :: 다시 RF Reader 시작
                     this.Close();
-                }, 
+                },
                 TaskScheduler.FromCurrentSynchronizationContext()
                 );
         }

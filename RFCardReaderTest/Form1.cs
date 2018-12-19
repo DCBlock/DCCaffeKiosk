@@ -46,8 +46,8 @@ namespace RFCardReaderTest
             //-------------------------------------------------------
             int flags = (int)RawInputDeviceFlags.RIDEV_INPUTSINK;
             {
-                rid[0].usUsagePage = 0x01;
-                rid[0].usUsage = 0x06;
+                rid[0].usUsagePage = (ushort)SharpLib.Hid.UsagePage.GenericDesktopControls;
+                rid[0].usUsage = (ushort)SharpLib.Hid.UsageCollection.GenericDesktop.Keyboard;
                 rid[0].dwFlags = (RawInputDeviceFlags)flags;
                 rid[0].hwndTarget = this.Handle;
             }
@@ -72,8 +72,8 @@ namespace RFCardReaderTest
 
             int flags = (int)RawInputDeviceFlags.RIDEV_REMOVE;
             {
-                rid[0].usUsagePage = 0x01;
-                rid[0].usUsage = 0x06;
+                rid[0].usUsagePage = (ushort)SharpLib.Hid.UsagePage.GenericDesktopControls;
+                rid[0].usUsage = (ushort)SharpLib.Hid.UsageCollection.GenericDesktop.Keyboard;
                 rid[0].dwFlags = (RawInputDeviceFlags)flags;    // here!
                 rid[0].hwndTarget = IntPtr.Zero;                // here!
             }
@@ -105,6 +105,7 @@ namespace RFCardReaderTest
                     {
                         IntPtr rawInputBuffer = IntPtr.Zero;
                         RAWINPUT iRawInput = new RAWINPUT();
+
                         if(!GetRawInputData(message.LParam, ref iRawInput, ref rawInputBuffer))
                         {
                             Console.WriteLine("GetRawInputData failed!");
@@ -246,6 +247,22 @@ namespace RFCardReaderTest
         {
             strRfid.Clear();            
             EndEventCapture();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //DCafeKiosk.FormMessageBox dlg = new DCafeKiosk.FormMessageBox();
+            //DialogResult dlgResult = dlg.ShowDialog("인증에 실패 했습니다.", "인증 실패", MessageBoxButtons.OK);
+            //MessageBox.Show(dlgResult.ToString());
+
+            DCafeKiosk.FormMessageBox dlg = new DCafeKiosk.FormMessageBox();
+            dlg.XColorTitle = Color.FromArgb(235, 82, 87);
+            DialogResult dlgResult = dlg.ShowDialog("추가 선택을 해주세요.", "추가 선택", DCafeKiosk.CustomMessageBoxButtons.OrderOkCancle);
+
+            if(dlgResult == DialogResult.OK)
+                MessageBox.Show("HOT");
+            else if (dlgResult == DialogResult.Cancel)
+                MessageBox.Show("ICED");
         }
     }
 }

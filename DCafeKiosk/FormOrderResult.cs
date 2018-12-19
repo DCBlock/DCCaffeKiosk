@@ -14,10 +14,9 @@ using SharpLib.Win32;
 
 namespace DCafeKiosk
 {
-    public partial class FormOrderResult : Form, IPageEventHandler
+    public partial class FormOrderResult : Form, IPage
     {
-        #region 'EVENT'
-        //++++++++++++++++++++++++++++++++++++++++++++++++
+        #region 'IPage'
         public event EventHandler<EventArgs> PageSuccess;
         public event EventHandler<EventArgs> PageCancle;
 
@@ -32,7 +31,6 @@ namespace DCafeKiosk
             if (PageCancle != null)
                 PageCancle(this, EventArgs.Empty);
         }
-        //++++++++++++++++++++++++++++++++++++++++++++++++
         #endregion
 
         #region 'PROPERTIES'
@@ -66,6 +64,11 @@ namespace DCafeKiosk
             InitializeComponent();
 
             bunifuFlatButton_cancle.Click += cancle_Click;
+        }
+
+        public void InitializeForm()
+        {
+
         }
 
         private void cancle_Click(object sender, EventArgs e)

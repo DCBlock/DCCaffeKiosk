@@ -35,13 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel_OrderCartLayout = new System.Windows.Forms.FlowLayoutPanel();
-            this.ucOrderCart9 = new DCafeKiosk.UCOrderTitle();
-            this.ucOrderItem1 = new DCafeKiosk.UCOrderItem();
-            this.ucOrderItem2 = new DCafeKiosk.UCOrderItem();
-            this.ucOrderItem3 = new DCafeKiosk.UCOrderItem();
-            this.ucOrderItem6 = new DCafeKiosk.UCOrderItem();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label_UserInfo = new System.Windows.Forms.Label();
+            this.label_TotalPrice = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.bunifuFlatButton_Ok = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -49,8 +44,6 @@
             this.panel_main = new System.Windows.Forms.Panel();
             this.panel_MenuPageLayout = new System.Windows.Forms.Panel();
             this.flowLayoutPanel_Menu = new System.Windows.Forms.FlowLayoutPanel();
-            this.ucMenuButton1 = new DCafeKiosk.UCMenuButton();
-            this.ucMenuButton2 = new DCafeKiosk.UCMenuButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.bunifuSeparator_SelectedCategoryLine = new Bunifu.Framework.UI.BunifuSeparator();
             this.flowLayoutPanel_Category = new System.Windows.Forms.FlowLayoutPanel();
@@ -60,6 +53,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.ucMenuButton1 = new DCafeKiosk.UCMenuButton();
+            this.ucMenuButton2 = new DCafeKiosk.UCMenuButton();
+            this.ucOrderCart9 = new DCafeKiosk.UCOrderTitle();
+            this.ucOrderItem1 = new DCafeKiosk.UCOrderItem();
+            this.ucOrderItem2 = new DCafeKiosk.UCOrderItem();
+            this.ucOrderItem3 = new DCafeKiosk.UCOrderItem();
+            this.ucOrderItem6 = new DCafeKiosk.UCOrderItem();
             this.panel4.SuspendLayout();
             this.flowLayoutPanel_OrderCartLayout.SuspendLayout();
             this.panel_main.SuspendLayout();
@@ -77,8 +77,8 @@
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.flowLayoutPanel_OrderCartLayout);
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.label9);
+            this.panel4.Controls.Add(this.label_UserInfo);
+            this.panel4.Controls.Add(this.label_TotalPrice);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.bunifuFlatButton_Ok);
@@ -92,7 +92,7 @@
             // label6
             // 
             this.label6.ForeColor = System.Drawing.Color.Silver;
-            this.label6.Location = new System.Drawing.Point(13, 863);
+            this.label6.Location = new System.Drawing.Point(13, 879);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(548, 10);
             this.label6.TabIndex = 68;
@@ -102,7 +102,7 @@
             // label3
             // 
             this.label3.ForeColor = System.Drawing.Color.Silver;
-            this.label3.Location = new System.Drawing.Point(11, 790);
+            this.label3.Location = new System.Drawing.Point(11, 817);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(548, 10);
             this.label3.TabIndex = 67;
@@ -130,119 +130,42 @@
             this.flowLayoutPanel_OrderCartLayout.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_OrderCartLayout.Location = new System.Drawing.Point(13, 101);
             this.flowLayoutPanel_OrderCartLayout.Name = "flowLayoutPanel_OrderCartLayout";
-            this.flowLayoutPanel_OrderCartLayout.Size = new System.Drawing.Size(544, 679);
+            this.flowLayoutPanel_OrderCartLayout.Size = new System.Drawing.Size(544, 713);
             this.flowLayoutPanel_OrderCartLayout.TabIndex = 65;
             // 
-            // ucOrderCart9
+            // label_UserInfo
             // 
-            this.ucOrderCart9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ucOrderCart9.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucOrderCart9.Location = new System.Drawing.Point(3, 3);
-            this.ucOrderCart9.Name = "ucOrderCart9";
-            this.ucOrderCart9.Size = new System.Drawing.Size(539, 35);
-            this.ucOrderCart9.TabIndex = 8;
+            this.label_UserInfo.BackColor = System.Drawing.Color.Transparent;
+            this.label_UserInfo.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label_UserInfo.ForeColor = System.Drawing.Color.White;
+            this.label_UserInfo.Location = new System.Drawing.Point(237, 38);
+            this.label_UserInfo.Name = "label_UserInfo";
+            this.label_UserInfo.Size = new System.Drawing.Size(320, 37);
+            this.label_UserInfo.TabIndex = 63;
+            this.label_UserInfo.Text = "O O O 님 (디지캡)";
+            this.label_UserInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ucOrderItem1
+            // label_TotalPrice
             // 
-            this.ucOrderItem1.BackColor = System.Drawing.Color.Transparent;
-            this.ucOrderItem1.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucOrderItem1.Location = new System.Drawing.Point(3, 44);
-            this.ucOrderItem1.Name = "ucOrderItem1";
-            this.ucOrderItem1.Size = new System.Drawing.Size(539, 60);
-            this.ucOrderItem1.TabIndex = 9;
-            this.ucOrderItem1.XForeTextColor = System.Drawing.Color.White;
-            this.ucOrderItem1.XMenuAmount = 10;
-            this.ucOrderItem1.XMenuButtonObject = null;
-            this.ucOrderItem1.XMenuNameKR = "Menu Item Name";
-            this.ucOrderItem1.XMenuSize = "REGULAR";
-            this.ucOrderItem1.XMenuTotalAmount = 0;
-            this.ucOrderItem1.XMenuType = "COLD";
-            this.ucOrderItem1.XMenuUnitPrice = 2500;
-            // 
-            // ucOrderItem2
-            // 
-            this.ucOrderItem2.BackColor = System.Drawing.Color.Transparent;
-            this.ucOrderItem2.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucOrderItem2.Location = new System.Drawing.Point(3, 110);
-            this.ucOrderItem2.Name = "ucOrderItem2";
-            this.ucOrderItem2.Size = new System.Drawing.Size(539, 60);
-            this.ucOrderItem2.TabIndex = 10;
-            this.ucOrderItem2.XForeTextColor = System.Drawing.Color.White;
-            this.ucOrderItem2.XMenuAmount = 10;
-            this.ucOrderItem2.XMenuButtonObject = null;
-            this.ucOrderItem2.XMenuNameKR = "Menu Item Name";
-            this.ucOrderItem2.XMenuSize = "REGULAR";
-            this.ucOrderItem2.XMenuTotalAmount = 0;
-            this.ucOrderItem2.XMenuType = "COLD";
-            this.ucOrderItem2.XMenuUnitPrice = 2500;
-            // 
-            // ucOrderItem3
-            // 
-            this.ucOrderItem3.BackColor = System.Drawing.Color.Transparent;
-            this.ucOrderItem3.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucOrderItem3.Location = new System.Drawing.Point(3, 176);
-            this.ucOrderItem3.Name = "ucOrderItem3";
-            this.ucOrderItem3.Size = new System.Drawing.Size(539, 60);
-            this.ucOrderItem3.TabIndex = 11;
-            this.ucOrderItem3.XForeTextColor = System.Drawing.Color.White;
-            this.ucOrderItem3.XMenuAmount = 10;
-            this.ucOrderItem3.XMenuButtonObject = null;
-            this.ucOrderItem3.XMenuNameKR = "Menu Item Name";
-            this.ucOrderItem3.XMenuSize = "REGULAR";
-            this.ucOrderItem3.XMenuTotalAmount = 0;
-            this.ucOrderItem3.XMenuType = "COLD";
-            this.ucOrderItem3.XMenuUnitPrice = 2500;
-            // 
-            // ucOrderItem6
-            // 
-            this.ucOrderItem6.BackColor = System.Drawing.Color.Transparent;
-            this.ucOrderItem6.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ucOrderItem6.Location = new System.Drawing.Point(3, 242);
-            this.ucOrderItem6.Name = "ucOrderItem6";
-            this.ucOrderItem6.Size = new System.Drawing.Size(539, 60);
-            this.ucOrderItem6.TabIndex = 14;
-            this.ucOrderItem6.XForeTextColor = System.Drawing.Color.White;
-            this.ucOrderItem6.XMenuAmount = 10;
-            this.ucOrderItem6.XMenuButtonObject = null;
-            this.ucOrderItem6.XMenuNameKR = "Menu Item Name";
-            this.ucOrderItem6.XMenuSize = "REGULAR";
-            this.ucOrderItem6.XMenuTotalAmount = 0;
-            this.ucOrderItem6.XMenuType = "COLD";
-            this.ucOrderItem6.XMenuUnitPrice = 2500;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(335, 18);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(222, 41);
-            this.label8.TabIndex = 63;
-            this.label8.Text = "O O O 님 (디지캡)";
-            // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(368, 816);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(186, 41);
-            this.label9.TabIndex = 54;
-            this.label9.Text = "20,000 원";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label_TotalPrice.BackColor = System.Drawing.Color.Transparent;
+            this.label_TotalPrice.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label_TotalPrice.ForeColor = System.Drawing.Color.White;
+            this.label_TotalPrice.Location = new System.Drawing.Point(368, 843);
+            this.label_TotalPrice.Name = "label_TotalPrice";
+            this.label_TotalPrice.Size = new System.Drawing.Size(186, 32);
+            this.label_TotalPrice.TabIndex = 54;
+            this.label_TotalPrice.Text = "0 원";
+            this.label_TotalPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(240, 816);
+            this.label4.Location = new System.Drawing.Point(240, 843);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 41);
+            this.label4.Size = new System.Drawing.Size(98, 32);
             this.label4.TabIndex = 52;
             this.label4.Text = "합계 금액";
             // 
@@ -280,7 +203,7 @@
             this.bunifuFlatButton_Ok.IconVisible = true;
             this.bunifuFlatButton_Ok.IconZoom = 90D;
             this.bunifuFlatButton_Ok.IsTab = false;
-            this.bunifuFlatButton_Ok.Location = new System.Drawing.Point(336, 915);
+            this.bunifuFlatButton_Ok.Location = new System.Drawing.Point(320, 936);
             this.bunifuFlatButton_Ok.Name = "bunifuFlatButton_Ok";
             this.bunifuFlatButton_Ok.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(156)))), ((int)(((byte)(188)))));
             this.bunifuFlatButton_Ok.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(176)))), ((int)(((byte)(208)))));
@@ -315,7 +238,7 @@
             this.bunifuFlatButton_Cancle.IconVisible = true;
             this.bunifuFlatButton_Cancle.IconZoom = 90D;
             this.bunifuFlatButton_Cancle.IsTab = false;
-            this.bunifuFlatButton_Cancle.Location = new System.Drawing.Point(83, 915);
+            this.bunifuFlatButton_Cancle.Location = new System.Drawing.Point(67, 936);
             this.bunifuFlatButton_Cancle.Name = "bunifuFlatButton_Cancle";
             this.bunifuFlatButton_Cancle.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
             this.bunifuFlatButton_Cancle.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
@@ -360,6 +283,137 @@
             this.flowLayoutPanel_Menu.Padding = new System.Windows.Forms.Padding(20, 20, 5, 5);
             this.flowLayoutPanel_Menu.Size = new System.Drawing.Size(1350, 895);
             this.flowLayoutPanel_Menu.TabIndex = 55;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.bunifuSeparator_SelectedCategoryLine);
+            this.panel3.Controls.Add(this.flowLayoutPanel_Category);
+            this.panel3.Controls.Add(this.bunifuSeparator1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 49);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
+            this.panel3.Size = new System.Drawing.Size(1350, 117);
+            this.panel3.TabIndex = 53;
+            // 
+            // bunifuSeparator_SelectedCategoryLine
+            // 
+            this.bunifuSeparator_SelectedCategoryLine.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuSeparator_SelectedCategoryLine.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(144)))), ((int)(((byte)(255)))));
+            this.bunifuSeparator_SelectedCategoryLine.LineThickness = 5;
+            this.bunifuSeparator_SelectedCategoryLine.Location = new System.Drawing.Point(0, 98);
+            this.bunifuSeparator_SelectedCategoryLine.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bunifuSeparator_SelectedCategoryLine.Name = "bunifuSeparator_SelectedCategoryLine";
+            this.bunifuSeparator_SelectedCategoryLine.Size = new System.Drawing.Size(168, 5);
+            this.bunifuSeparator_SelectedCategoryLine.TabIndex = 30;
+            this.bunifuSeparator_SelectedCategoryLine.Transparency = 255;
+            this.bunifuSeparator_SelectedCategoryLine.Vertical = false;
+            // 
+            // flowLayoutPanel_Category
+            // 
+            this.flowLayoutPanel_Category.Controls.Add(this.bunifuThinButton21);
+            this.flowLayoutPanel_Category.Controls.Add(this.bunifuThinButton22);
+            this.flowLayoutPanel_Category.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel_Category.Location = new System.Drawing.Point(0, 20);
+            this.flowLayoutPanel_Category.Name = "flowLayoutPanel_Category";
+            this.flowLayoutPanel_Category.Size = new System.Drawing.Size(1350, 70);
+            this.flowLayoutPanel_Category.TabIndex = 52;
+            // 
+            // bunifuThinButton21
+            // 
+            this.bunifuThinButton21.ActiveBorderThickness = 1;
+            this.bunifuThinButton21.ActiveCornerRadius = 1;
+            this.bunifuThinButton21.ActiveFillColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton21.ActiveForecolor = System.Drawing.Color.DodgerBlue;
+            this.bunifuThinButton21.ActiveLineColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton21.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton21.BackgroundImage")));
+            this.bunifuThinButton21.ButtonText = "Category1";
+            this.bunifuThinButton21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuThinButton21.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.bunifuThinButton21.ForeColor = System.Drawing.Color.SeaGreen;
+            this.bunifuThinButton21.IdleBorderThickness = 1;
+            this.bunifuThinButton21.IdleCornerRadius = 20;
+            this.bunifuThinButton21.IdleFillColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton21.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.bunifuThinButton21.IdleLineColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton21.Location = new System.Drawing.Point(7, 9);
+            this.bunifuThinButton21.Margin = new System.Windows.Forms.Padding(7, 9, 7, 9);
+            this.bunifuThinButton21.Name = "bunifuThinButton21";
+            this.bunifuThinButton21.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.bunifuThinButton21.Size = new System.Drawing.Size(160, 50);
+            this.bunifuThinButton21.TabIndex = 0;
+            this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bunifuThinButton22
+            // 
+            this.bunifuThinButton22.ActiveBorderThickness = 1;
+            this.bunifuThinButton22.ActiveCornerRadius = 1;
+            this.bunifuThinButton22.ActiveFillColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton22.ActiveForecolor = System.Drawing.Color.DodgerBlue;
+            this.bunifuThinButton22.ActiveLineColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton22.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton22.BackgroundImage")));
+            this.bunifuThinButton22.ButtonText = "Category2";
+            this.bunifuThinButton22.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuThinButton22.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.bunifuThinButton22.ForeColor = System.Drawing.Color.SeaGreen;
+            this.bunifuThinButton22.IdleBorderThickness = 1;
+            this.bunifuThinButton22.IdleCornerRadius = 20;
+            this.bunifuThinButton22.IdleFillColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton22.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.bunifuThinButton22.IdleLineColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton22.Location = new System.Drawing.Point(181, 9);
+            this.bunifuThinButton22.Margin = new System.Windows.Forms.Padding(7, 9, 7, 9);
+            this.bunifuThinButton22.Name = "bunifuThinButton22";
+            this.bunifuThinButton22.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.bunifuThinButton22.Size = new System.Drawing.Size(160, 50);
+            this.bunifuThinButton22.TabIndex = 0;
+            this.bunifuThinButton22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bunifuSeparator1
+            // 
+            this.bunifuSeparator1.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuSeparator1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bunifuSeparator1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.bunifuSeparator1.LineThickness = 5;
+            this.bunifuSeparator1.Location = new System.Drawing.Point(0, 112);
+            this.bunifuSeparator1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bunifuSeparator1.Name = "bunifuSeparator1";
+            this.bunifuSeparator1.Size = new System.Drawing.Size(1350, 5);
+            this.bunifuSeparator1.TabIndex = 53;
+            this.bunifuSeparator1.Transparency = 255;
+            this.bunifuSeparator1.Vertical = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(38)))), ((int)(((byte)(42)))));
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1350, 49);
+            this.panel1.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label5.Location = new System.Drawing.Point(43, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(210, 30);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "DigiCAP Campus Caffe";
+            // 
+            // bunifuDragControl1
+            // 
+            this.bunifuDragControl1.Fixed = true;
+            this.bunifuDragControl1.Horizontal = true;
+            this.bunifuDragControl1.TargetControl = this;
+            this.bunifuDragControl1.Vertical = true;
             // 
             // ucMenuButton1
             // 
@@ -407,136 +461,82 @@
             this.ucMenuButton2.XMenuType = "BOTH";
             this.ucMenuButton2.XOnHoverBackColor = System.Drawing.Color.DarkOrchid;
             // 
-            // panel3
+            // ucOrderCart9
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.bunifuSeparator_SelectedCategoryLine);
-            this.panel3.Controls.Add(this.flowLayoutPanel_Category);
-            this.panel3.Controls.Add(this.bunifuSeparator1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 49);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
-            this.panel3.Size = new System.Drawing.Size(1350, 117);
-            this.panel3.TabIndex = 53;
+            this.ucOrderCart9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ucOrderCart9.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucOrderCart9.Location = new System.Drawing.Point(3, 3);
+            this.ucOrderCart9.Name = "ucOrderCart9";
+            this.ucOrderCart9.Size = new System.Drawing.Size(539, 35);
+            this.ucOrderCart9.TabIndex = 8;
             // 
-            // bunifuSeparator_SelectedCategoryLine
+            // ucOrderItem1
             // 
-            this.bunifuSeparator_SelectedCategoryLine.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuSeparator_SelectedCategoryLine.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(144)))), ((int)(((byte)(255)))));
-            this.bunifuSeparator_SelectedCategoryLine.LineThickness = 14;
-            this.bunifuSeparator_SelectedCategoryLine.Location = new System.Drawing.Point(-1, 92);
-            this.bunifuSeparator_SelectedCategoryLine.Margin = new System.Windows.Forms.Padding(3, 207, 3, 207);
-            this.bunifuSeparator_SelectedCategoryLine.Name = "bunifuSeparator_SelectedCategoryLine";
-            this.bunifuSeparator_SelectedCategoryLine.Size = new System.Drawing.Size(168, 10);
-            this.bunifuSeparator_SelectedCategoryLine.TabIndex = 30;
-            this.bunifuSeparator_SelectedCategoryLine.Transparency = 255;
-            this.bunifuSeparator_SelectedCategoryLine.Vertical = false;
+            this.ucOrderItem1.BackColor = System.Drawing.Color.Transparent;
+            this.ucOrderItem1.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucOrderItem1.Location = new System.Drawing.Point(3, 44);
+            this.ucOrderItem1.Name = "ucOrderItem1";
+            this.ucOrderItem1.Size = new System.Drawing.Size(539, 60);
+            this.ucOrderItem1.TabIndex = 9;
+            this.ucOrderItem1.XForeTextColor = System.Drawing.Color.White;
+            this.ucOrderItem1.XMenuAmount = 10;
+            this.ucOrderItem1.XMenuButtonObject = null;
+            this.ucOrderItem1.XMenuNameKR = "Menu Item Name";
+            this.ucOrderItem1.XMenuSize = "REGULAR";
+            this.ucOrderItem1.XMenuTotalAmount = 0;
+            this.ucOrderItem1.XMenuType = "COLD";
+            this.ucOrderItem1.XMenuUnitPrice = 2500;
             // 
-            // flowLayoutPanel_Category
+            // ucOrderItem2
             // 
-            this.flowLayoutPanel_Category.Controls.Add(this.bunifuThinButton21);
-            this.flowLayoutPanel_Category.Controls.Add(this.bunifuThinButton22);
-            this.flowLayoutPanel_Category.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel_Category.Location = new System.Drawing.Point(0, 20);
-            this.flowLayoutPanel_Category.Name = "flowLayoutPanel_Category";
-            this.flowLayoutPanel_Category.Size = new System.Drawing.Size(1350, 65);
-            this.flowLayoutPanel_Category.TabIndex = 52;
+            this.ucOrderItem2.BackColor = System.Drawing.Color.Transparent;
+            this.ucOrderItem2.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucOrderItem2.Location = new System.Drawing.Point(3, 110);
+            this.ucOrderItem2.Name = "ucOrderItem2";
+            this.ucOrderItem2.Size = new System.Drawing.Size(539, 60);
+            this.ucOrderItem2.TabIndex = 10;
+            this.ucOrderItem2.XForeTextColor = System.Drawing.Color.White;
+            this.ucOrderItem2.XMenuAmount = 10;
+            this.ucOrderItem2.XMenuButtonObject = null;
+            this.ucOrderItem2.XMenuNameKR = "Menu Item Name";
+            this.ucOrderItem2.XMenuSize = "REGULAR";
+            this.ucOrderItem2.XMenuTotalAmount = 0;
+            this.ucOrderItem2.XMenuType = "COLD";
+            this.ucOrderItem2.XMenuUnitPrice = 2500;
             // 
-            // bunifuThinButton21
+            // ucOrderItem3
             // 
-            this.bunifuThinButton21.ActiveBorderThickness = 1;
-            this.bunifuThinButton21.ActiveCornerRadius = 1;
-            this.bunifuThinButton21.ActiveFillColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton21.ActiveForecolor = System.Drawing.Color.DodgerBlue;
-            this.bunifuThinButton21.ActiveLineColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton21.BackColor = System.Drawing.Color.White;
-            this.bunifuThinButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton21.BackgroundImage")));
-            this.bunifuThinButton21.ButtonText = "Category1";
-            this.bunifuThinButton21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton21.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.bunifuThinButton21.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.IdleBorderThickness = 1;
-            this.bunifuThinButton21.IdleCornerRadius = 20;
-            this.bunifuThinButton21.IdleFillColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton21.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bunifuThinButton21.IdleLineColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton21.Location = new System.Drawing.Point(7, 9);
-            this.bunifuThinButton21.Margin = new System.Windows.Forms.Padding(7, 9, 7, 9);
-            this.bunifuThinButton21.Name = "bunifuThinButton21";
-            this.bunifuThinButton21.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.bunifuThinButton21.Size = new System.Drawing.Size(160, 50);
-            this.bunifuThinButton21.TabIndex = 0;
-            this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ucOrderItem3.BackColor = System.Drawing.Color.Transparent;
+            this.ucOrderItem3.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucOrderItem3.Location = new System.Drawing.Point(3, 176);
+            this.ucOrderItem3.Name = "ucOrderItem3";
+            this.ucOrderItem3.Size = new System.Drawing.Size(539, 60);
+            this.ucOrderItem3.TabIndex = 11;
+            this.ucOrderItem3.XForeTextColor = System.Drawing.Color.White;
+            this.ucOrderItem3.XMenuAmount = 10;
+            this.ucOrderItem3.XMenuButtonObject = null;
+            this.ucOrderItem3.XMenuNameKR = "Menu Item Name";
+            this.ucOrderItem3.XMenuSize = "REGULAR";
+            this.ucOrderItem3.XMenuTotalAmount = 0;
+            this.ucOrderItem3.XMenuType = "COLD";
+            this.ucOrderItem3.XMenuUnitPrice = 2500;
             // 
-            // bunifuThinButton22
+            // ucOrderItem6
             // 
-            this.bunifuThinButton22.ActiveBorderThickness = 1;
-            this.bunifuThinButton22.ActiveCornerRadius = 1;
-            this.bunifuThinButton22.ActiveFillColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton22.ActiveForecolor = System.Drawing.Color.DodgerBlue;
-            this.bunifuThinButton22.ActiveLineColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton22.BackColor = System.Drawing.Color.White;
-            this.bunifuThinButton22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton22.BackgroundImage")));
-            this.bunifuThinButton22.ButtonText = "Category2";
-            this.bunifuThinButton22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton22.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.bunifuThinButton22.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.IdleBorderThickness = 1;
-            this.bunifuThinButton22.IdleCornerRadius = 20;
-            this.bunifuThinButton22.IdleFillColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton22.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bunifuThinButton22.IdleLineColor = System.Drawing.Color.Transparent;
-            this.bunifuThinButton22.Location = new System.Drawing.Point(181, 9);
-            this.bunifuThinButton22.Margin = new System.Windows.Forms.Padding(7, 9, 7, 9);
-            this.bunifuThinButton22.Name = "bunifuThinButton22";
-            this.bunifuThinButton22.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.bunifuThinButton22.Size = new System.Drawing.Size(160, 50);
-            this.bunifuThinButton22.TabIndex = 0;
-            this.bunifuThinButton22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // bunifuSeparator1
-            // 
-            this.bunifuSeparator1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuSeparator1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bunifuSeparator1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.bunifuSeparator1.LineThickness = 48;
-            this.bunifuSeparator1.Location = new System.Drawing.Point(0, 107);
-            this.bunifuSeparator1.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
-            this.bunifuSeparator1.Name = "bunifuSeparator1";
-            this.bunifuSeparator1.Size = new System.Drawing.Size(1350, 10);
-            this.bunifuSeparator1.TabIndex = 53;
-            this.bunifuSeparator1.Transparency = 255;
-            this.bunifuSeparator1.Vertical = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(38)))), ((int)(((byte)(42)))));
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1350, 49);
-            this.panel1.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label5.Location = new System.Drawing.Point(43, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(210, 30);
-            this.label5.TabIndex = 49;
-            this.label5.Text = "DigiCAP Campus Caffe";
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this;
-            this.bunifuDragControl1.Vertical = true;
+            this.ucOrderItem6.BackColor = System.Drawing.Color.Transparent;
+            this.ucOrderItem6.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucOrderItem6.Location = new System.Drawing.Point(3, 242);
+            this.ucOrderItem6.Name = "ucOrderItem6";
+            this.ucOrderItem6.Size = new System.Drawing.Size(539, 60);
+            this.ucOrderItem6.TabIndex = 14;
+            this.ucOrderItem6.XForeTextColor = System.Drawing.Color.White;
+            this.ucOrderItem6.XMenuAmount = 10;
+            this.ucOrderItem6.XMenuButtonObject = null;
+            this.ucOrderItem6.XMenuNameKR = "Menu Item Name";
+            this.ucOrderItem6.XMenuSize = "REGULAR";
+            this.ucOrderItem6.XMenuTotalAmount = 0;
+            this.ucOrderItem6.XMenuType = "COLD";
+            this.ucOrderItem6.XMenuUnitPrice = 2500;
             // 
             // FormMenuBoard
             // 
@@ -573,14 +573,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label_TotalPrice;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton_Ok;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton_Cancle;
         private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private Bunifu.Framework.UI.BunifuSeparator bunifuSeparator1;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label_UserInfo;
         private System.Windows.Forms.Panel panel_MenuPageLayout;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_Menu;
         private UCMenuButton ucMenuButton1;

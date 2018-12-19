@@ -22,7 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,11 +38,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
+    <Reference Include="HashLib, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HashLib.2.0.1\lib\net40\HashLib.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=106.5.4.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.5.4\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpLibHid, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\SharpLibHid.1.4.3\lib\net40\SharpLibHid.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpLibWin32, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpLibWin32.0.1.7\lib\net20\SharpLibWin32.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,8 +70,7 @@
     <Compile Include="Classes\APIController.cs" />
     <Compile Include="Classes\Enum.cs" />
     <Compile Include="Classes\EventArgs.cs" />
-    <Compile Include="Classes\IEventHandler.cs" />
-    <Compile Include="Classes\RestAPIException.cs" />
+    <Compile Include="Classes\IPage.cs" />
     <Compile Include="FormLoadingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +88,12 @@
     </Compile>
     <Compile Include="FormMenuOptionDialog.Designer.cs">
       <DependentUpon>FormMenuOptionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMessageBox.Designer.cs">
+      <DependentUpon>FormMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="FormOrderResult.cs">
       <SubType>Form</SubType>
@@ -164,18 +178,6 @@
     <Compile Include="Controls\UCScrollingLeftText.Designer.cs">
       <DependentUpon>UCScrollingLeftText.cs</DependentUpon>
     </Compile>
-    <Compile Include="Win32\Win32AppCommand.cs" />
-    <Compile Include="Win32\Win32CreateFile.cs" />
-    <Compile Include="Win32\Win32DeviceManagement.cs" />
-    <Compile Include="Win32\Win32Fsctls.cs" />
-    <Compile Include="Win32\Win32Hid.cs" />
-    <Compile Include="Win32\Win32Ioctls.cs" />
-    <Compile Include="Win32\Win32RawInput.cs" />
-    <Compile Include="Win32\Win32SendMessage.cs" />
-    <Compile Include="Win32\Win32SystemCommands.cs" />
-    <Compile Include="Win32\Win32WindowMessages.cs" />
-    <Compile Include="Win32\Windef.cs" />
-    <Compile Include="Win32\Winuser.cs" />
     <EmbeddedResource Include="FormLoadingDialog.resx">
       <DependentUpon>FormLoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuOptionDialog.resx">
       <DependentUpon>FormMenuOptionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMessageBox.resx">
+      <DependentUpon>FormMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOrderResult.resx">
       <DependentUpon>FormOrderResult.cs</DependentUpon>

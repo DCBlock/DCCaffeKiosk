@@ -72,7 +72,15 @@ namespace DCafeKiosk
         /// <summary>
         /// 단가
         /// </summary>
-        public int XMenuUnitPrice { get; set; } = 0;
+        private int MenuUnitPrice = 0;
+        public int XMenuUnitPrice {
+            get { return MenuUnitPrice; }
+            set {
+                MenuUnitPrice = value;
+                label_MenuUnitPrice.Text = MenuUnitPrice.ToString();
+                Invalidate();
+            }
+        }
 
         /// <summary>
         /// 합계 금액

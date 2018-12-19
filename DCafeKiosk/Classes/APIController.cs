@@ -9,14 +9,37 @@ using System.Threading.Tasks;
 
 namespace DCafeKiosk
 {
-    public class DTOPurchaseIdResponse
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    public class DTOGetMenusResponse
     {
+        //
+        public DataSet dataset { get; set; }
+
+        //
+        public int code { get; set; }
+        public string reason { get; set; }
+    }
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    public class DTOGetPurchaseIdRequest
+    {
+        public string rfid { get; set; }
+    }
+
+    public class DTOGetPurchaseIdResponse
+    {
+        //
         public string receipt_id { get; set; }
         public string name { get; set; }
         public string company { get; set; }
         public string date { get; set; }
+
+        //
+        public int code { get; set; }
+        public string reason { get; set; }
     }
 
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public class DTOMenu
     {
         public int category { get; set; }  // 카테고리 코드
@@ -32,6 +55,7 @@ namespace DCafeKiosk
         public IList<DTOMenu> purchases { get; set; }
     }
 
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public class DTOPurchaseSuccessResponse
     {
         public string total_price { get; set; }
@@ -39,14 +63,16 @@ namespace DCafeKiosk
         public string purchased_date { get; set; }
     }
 
+
+
     /// <summary>
     /// API 서버로부터 데이터를 요청하고 수신하는 메서드를 구현
     /// </summary>
     class APIController
     {
         static readonly string DCCAFFE_URL = "http://10.1.203.12:8080/api/caffe";
-        static readonly string MENUS_URI = "/menus";
-        static readonly string PURCHASE_ID_URI = "/purchases/purchase/receipt/id";
+        static readonly string GET_MENUS = "/menus";
+        static readonly string GET_PURCHASE_ID = "/purchases/purchase/receipt/id";
         static readonly string PURCHASE_SUCCESS = "/purchases/purchase/receipt/{receipt_id}";
 
         static string JsonFormatting(string json)
@@ -59,21 +85,18 @@ namespace DCafeKiosk
         /// 메뉴 목록 가져오기
         /// </summary>
         /// <returns></returns>
-        public static DataSet API_GetMenus()
+        public static DTOGetMenusResponse API_GetMenus()
         {
-            //---------------------------------------------
+            //============================================
             // GET http://10.1.203.12:8080/api/caffe/menus
-
-            Uri uri = new Uri(DCCAFFE_URL + MENUS_URI);
-
-            RestSharp.RestClient client = new RestSharp.RestClient();
-            client.BaseUrl = uri;
-
+            //============================================
+            RestSharp.RestClient client = new RestSharp.RestClient(DCCAFFE_URL);
             RestSharp.RestRequest request = new RestSharp.RestRequest();
-            request.AddHeader("Content-Type", "application/json;charset=UTF-8");
+            request.AddHeader("Content-Type", "application/json");
 
             request.Method = RestSharp.Method.GET;
             request.RequestFormat = RestSharp.DataFormat.Json;
+            request.Resource = GET_MENUS;
 
             //
             var t1 = client.ExecuteTaskAsync(request);
@@ -81,23 +104,29 @@ namespace DCafeKiosk
 
             //----------------
             // error handling
-            if (t1.Result.ErrorException != null && t1.Result.StatusCode != System.Net.HttpStatusCode.OK) {
+            if (t1.Result.ErrorException != null) {
                 return null;
             }
 
             string json = t1.Result.Content;
 
-            //-------------------
+            //--------------
             // debug output
             json = JsonFormatting(json);
             System.Diagnostics.Debug.WriteLine("[RESPONSE] " + json);
 
             //-----------------------
             // desirialized json data
-            DataSet dto = null;
+            DTOGetMenusResponse dto = new DTOGetMenusResponse();
 
             try{
-                dto = JsonConvert.DeserializeObject<DataSet>(json);
+                if(t1.Result.StatusCode == System.Net.HttpStatusCode.OK) {
+                    dto.code = (int)t1.Result.StatusCode;
+                    dto.dataset = JsonConvert.DeserializeObject<DataSet>(json);
+                }
+                else {
+                    dto = JsonConvert.DeserializeObject<DTOGetMenusResponse>(json);
+                }
             }
             catch (Exception ex){
                 dto = null;
@@ -113,23 +142,24 @@ namespace DCafeKiosk
         /// </summary>
         /// <param name="aRfid"></param>
         /// <returns></returns>
-        public static DTOPurchaseIdResponse API_PostPurchaseId(string aRfid)
+        public static DTOGetPurchaseIdResponse API_PostPurchaseId(string aRfid)
         {
-            //---------------------------------------------
+            //=====================================================================
             // POST http://10.1.203.12:8080/api/caffe/purchases/purchase/receipt/id
+            //=====================================================================
 
-            Uri uri = new Uri(DCCAFFE_URL + PURCHASE_ID_URI);
-
-            RestSharp.RestClient client = new RestSharp.RestClient();
-            client.BaseUrl = uri;
-
+            RestSharp.RestClient client = new RestSharp.RestClient(DCCAFFE_URL);
             RestSharp.RestRequest request = new RestSharp.RestRequest();
             request.AddHeader("Content-Type", "application/json;charset=UTF-8");
 
             request.Method = RestSharp.Method.POST;
             request.RequestFormat = RestSharp.DataFormat.Json;
+            request.Resource = GET_PURCHASE_ID;
 
             //------------------------------------------------
+            // make to request json
+
+            /*            
             StringBuilder sb = new StringBuilder();
             StringWriter sw = new StringWriter(sb);
             using (JsonWriter writer = new JsonTextWriter(sw))
@@ -143,7 +173,12 @@ namespace DCafeKiosk
             }
 
             //------------------------------------------------
-            request.AddParameter("application/json;charset=UTF-8", sb.ToString(), RestSharp.ParameterType.RequestBody);
+            request.AddParameter("application/json", sb.ToString(), RestSharp.ParameterType.RequestBody);
+            */
+            
+            DTOGetPurchaseIdRequest reqJson = new DTOGetPurchaseIdRequest();
+            reqJson.rfid = aRfid;
+            request.AddJsonBody(reqJson);
 
             //----------------------------------------
             var t1 = client.ExecuteTaskAsync(request);
@@ -151,8 +186,8 @@ namespace DCafeKiosk
 
             //----------------
             // error handling
-            if (t1.Result.ErrorException != null && t1.Result.StatusCode != System.Net.HttpStatusCode.OK){
-                //throw new RestAPIException(t1.Result.ErrorMessage, t1.Result.ErrorException);
+            if (t1.Result.ErrorException != null){
+                System.Diagnostics.Debug.WriteLine("[RESPONSE] " + t1.Result.Content);
                 return null;
             }
 
@@ -165,10 +200,11 @@ namespace DCafeKiosk
 
             //-----------------------
             // desirialized json data
-            DTOPurchaseIdResponse dto = null;
+            DTOGetPurchaseIdResponse dto = new DTOGetPurchaseIdResponse();
 
             try{
-                dto = JsonConvert.DeserializeObject<DTOPurchaseIdResponse>(json);
+                dto.code = (int)t1.Result.StatusCode;
+                dto = JsonConvert.DeserializeObject<DTOGetPurchaseIdResponse>(json);
             }
             catch (Exception ex)
             {
@@ -185,7 +221,7 @@ namespace DCafeKiosk
         /// <param name="aReceiptId"></param>
         /// <param name="aPurchaseList"></param>
         /// <returns></returns>
-        public static DTOPurchaseIdResponse API_PostPurchaseSuccess(string aReceiptId, DTOPurchaseList aPurchaseList)
+        public static DTOGetPurchaseIdResponse API_PostPurchaseSuccess(string aReceiptId, DTOPurchaseList aPurchaseList)
         {
             DTOMenu menu = new DTOMenu
             {

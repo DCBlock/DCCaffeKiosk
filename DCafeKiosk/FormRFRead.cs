@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 // for HID
@@ -14,9 +8,10 @@ using SharpLib.Win32;
 
 namespace DCafeKiosk
 {
-    public partial class FormRFRead : Form, IPageEventHandler
+    public partial class FormRFRead : Form, IPage
     {
-        #region 'IPageEventHandler'
+        //===============================================
+        #region 'IPage'
         public event EventHandler<EventArgs> PageSuccess;
         public event EventHandler<EventArgs> PageCancle;
 
@@ -31,35 +26,57 @@ namespace DCafeKiosk
             if (PageCancle != null)
                 PageCancle(this, EventArgs.Empty);
         }
+
+        public void InitializeForm()
+        {
+            apiResult = false;
+            XApiResponse = null;
+
+            strRfid.Clear();
+            StartEventCapture();
+        }
         #endregion
-
-
+        //===============================================
 
         /// <summary>
-        /// 읽은 RFID 값 저장
+        /// HID에서 읽은 RFID 값 저장
         /// </summary>
-        private StringBuilder strRfid = null; // RFID 저장
-               
+        private StringBuilder strRfid = new StringBuilder();
+        public String XstrHashedRFid { get; set; }
+
+        /// <summary>
+        /// RFID 인증 결과
+        /// </summary>
+        private bool apiResult = false;
+        public DTOGetPurchaseIdResponse XApiResponse { get; set; }
+
+        /// <summary>
+        /// 생성자
+        /// </summary>
         public FormRFRead()
         {            
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-
-            strRfid = new StringBuilder();
-
-            // RFID 읽기 시작
-            // StartEventCapture();
         }
 
         /// <summary>
-        /// RestAPI 호출
+        /// RestAPI 호출하여 RFID 확인
         /// </summary>
-        private void RestApi_CheckRFID()
+        private void RestAPI_CheckRFID()
         {
-            for(int i=0; i<=200; i++)
+            System.Threading.Thread.Sleep(3000);
+
+            HashLib.IHash hash = HashLib.HashFactory.Crypto.CreateSHA256();
+            HashLib.HashResult digest = hash.ComputeString(strRfid.ToString(), Encoding.ASCII);
             {
-                System.Threading.Thread.Sleep(10); // simulator
+                XstrHashedRFid = digest.ToString().Replace("-", "");
             }
+            XApiResponse = APIController.API_PostPurchaseId(XstrHashedRFid);
+
+            if (XApiResponse != null)
+                apiResult = true;
+            else
+                apiResult = false;
         }
 
         /// <summary>
@@ -72,27 +89,27 @@ namespace DCafeKiosk
             OnPageCancle();
         }
 
-        ///// <summary>
-        ///// RFID 리더 켜기
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void buttonOn_Click(object sender, EventArgs e)
-        //{
-        //    strRfid.Clear();
-        //    StartEventCapture();
-        //}
+        /// <summary>
+        /// 4Test
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTestRFStart_Click(object sender, EventArgs e)
+        {
+            strRfid.Clear();
+            StartEventCapture();
+        }
 
-        ///// <summary>
-        ///// RFID 리더 끄기
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void buttonOff_Click(object sender, EventArgs e)
-        //{
-        //    strRfid.Clear();
-        //    EndEventCapture();
-        //}
+        /// <summary>
+        /// 4Test
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTestRFStop_Click(object sender, EventArgs e)
+        {
+            strRfid.Clear();
+            EndEventCapture();
+        }
 
         #region 'HID MONITORING'
         /// <summary>
@@ -104,15 +121,31 @@ namespace DCafeKiosk
             EndEventCapture();
 
             // 데이터 로딩 다이얼로그
-            using (FormLoadingDialog form = new FormLoadingDialog(RestApi_CheckRFID, StartEventCapture))
+            using (FormLoadingDialog form = new FormLoadingDialog(RestAPI_CheckRFID))
             {
                 form.TopLevel = true;
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.ShowDialog();
             }
 
-            // API 확인 후 완료 이벤트 발생
-            OnPageSuccess();
+            if (!apiResult) // 인증 실패
+            {
+                DCafeKiosk.FormMessageBox dlg = new DCafeKiosk.FormMessageBox();
+                DialogResult dlgResult = dlg.ShowDialog("사용자 카드를 조회할 수 없습니다.", "인증 실패", CustomMessageBoxButtons.RetryCancel);
+
+                if (dlgResult == DialogResult.Retry)
+                {
+                    InitializeForm(); // 재시도
+                }
+                else if(dlgResult == DialogResult.Cancel)
+                {
+                    OnPageCancle(); // 처음 페이지 이동
+                }
+            }
+            else // 인증 성공
+            {
+                OnPageSuccess();
+            }
         }
 
         /// <summary>
@@ -130,11 +163,11 @@ namespace DCafeKiosk
             // RIM_INPUT = FOREGROUND에서만 WM_INPUT 이벤트 수신
             // RIDEV_INPUTSINK = BACKGROUND에서도 WM_INPUT 이벤트 수신
             //-------------------------------------------------------
-            int flags = (int)RawInputDeviceFlags.RIDEV_INPUTSINK;
+            RawInputDeviceFlags flags = RawInputDeviceFlags.RIDEV_INPUTSINK;
             {
-                rid[0].usUsagePage = 0x01;
-                rid[0].usUsage = 0x06;
-                rid[0].dwFlags = (RawInputDeviceFlags)flags;
+                rid[0].usUsagePage = (ushort)SharpLib.Hid.UsagePage.GenericDesktopControls;
+                rid[0].usUsage = (ushort)SharpLib.Hid.UsageCollection.GenericDesktop.Keyboard;                
+                rid[0].dwFlags = flags;
                 rid[0].hwndTarget = this.Handle;
             }
 
@@ -156,12 +189,12 @@ namespace DCafeKiosk
         {
             RAWINPUTDEVICE[] rid = new RAWINPUTDEVICE[1];
 
-            int flags = (int)RawInputDeviceFlags.RIDEV_REMOVE;
+            RawInputDeviceFlags flags = RawInputDeviceFlags.RIDEV_REMOVE;
             {
-                rid[0].usUsagePage = 0x01;
-                rid[0].usUsage = 0x06;
-                rid[0].dwFlags = (RawInputDeviceFlags)flags;    // here!
-                rid[0].hwndTarget = IntPtr.Zero;                // here!
+                rid[0].usUsagePage = (ushort)SharpLib.Hid.UsagePage.GenericDesktopControls;
+                rid[0].usUsage = (ushort)SharpLib.Hid.UsageCollection.GenericDesktop.Keyboard;
+                rid[0].dwFlags = flags;             // here!
+                rid[0].hwndTarget = IntPtr.Zero;    // here!
             }
 
             //De-register
@@ -191,6 +224,7 @@ namespace DCafeKiosk
                     {
                         IntPtr rawInputBuffer = IntPtr.Zero;
                         RAWINPUT iRawInput = new RAWINPUT();
+
                         if (!GetRawInputData(message.LParam, ref iRawInput, ref rawInputBuffer))
                         {
                             Console.WriteLine("GetRawInputData failed!");
@@ -203,7 +237,9 @@ namespace DCafeKiosk
                                 && iRawInput.keyboard.Flags == RawInputKeyFlags.RI_KEY_MAKE)
                             {
                                 // VKey 정보 처리 하기
+                                //----------------------------------------
                                 ProcessRawInput(iRawInput.keyboard.VKey);
+                                //----------------------------------------
 
                                 Console.WriteLine("RAWINPUT: Header dwSize: 0x{0:X}\r\n",
                                     iRawInput.header.dwSize
@@ -259,10 +295,10 @@ namespace DCafeKiosk
         {
             if (VKey == 0x0D) //VK_ENTER
             {
-                // read compleat ...
-                this.CompleatedRFRead(strRfid.ToString());
-
-                // buffer clear
+                // RFCard ID 값 읽기 완료
+                //------------------------------------
+                CompleatedRFRead(strRfid.ToString());
+                //------------------------------------
                 strRfid.Clear();
             }
             else
@@ -292,7 +328,7 @@ namespace DCafeKiosk
                 uint sizeOfHeader = (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER));
 
                 //Get the size of our raw input data.
-                Function.GetRawInputData(aRawInputHandle, Const.RID_INPUT, IntPtr.Zero, ref dwSize, sizeOfHeader);
+                uint ret = Function.GetRawInputData(aRawInputHandle, Const.RID_INPUT, IntPtr.Zero, ref dwSize, sizeOfHeader);
 
                 //Allocate a large enough buffer
                 rawInputBuffer = Marshal.AllocHGlobal((int)dwSize);
@@ -315,19 +351,5 @@ namespace DCafeKiosk
             return success;
         }
         #endregion 'HID MONITORING'
-
-
-
-        private void btnTestRFStart_Click(object sender, EventArgs e)
-        {
-            strRfid.Clear();
-            StartEventCapture();
-        }
-
-        private void btnTestRFStop_Click(object sender, EventArgs e)
-        {
-            strRfid.Clear();
-            EndEventCapture();
-        }
     }
 }

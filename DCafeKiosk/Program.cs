@@ -16,7 +16,7 @@ namespace DCafeKiosk
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormRFRead());
+            Application.Run(new FormMain());
         }
     }
 }

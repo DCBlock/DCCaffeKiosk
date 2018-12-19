@@ -10,9 +10,32 @@ using System.Windows.Forms;
 
 namespace DCafeKiosk
 {
-    public partial class FormPayType : Form
+    public partial class FormPayType : Form, IPage
     {
         public event EventHandler<PayTypeEventArgs> OnSelectedPayType;
+
+        //-------------------------------------------------------------
+
+        public event EventHandler<EventArgs> PageSuccess;
+        public event EventHandler<EventArgs> PageCancle;
+
+        public void OnPageSuccess()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnPageCancle()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InitializeForm()
+        {
+        }
+
+        //-------------------------------------------------------------
+
+        public PAY_TYPE XPayType { get; set; }
 
         public FormPayType()
         {
@@ -25,6 +48,8 @@ namespace DCafeKiosk
                 return;
 
             OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.MonthlyDeduction));
+
+            XPayType = PAY_TYPE.MonthlyDeduction;
         }
 
         private void ucPayTypeButton_DigicapTokenPayment_Click(object sender, EventArgs e)
@@ -33,6 +58,8 @@ namespace DCafeKiosk
                 return;
 
             OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.DigicapTokenPayment));
+
+            XPayType = PAY_TYPE.DigicapTokenPayment;
         }
 
         private void ucPayTypeButton_CustomerPayment_Click(object sender, EventArgs e)
@@ -49,6 +76,8 @@ namespace DCafeKiosk
                 return;
 
             OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.OderCancellation));
+
+            XPayType = PAY_TYPE.OderCancellation;
         }
 
         private void ucPayTypeButton_UserUsageHistoryInquiry_Click(object sender, EventArgs e)
@@ -57,6 +86,8 @@ namespace DCafeKiosk
                 return;
 
             OnSelectedPayType(this, new PayTypeEventArgs(PAY_TYPE.UserUsageHistoryInquiry));
+
+            XPayType = PAY_TYPE.UserUsageHistoryInquiry;
         }
     }
 }

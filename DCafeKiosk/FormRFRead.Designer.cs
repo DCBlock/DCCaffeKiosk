@@ -186,6 +186,7 @@
             this.btnTestRFStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnTestRFStart.Textcolor = System.Drawing.Color.White;
             this.btnTestRFStart.TextFont = new System.Drawing.Font("SpoqaHanSans-Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnTestRFStart.Visible = false;
             this.btnTestRFStart.Click += new System.EventHandler(this.btnTestRFStart_Click);
             // 
             // btnTestRFStop
@@ -222,6 +223,7 @@
             this.btnTestRFStop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnTestRFStop.Textcolor = System.Drawing.Color.White;
             this.btnTestRFStop.TextFont = new System.Drawing.Font("SpoqaHanSans-Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnTestRFStop.Visible = false;
             this.btnTestRFStop.Click += new System.EventHandler(this.btnTestRFStop_Click);
             // 
             // FormRFRead

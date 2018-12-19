@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonOn = new System.Windows.Forms.Button();
             this.buttonOff = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -73,11 +74,22 @@
             this.buttonOff.UseVisualStyleBackColor = true;
             this.buttonOff.Click += new System.EventHandler(this.buttonOff_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(219, 64);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "CustomMessageBox";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 108);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonOff);
             this.Controls.Add(this.buttonOn);
             this.Controls.Add(this.label2);
@@ -95,6 +107,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonOn;
         private System.Windows.Forms.Button buttonOff;
+        private System.Windows.Forms.Button button1;
     }
 }
 

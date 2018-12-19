@@ -15,7 +15,7 @@ namespace DCafeKiosk
     public enum MENU_TYPE
     {
         HOT,
-        COLD,
+        ICED,
         BOTH,
     }
 

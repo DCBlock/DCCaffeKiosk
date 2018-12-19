@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DCafeKiosk
 {
-    public partial class FormMenuBoard : Form, IPageEventHandler
+    public partial class FormMenuBoard : Form, IPage
     {
         #region 'IPageEventHandler'
         public event EventHandler<EventArgs> PageSuccess;
@@ -25,10 +25,31 @@ namespace DCafeKiosk
             if (PageCancle != null)
                 PageCancle(this, EventArgs.Empty);
         }
+
+        public void InitializeForm()
+        {
+            // 주문 카트 내역 초기화
+            OrderCartClearAll();
+
+            // 카테고리 메뉴 설정
+            CategoriesAndMenusReload();
+
+            // 사용자 정보
+            this.label_UserInfo.Text = string.Format("{0} 님 ({1})", XName, XCompany);
+
+            // 분리선 콘트롤
+            this.bunifuSeparator_SelectedCategoryLine.LineThickness = 5;
+            this.bunifuSeparator_SelectedCategoryLine.Location = new System.Drawing.Point(0, 98);
+            this.bunifuSeparator_SelectedCategoryLine.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bunifuSeparator_SelectedCategoryLine.Size = new System.Drawing.Size(168, 5);
+
+            this.bunifuSeparator1.LineThickness = 5;
+            this.bunifuSeparator1.Location = new System.Drawing.Point(0, 112);
+            this.bunifuSeparator1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.bunifuSeparator1.Size = new System.Drawing.Size(1350, 5);
+        }
         #endregion
-
-
-
+        
         /// <summary>
         /// category name : flowlayoutpanel menus page 맵핑 저장
         /// </summary>
@@ -40,10 +61,16 @@ namespace DCafeKiosk
         private string CurrentCategoryName;
 
         /// <summary>
-        /// 카테고리당 메뉴정보 외부 주입
+        /// 프로퍼티
         /// </summary>
         [Browsable(false)]
-        public DataSet CategoriesAndMenusDataset { get; set; }
+        public DataSet XCategoriesAndMenusDataset { get; set; }
+
+        [Browsable(false)]
+        public string XName { get; set; }
+
+        [Browsable(false)]
+        public string XCompany { get; set; }
 
         public FormMenuBoard()
         {
@@ -54,34 +81,83 @@ namespace DCafeKiosk
             bunifuFlatButton_Cancle.Click += OnCancleButton;
             bunifuFlatButton_Ok.Click += OnOkButton;
 
-            // 주문 카트 내역 초기화
-            OrderCartClearAll();
-
-            // 카테고리 메뉴 UI 구성
-            CategoriesAndMenusReload(CategoriesAndMenusDataset);
+            // 초기화
+            InitializeForm();
         }
+
+        #region '버튼 이벤트'
+        /// <summary>
+        /// 주문 취소 버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCancleButton(object sender, EventArgs e)
+        {
+            using (FormMessageBox dlg = new FormMessageBox())
+            {
+                {
+                    dlg.Left = 1430;
+                    dlg.Top = this.Location.X + (ClientSize.Height / 2) - 100;
+                    dlg.XColorTitle = Color.FromArgb(235, 82, 87);
+                }
+                
+                DialogResult dlgResult = 
+                    dlg.ShowDialog(@"구매 절차를 취소하시겠습니까?", @"구매 중단", CustomMessageBoxButtons.YesNo);
+
+                if(dlgResult == DialogResult.Yes)
+                {
+                    OnPageCancle();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 주문 완료 버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOkButton(object sender, EventArgs e)
+        {
+            using (FormMessageBox dlg = new FormMessageBox())
+            {
+                {
+                    dlg.Left = 1430;
+                    dlg.Top = this.Location.X + (ClientSize.Height / 2) - 100;
+                    dlg.XColorTitle = Color.FromArgb(73, 156, 188);
+                }
+
+                DialogResult dlgResult =
+                    dlg.ShowDialog(@"구매를 완료 하시겠습니까?", @"최종 확인", CustomMessageBoxButtons.YesNo);
+
+                if (dlgResult == DialogResult.Yes)
+                {
+                    OnPageSuccess();
+                }
+            }
+        }
+        #endregion
 
         /// <summary>
         /// 메뉴를 초기화하고 다시 생성
         /// </summary>
-        public void CategoriesAndMenusReload(DataSet ds)
+        private void CategoriesAndMenusReload()
         {
             // 메뉴 데이터 설정 초기화
             CategoriesAndMenusClearAll();
 
             // 
-            if (ds == null)
+            if (this.XCategoriesAndMenusDataset == null)
                 return;
 
-            int category_cnt = ds.Tables.Count;
+            int category_cnt = XCategoriesAndMenusDataset.Tables.Count;
             for (int i = 0; i < category_cnt; i++)
             {
                 // Add categories
-                AddCategory(ds.Tables[i].TableName);
+                AddCategory(XCategoriesAndMenusDataset.Tables[i].TableName);
                 //-----------------------------------
                 {
                     // Add menus
-                    foreach (DataRow dr in ds.Tables[i].Rows)
+                    foreach (DataRow dr in XCategoriesAndMenusDataset.Tables[i].Rows)
                     {
                         /*
                         'Coffee':[
@@ -100,10 +176,12 @@ namespace DCafeKiosk
                         */
 
                         AddMenu(
-                            ds.Tables[i].TableName,         // category_name
+                            // category_name
+                            XCategoriesAndMenusDataset.Tables[i].TableName, 
                             Int32.Parse(dr["category"].ToString()),
                             Int32.Parse(dr["code"].ToString()),
-                            dr["event_name"].ToString(),    // event_name
+                            // event_name
+                            dr["event_name"].ToString(),
                             dr["name_kr"].ToString(),
                             dr["size"].ToString(),
                             dr["type"].ToString(),
@@ -127,33 +205,6 @@ namespace DCafeKiosk
 
 
 
-
-        #region '버튼 이벤트'
-        /// <summary>
-        /// 주문 취소 버튼 클릭
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCancleButton(object sender, EventArgs e)
-        {
-            OnPageCancle();
-        }
-
-        /// <summary>
-        /// 주문 완료 버튼 클릭
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnOkButton(object sender, EventArgs e)
-        {
-            OnPageSuccess();
-        }
-        #endregion
-
-
-
-
-
         #region '주문 카트 추가/삭제 영역'
         /// <summary>
         /// 주문 내역 전체 지우기
@@ -172,6 +223,39 @@ namespace DCafeKiosk
         }
 
         /// <summary>
+        /// NAME, SIZE, TYPE 조합으로 주문 카트 내역 삭제
+        /// CartOrderItem.Name = aItemName+aItemSize+aItemType 으로 CartOrderItem 객체 식별
+        /// </summary>
+        private void OrderCartRemove(string aMenuNameKR, string aMenuSize, string aMenuType)
+        {
+            string keyName = string.Format("{0}{1}{2}", aMenuNameKR, aMenuSize, aMenuType);
+
+            UCOrderItem obj = this.flowLayoutPanel_OrderCartLayout.Controls[keyName] as UCOrderItem;
+            this.flowLayoutPanel_OrderCartLayout.Controls.RemoveByKey(keyName);
+            obj.Dispose();
+        }
+
+        /// <summary>
+        /// 구매 목록의 총액을 계산한다.
+        /// </summary>
+        private void OrderCartUpdateTotalPrice()
+        {
+            int _totalPrice = 0;
+
+            int count = this.flowLayoutPanel_OrderCartLayout.Controls.Count;
+
+            // UCOrderItem 객체의 가격 합산
+            for (int index = 1; index < count; index++)
+            {
+                UCOrderItem obj = this.flowLayoutPanel_OrderCartLayout.Controls[index] as UCOrderItem;
+                _totalPrice += obj.XMenuTotalAmount;
+            }
+            
+            this.label_TotalPrice.Text = string.Format("{0:n0} 원", _totalPrice); //or .ToString("N0");
+        }
+
+
+        /// <summary>
         /// NAME, SIZE, TYPE 조합으로 주문 카트 내역 추가
         /// CartOrderItem.Name = aItemName+aItemSize+aItemType 으로 CartOrderItem 객체 식별
         /// </summary>
@@ -183,6 +267,30 @@ namespace DCafeKiosk
         /// <param name="aMenuAmount"></param>
         private void OrderCartAdd(UCMenuButton aMenuButtonObj, string aMenuNameKR, string aMenuSize, string aMenuType, int aMenuUnitPrice, int aMenuAmount=1)
         {
+            // 타입이 "BOTH"이면 "메시지 박스 출력 선택
+            if ((aMenuType.ToUpper()).CompareTo("BOTH") == 0)
+            {
+                using (FormMessageBox dlg = new FormMessageBox())
+                {
+                    {
+                        dlg.Left = 450;
+                        dlg.Top = this.Location.X + (ClientSize.Height / 2) - 100;
+                    }
+
+                    DialogResult dlgResult = dlg.ShowDialog("추가 옵션을 선택하세요.", "추가 옵션 선택", CustomMessageBoxButtons.HotIced);
+                    {
+                        if (dlgResult == DialogResult.OK)
+                        {
+                            aMenuType = "HOT";
+                        }
+                        else if (dlgResult == DialogResult.Cancel)
+                        {
+                            aMenuType = "ICED";
+                        }
+                    }
+                }
+            }
+
             // 카트 콘트롤 이름
             string keyName = string.Format("{0}{1}{2}", aMenuNameKR, aMenuSize, aMenuType);
 
@@ -193,12 +301,6 @@ namespace DCafeKiosk
                 control.XMenuAmount++;
 
                 return;
-            }
-
-            // 타입이 "BOTH"이면 "메시지 박스 출력 선택
-            if ((aMenuType.ToUpper()).CompareTo("BOTH") == 0)
-            {
-
             }
 
             // 주문 추가
@@ -224,18 +326,16 @@ namespace DCafeKiosk
 
                 //----------------------------------------------------------
                 _OrderItem.XMenuButtonObject = aMenuButtonObj;
+
+                //----------------------------------------------------------
+                _OrderItem.OnMinusButtonClicked += UcOrderItem_OnMinusButtonClicked;
+                _OrderItem.OnPlusButtonClicked += UcOrderItem_OnPlusButtonClicked;
             }
 
             this.flowLayoutPanel_OrderCartLayout.Controls.Add(_OrderItem);
-        }
 
-        /// <summary>
-        /// NAME, SIZE, TYPE 조합으로 주문 카트 내역 삭제
-        /// CartOrderItem.Name = aItemName+aItemSize+aItemType 으로 CartOrderItem 객체 식별
-        /// </summary>
-        private void OrderCartRemove(string aItemName, string aItemSize, string aItemType)
-        {
-
+            // 총액 업데이트
+            OrderCartUpdateTotalPrice();
         }
 
         /// <summary>
@@ -243,8 +343,12 @@ namespace DCafeKiosk
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UcOrderItem1_OnPlusButtonClicked(object sender, EventArgs e)
+        private void UcOrderItem_OnPlusButtonClicked(object sender, EventArgs e)
         {
+            UCOrderItem obj = sender as UCOrderItem;
+
+            // 총액 업데이트
+            OrderCartUpdateTotalPrice();
         }
 
         /// <summary>
@@ -252,12 +356,17 @@ namespace DCafeKiosk
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UcOrderItem1_OnMinusButtonClicked(object sender, EventArgs e)
+        private void UcOrderItem_OnMinusButtonClicked(object sender, EventArgs e)
         {
             UCOrderItem obj = sender as UCOrderItem;
 
             if (obj.XMenuAmount <= 0)
-                obj.Visible = false;
+            {
+                OrderCartRemove(obj.XMenuNameKR, obj.XMenuSize, obj.XMenuType);
+            }
+
+            // 총액 업데이트
+            OrderCartUpdateTotalPrice();
         }
         #endregion
 

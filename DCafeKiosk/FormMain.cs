@@ -13,11 +13,6 @@ namespace DCafeKiosk
     public partial class FormMain : Form
     {
         /// <summary>
-        /// 현재 결제 타입 저장
-        /// </summary>
-        private PAY_TYPE CurrentPayType;
-
-        /// <summary>
         /// 월말 공제 페이지 순서 지정
         /// </summary>
         List<PAGES> ListMonthlyDeductionSequence = new List<PAGES>
@@ -41,48 +36,74 @@ namespace DCafeKiosk
                 PAGES.FormPayType,
             };
 
+        /// <summary>
+        /// 현재 결제 타입
+        /// </summary>
+        private PAY_TYPE    mCurrentPayType;
+
+        /// <summary>
+        /// RFID 정보
+        /// </summary>
+        string      mCurrentRFID;
+        string      mName;
+        string      mCompany;
+        string      mReceiptId;
+
+        /// <summary>
+        /// 메뉴 정보
+        /// </summary>
+        DTOGetMenusResponse mMenus;
+
+        FormPayType         mFormPayType;
+        FormRFRead          mFormRFRead;
+        FormMenuBoard       mFormMenuBoard;
+        FormOrderResult     mFormOrderResult;
+
         public FormMain()
         {
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             // 결제 방식 폼
-            FormPayType _formPayType = new FormPayType();
+            mFormPayType = new FormPayType();
             {
-                _formPayType.OnSelectedPayType += OnSelectedPayType;
+                mFormPayType.OnSelectedPayType += OnSelectedPayType;
             }
 
             // RFID 폼
-            FormRFRead _formRFRead = new FormRFRead();
+            mFormRFRead = new FormRFRead();
             {
-                _formRFRead.PageSuccess += OnPageSuccess;
-                _formRFRead.PageCancle += OnPageCancle;
+                mFormRFRead.PageSuccess += OnPageSuccess;
+                mFormRFRead.PageCancle += OnPageCancle;
             }
 
             // 메뉴 폼
-            FormMenuBoard _formMenuBoard = new FormMenuBoard();
+            mFormMenuBoard = new FormMenuBoard();
             {
-                _formMenuBoard.PageSuccess += OnPageSuccess;
-                _formMenuBoard.PageCancle += OnPageCancle;
+                mFormMenuBoard.PageSuccess += OnPageSuccess;
+                mFormMenuBoard.PageCancle += OnPageCancle;
 
-                //----------------------------------------
-                //DataSet ds = APIController.API_GetMenus();
-                //_formMenuBoard.CategoriesAndMenusDataset = ds;
-                //_formMenuBoard.CategoriesAndMenusReload(ds);
+                //-----------------------------------
+                // 메뉴가 변경되면 프로그램 재시작 필요
+                // 메뉴는 프로그램 시작될때 설정됨
+                //-----------------------------------
+                mMenus = APIController.API_GetMenus();
+                mFormMenuBoard.XCategoriesAndMenusDataset = mMenus.dataset;
+                mFormMenuBoard.InitializeForm();
             }
 
             // 결제 완료 폼
-            FormOrderResult _formOrderResult = new FormOrderResult();
+            mFormOrderResult = new FormOrderResult();
             {
-                _formOrderResult.PageSuccess += OnPageSuccess;
-                _formOrderResult.PageCancle += OnPageCancle;
+                mFormOrderResult.PageSuccess += OnPageSuccess;
+                mFormOrderResult.PageCancle += OnPageCancle;
             }
 
             // 판넬에 페이지 추가
-            AddForms2Panel(_formPayType);
-            AddForms2Panel(_formRFRead);
-            AddForms2Panel(_formMenuBoard);
-            AddForms2Panel(_formOrderResult);
+            AddForms2Panel(mFormPayType);
+            AddForms2Panel(mFormRFRead);
+            AddForms2Panel(mFormMenuBoard);
+            AddForms2Panel(mFormOrderResult);
 
             // 시작 페이지 보이기
             DisplayPage(nameof(FormPayType));
@@ -96,10 +117,10 @@ namespace DCafeKiosk
         private void OnSelectedPayType(object sender, PayTypeEventArgs e)
         {
             // 현재 결제 방법 저장
-            CurrentPayType = e.selected_paytype;
+            mCurrentPayType = e.selected_paytype;
 
             // 결제 방법에 따른 다음 페이지 표시
-            string nextPageName = NextPage(this.CurrentPayType, PAGES.FormPayType);
+            string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormPayType);
             DisplayPage(nextPageName);
         }
 
@@ -122,8 +143,10 @@ namespace DCafeKiosk
         /// <param name="formName"></param>
         private void DisplayPage(string formName)
         {
-            if (this.panelFormLayer.Controls.ContainsKey(formName)) {
+            if (this.panelFormLayer.Controls.ContainsKey(formName))
+            {
                 this.panelFormLayer.Controls[formName].BringToFront();
+                (this.panelFormLayer.Controls[formName] as IPage).InitializeForm();
             }
         }
 
@@ -175,19 +198,43 @@ namespace DCafeKiosk
                 //}
                 //this.panelFormLayer.ResumeLayout();
 
-                string nextPageName = NextPage(this.CurrentPayType, PAGES.FormRFRead);
+                {
+                    this.mCurrentRFID = mFormRFRead.XstrHashedRFid;
+                    this.mName = mFormRFRead.XApiResponse.name;
+                    this.mCompany = mFormRFRead.XApiResponse.company;
+                    this.mReceiptId = mFormRFRead.XApiResponse.receipt_id;
+                }
+                
+                string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormRFRead);
+                {
+                    if (nextPageName == PAGES.FormMenuBoard.ToString())
+                    {
+                        mFormMenuBoard.XCompany = mCompany;
+                        mFormMenuBoard.XName = mName;
+
+                        mFormMenuBoard.InitializeForm();
+                    }
+                    else if (nextPageName == PAGES.FormKeyPad.ToString())
+                    {
+
+                    }
+                    else if (nextPageName == PAGES.FormInqueryResult.ToString())
+                    {
+
+                    }
+                }
                 DisplayPage(nextPageName);
             }
 
             if ((sender.GetType()).Name.CompareTo(PAGES.FormMenuBoard.ToString()) == 0)
             {
-                string nextPageName = NextPage(this.CurrentPayType, PAGES.FormMenuBoard);
+                string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormMenuBoard);
                 DisplayPage(nextPageName);
             }
 
             if ((sender.GetType()).Name.CompareTo(PAGES.FormOrderResult.ToString()) == 0)
             {
-                string nextPageName = NextPage(this.CurrentPayType, PAGES.FormOrderResult);
+                string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormOrderResult);
                 DisplayPage(nextPageName);
             }
 
