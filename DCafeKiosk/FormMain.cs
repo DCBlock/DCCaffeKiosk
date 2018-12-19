@@ -12,6 +12,7 @@ namespace DCafeKiosk
 {
     public partial class FormMain : Form
     {
+        //========================================
         /// <summary>
         /// 월말 공제 페이지 순서 지정
         /// </summary>
@@ -36,6 +37,7 @@ namespace DCafeKiosk
                 PAGES.FormPayType,
             };
 
+        //========================================
         /// <summary>
         /// 현재 결제 타입
         /// </summary>
@@ -59,6 +61,7 @@ namespace DCafeKiosk
         FormMenuBoard       mFormMenuBoard;
         FormOrderResult     mFormOrderResult;
 
+        //========================================
         public FormMain()
         {
             InitializeComponent();
@@ -88,8 +91,14 @@ namespace DCafeKiosk
                 // 메뉴는 프로그램 시작될때 설정됨
                 //-----------------------------------
                 mMenus = APIController.API_GetMenus();
-                mFormMenuBoard.XCategoriesAndMenusDataset = mMenus.dataset;
-                mFormMenuBoard.InitializeForm();
+
+                if (mMenus != null) {
+                    mFormMenuBoard.XCategoriesAndMenusDataset = mMenus.dataset;
+                    mFormMenuBoard.InitializeForm();
+                }
+                else {
+                    MessageBox.Show("메뉴 정보를 가져오지 못했습니다.\n\r인터넷 연결을 점검해야 합니다.", "문제 보고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
 
             // 결제 완료 폼
