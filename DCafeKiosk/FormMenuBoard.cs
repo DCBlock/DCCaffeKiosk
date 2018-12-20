@@ -300,6 +300,8 @@ namespace DCafeKiosk
                 UCOrderItem control = this.flowLayoutPanel_OrderCartLayout.Controls[keyName] as UCOrderItem;
                 control.XMenuAmount++;
 
+                // 총액 업데이트
+                OrderCartUpdateTotalPrice();
                 return;
             }
 

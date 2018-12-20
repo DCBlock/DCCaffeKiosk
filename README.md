@@ -47,4 +47,21 @@ for Mouse Click Effect
 
 ## License
 
-.
+### [HashLib](https://archive.codeplex.com/?p=hashlib#HashLib/)
+V2.0.1
+MIT License
+### [Newtonsoft.Json](https://www.newtonsoft.com/json)
+V12.0.1
+MIT License
+### [QRCoder](https://github.com/codebude/QRCoder/)
+v1.3.5
+The MIT License (MIT)
+### [RestSharp](http://restsharp.org/)
+V106.5.4
+Apache License 2.0
+### [SharpLibHid](https://github.com/Slion/SharpLibHid)
+V1.4.3
+GNU General Public License
+### [SharpLibWin32](https://github.com/Slion/SharpLibWin32)
+V0.1.7
+GNU General Public License
