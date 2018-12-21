@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DCafeKiosk.Utilities
 {
+    /// <summary>
+    /// 유닉스 타임스탬프
+    /// </summary>
     class TimeStamp
     {
         public static int getUnixTimeStamp(DateTime datetime)
@@ -26,11 +29,6 @@ namespace DCafeKiosk.Utilities
 
             Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(datetime)).TotalSeconds;
 
-            /*
-            DateTime foo = DateTime.UtcNow;
-            long unixTime = ((DateTimeOffset)foo).ToUnixTimeSeconds();
-            */
-
             return unixTimestamp;
         }
 
@@ -40,11 +38,6 @@ namespace DCafeKiosk.Utilities
             datetime.AddDays(spanDays);
 
             Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(datetime)).TotalSeconds;
-
-            /*
-            DateTime foo = DateTime.UtcNow;
-            long unixTime = ((DateTimeOffset)foo).ToUnixTimeSeconds();
-            */
 
             return unixTimestamp;
         }
@@ -58,8 +51,9 @@ namespace DCafeKiosk.Utilities
         }
     }
 
-
-
+    /// <summary>
+    /// UTC 시간 문자열 포멧
+    /// </summary>
     class DateTimeFormatString
     {
         /// <summary>

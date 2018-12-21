@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 using System.Windows.Forms;
 
-namespace BIXOLON_SamplePg
+namespace DCafeKiosk
 {
     class BXLAPI
     {

@@ -1,6 +1,3 @@
-http://bixolon.com/html/ko/download/download_product.xhtml?prod_id=122
-
-
 ## DCaffeKios .Net Client
 
 까페 무인 주문을 위한 터치 스크린 UI 클라이언트
