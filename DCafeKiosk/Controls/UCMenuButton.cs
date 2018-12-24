@@ -122,6 +122,14 @@ namespace DCafeKiosk
                 // 사이즈
                 TextRenderer.DrawText(e.Graphics, XMenuSize, Font, new Point(Width + 3, (Height / 2) - 0), ForeColor, flags);
 
+                // 선택 옵션
+                string _strTypes;
+                if (XMenuType.ToUpper() == "BOTH")
+                    _strTypes = String.Format("HOT/ICED");
+                else
+                    _strTypes = XMenuType.ToUpper();
+                TextRenderer.DrawText(e.Graphics, _strTypes, Font, new Point(Width + 3, (Height / 2) + 30), Color.DeepSkyBlue, flags);
+
                 // 메뉴 가격
                 TextRenderer.DrawText(e.Graphics, XMenuPrice.ToString(), Font, new Point(Width + 3, Height - 30), ForeColor, flags);
             }

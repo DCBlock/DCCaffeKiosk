@@ -12,10 +12,9 @@ namespace DCafeKiosk
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public class DTOGetMenusResponse
     {
-        //
         public DataSet dataset { get; set; }
 
-        //
+        // Error
         public int code { get; set; }
         public string reason { get; set; }
     }
@@ -34,13 +33,18 @@ namespace DCafeKiosk
         public string company { get; set; }
         public string date { get; set; }
 
-        //
+        // Error
         public int code { get; set; }
         public string reason { get; set; }
     }
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public class DTOMenu
+    public class DTOPurchasesRequest
+    {
+        public IList<VOMenu> purchases { get; set; }
+    }
+
+    public class VOMenu
     {
         public int category { get; set; }  // 카테고리 코드
         public int code { get; set; }      // 메뉴 코드
@@ -50,19 +54,29 @@ namespace DCafeKiosk
         public int count { get; set; }     // 개수
     }
 
-    public class DTOPurchaseList
+    public class DTOPurchasesResponse
     {
-        public IList<DTOMenu> purchases { get; set; }
-    }
-
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public class DTOPurchaseSuccessResponse
-    {
-        public string total_price { get; set; }
-        public string total_dc_price { get; set; }
+        public int total_price { get; set; }
+        public int total_dc_price { get; set; }
         public string purchased_date { get; set; }
+
+        // Error
+        public int code { get; set; }
+        public string reason { get; set; }
     }
 
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    public class DTOPurchaseHistoryOnetimeURLRequest
+    {
+        public string rfid { get; set; }
+        public int purchase_before { get; set; }
+        public int purchase_after { get; set; }
+    }
+
+    public class DTOPurchaseHistoryOnetimeURLResponse
+    {
+        public string uri { get; set; }
+    }
 
 
     /// <summary>
@@ -73,7 +87,7 @@ namespace DCafeKiosk
         static readonly string DCCAFFE_URL = "http://10.1.203.12:8080/api/caffe";
         static readonly string GET_MENUS = "/menus";
         static readonly string GET_PURCHASE_ID = "/purchases/purchase/receipt/id";
-        static readonly string PURCHASE_SUCCESS = "/purchases/purchase/receipt/{receipt_id}";
+        static readonly string POST_PURCHASE = "/purchases/purchase/receipt/{receipt_id}";
 
         static string JsonFormatting(string json)
         {
@@ -105,7 +119,8 @@ namespace DCafeKiosk
 
             //----------------
             // error handling
-            if (t1.Result.ErrorException != null) {
+            if (t1.Result.ErrorException != null)
+            {
                 return null;
             }
 
@@ -120,20 +135,24 @@ namespace DCafeKiosk
             // desirialized json data
             DTOGetMenusResponse dto = new DTOGetMenusResponse();
 
-            try{
-                if(t1.Result.StatusCode == System.Net.HttpStatusCode.OK) {
-                    dto.code = (int)t1.Result.StatusCode;
+            try
+            {
+                if (t1.Result.StatusCode == System.Net.HttpStatusCode.OK)
+                {
                     dto.dataset = JsonConvert.DeserializeObject<DataSet>(json);
+                    dto.code = (int)t1.Result.StatusCode;
                 }
-                else {
+                else
+                {
                     dto = JsonConvert.DeserializeObject<DTOGetMenusResponse>(json);
                 }
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 dto = null;
                 System.Diagnostics.Debug.WriteLine("[ERROR] " + ex.Message);
             }
-            
+
             return dto;
         }
 
@@ -176,9 +195,12 @@ namespace DCafeKiosk
             //------------------------------------------------
             request.AddParameter("application/json", sb.ToString(), RestSharp.ParameterType.RequestBody);
             */
-            
-            DTOGetPurchaseIdRequest reqJson = new DTOGetPurchaseIdRequest();
-            reqJson.rfid = aRfid;
+
+            DTOGetPurchaseIdRequest reqJson = new DTOGetPurchaseIdRequest
+            {
+                rfid = aRfid
+            };
+
             request.AddJsonBody(reqJson);
 
             //----------------------------------------
@@ -187,7 +209,8 @@ namespace DCafeKiosk
 
             //----------------
             // error handling
-            if (t1.Result.ErrorException != null){
+            if (t1.Result.ErrorException != null)
+            {
                 System.Diagnostics.Debug.WriteLine("[RESPONSE] " + t1.Result.Content);
                 return null;
             }
@@ -203,9 +226,10 @@ namespace DCafeKiosk
             // desirialized json data
             DTOGetPurchaseIdResponse dto = new DTOGetPurchaseIdResponse();
 
-            try{
-                dto.code = (int)t1.Result.StatusCode;
+            try
+            {
                 dto = JsonConvert.DeserializeObject<DTOGetPurchaseIdResponse>(json);
+                dto.code = (int)t1.Result.StatusCode;
             }
             catch (Exception ex)
             {
@@ -215,52 +239,112 @@ namespace DCafeKiosk
 
             return dto;
         }
-        
+
         /// <summary>
         /// 구매 확정을 위한 주문 내역 전송
         /// </summary>
         /// <param name="aReceiptId"></param>
         /// <param name="aPurchaseList"></param>
         /// <returns></returns>
-        public static DTOGetPurchaseIdResponse API_PostPurchaseSuccess(string aReceiptId, DTOPurchaseList aPurchaseList)
+        public static DTOPurchasesResponse API_PostPurchaseSuccess(string aReceiptId, DTOPurchasesRequest aPurchasesRequest)
         {
-            DTOMenu menu = new DTOMenu
+            //================================================================================
+            // POST http://10.1.203.12:8080/api/caffe/purchases/purchase/receipt/{receipt_id}
+            //================================================================================
+
+            //VOMenu menu = new VOMenu
+            //{
+            //    category = 100,
+            //    code = 1,
+            //    price = 1000,
+            //    type = "HOT",
+            //    size = "REGULAR",
+            //    count = 5
+            //};
+
+            //DTOPurchasesRequest obj = new DTOPurchasesRequest
+            //{               
+            //    purchases = new List<VOMenu>
+            //    {
+            //        new VOMenu
+            //        {
+            //            category = 100,
+            //            code = 1,
+            //            price = 1000,
+            //            type = "HOT",
+            //            size = "REGULAR",
+            //            count = 5
+            //        },
+            //        new VOMenu
+            //        {
+            //            category = 200,
+            //            code = 8,
+            //            price = 1500,
+            //            type = "HOT",
+            //            size = "REGULAR",
+            //            count = 1
+            //        },
+            //    }
+            //};
+            //
+            //string json = JsonConvert.SerializeObject(aPurchasesRequest);
+
+            RestSharp.RestClient client = new RestSharp.RestClient(DCCAFFE_URL);
+            RestSharp.RestRequest request = new RestSharp.RestRequest();
+            request.AddHeader("Content-Type", "application/json;charset=UTF-8");
+
+            request.Method = RestSharp.Method.POST;
+            request.RequestFormat = RestSharp.DataFormat.Json;
+            request.Resource = POST_PURCHASE;
+
+            request.AddParameter("receipt_id", aReceiptId, RestSharp.ParameterType.UrlSegment);
+            request.AddJsonBody(aPurchasesRequest);
+
+            //----------------------------------------
+            var t1 = client.ExecuteTaskAsync(request);
+            t1.Wait();
+
+            //----------------
+            // error handling
+            if (t1.Result.ErrorException != null)
             {
-                category = 100,
-                code = 1,
-                price = 1000,
-                type = "HOT",
-                size = "REGULAR",
-                count = 5
-            };
+                System.Diagnostics.Debug.WriteLine("[RESPONSE] " + t1.Result.Content);
+                return null;
+            }
 
-            DTOPurchaseList obj = new DTOPurchaseList
-            {               
-                purchases = new List<DTOMenu>
-                {
-                    new DTOMenu
-                    {
-                        category = 100,
-                        code = 1,
-                        price = 1000,
-                        type = "HOT",
-                        size = "REGULAR",
-                        count = 5
-                    },
-                    new DTOMenu
-                    {
-                        category = 200,
-                        code = 8,
-                        price = 1500,
-                        type = "HOT",
-                        size = "REGULAR",
-                        count = 1
-                    },
-                }
-            };
+            string json = t1.Result.Content;
 
-            string json = JsonConvert.SerializeObject(obj);
+            //--------------
+            // debug output
+            json = JsonFormatting(json);
+            System.Diagnostics.Debug.WriteLine("[RESPONSE] " + json);
 
+            //-----------------------
+            // desirialized json data
+            DTOPurchasesResponse dto = new DTOPurchasesResponse();
+
+            try
+            {
+                dto = JsonConvert.DeserializeObject<DTOPurchasesResponse>(json);
+                dto.code = (int)t1.Result.StatusCode;
+            }
+            catch (Exception ex)
+            {
+                dto = null;
+                System.Diagnostics.Debug.WriteLine("[ERROR] " + ex.Message);
+            }
+
+            return dto;
+        }
+
+        /// <summary>
+        /// QRCode 생성을 위한 URL 요청
+        /// </summary>
+        /// <param name="aRfid"></param>
+        /// <param name="aPurchaseHistoryOnetimeURL"></param>
+        /// <returns></returns>
+        public static DTOPurchaseHistoryOnetimeURLResponse API_PostPurchaseHistoryOnetimeURL(string aRfid, DTOPurchaseHistoryOnetimeURLResponse aPurchaseHistoryOnetimeURL)
+        {
             return null;
         }
     }

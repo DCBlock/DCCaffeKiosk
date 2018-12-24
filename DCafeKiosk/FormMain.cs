@@ -67,6 +67,62 @@ namespace DCafeKiosk
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
+
+
+
+            DTOPurchasesRequest obj = new DTOPurchasesRequest
+            {
+                purchases = new List<VOMenu>
+                {
+                    new VOMenu
+                    {
+                        category = 100,
+                        code = 1,
+                        price = 1000,
+                        type = "HOT",
+                        size = "REGULAR",
+                        count = 5
+                    },
+                }
+            };
+            APIController.API_PostPurchaseSuccess("0032", obj);
+
+
+
+            
+            if (!ReceiptController.Instance.ConnectToUSB())
+            {
+                Application.ExitThread();
+                Environment.Exit(0);
+                return;
+            }
+
+            List<VOPrintList> list = new List<VOPrintList>
+            {
+                new VOPrintList{
+                    name ="아메리카노",
+                    size ="Regular",
+                    type="Hot",
+                    amount="3"
+                },
+                new VOPrintList{
+                    name ="아메리카노",
+                    size ="Regular",
+                    type="Iced",
+                    amount="2"
+                },
+                new VOPrintList{
+                    name ="까페라떼",
+                    size ="Regular",
+                    type="Hot",
+                    amount="1"
+                },
+            };
+            ReceiptController.Instance.Print("정병옥님(DigiCAPS)", "7777", "월말공제", list, "2018-12-22 17:21:11");
+
+
+
+
             // 결제 방식 폼
             mFormPayType = new FormPayType();
             {
