@@ -251,18 +251,9 @@ namespace RFCardReaderTest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //DCafeKiosk.FormMessageBox dlg = new DCafeKiosk.FormMessageBox();
-            //DialogResult dlgResult = dlg.ShowDialog("인증에 실패 했습니다.", "인증 실패", MessageBoxButtons.OK);
-            //MessageBox.Show(dlgResult.ToString());
-
             DCafeKiosk.FormMessageBox dlg = new DCafeKiosk.FormMessageBox();
             dlg.XColorTitle = Color.FromArgb(235, 82, 87);
             DialogResult dlgResult = dlg.ShowDialog("추가 선택을 해주세요.", "추가 선택", DCafeKiosk.CustomMessageBoxButtons.OrderOkCancle);
-
-            if(dlgResult == DialogResult.OK)
-                MessageBox.Show("HOT");
-            else if (dlgResult == DialogResult.Cancel)
-                MessageBox.Show("ICED");
         }
     }
 }
