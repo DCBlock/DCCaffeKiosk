@@ -118,7 +118,7 @@ namespace DCafeKiosk
                     amount="1"
                 },
             };
-            ReceiptController.Instance.Print("프론트프로 이태호님(DigiCAPS)", "7777", "월말공제", list, "2018-12-22 17:21:11");
+            ReceiptController.Instance.Print("정병옥님(DigiCAPS)", "7777", "월말공제", list, "2018-12-22 17:21:11");
 
 
 
