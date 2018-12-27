@@ -81,9 +81,9 @@
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label5.Location = new System.Drawing.Point(43, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(210, 30);
+            this.label5.Size = new System.Drawing.Size(317, 30);
             this.label5.TabIndex = 49;
-            this.label5.Text = "DigiCAP Campus Caffe";
+            this.label5.Text = "DigiCAP Campus Caffe (사용자 인증)";
             // 
             // label1
             // 

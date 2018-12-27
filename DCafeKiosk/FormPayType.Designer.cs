@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPayType));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,13 +53,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(300, 300);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this;
-            this.bunifuDragControl1.Vertical = true;
             // 
             // panel1
             // 
@@ -93,9 +84,9 @@
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label5.Location = new System.Drawing.Point(43, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(210, 30);
+            this.label5.Size = new System.Drawing.Size(301, 30);
             this.label5.TabIndex = 49;
-            this.label5.Text = "DigiCAP Campus Caffe";
+            this.label5.Text = "DigiCAP Campus Caffe (기능 선택)";
             // 
             // label1
             // 
@@ -231,7 +222,6 @@
 
         #endregion
         private System.Windows.Forms.PictureBox pictureBox1;
-        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private UCPayTypeButton2 ucPayTypeButton_MonthlyDeduction;
         private UCPayTypeButton2 ucPayTypeButton_DigicapTokenPayment;
         private UCPayTypeButton2 ucPayTypeButton_CustomerPayment;

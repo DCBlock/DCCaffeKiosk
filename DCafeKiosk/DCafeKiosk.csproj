@@ -80,6 +80,12 @@
     <Compile Include="Classes\IPage.cs" />
     <Compile Include="Classes\ReceiptController.cs" />
     <Compile Include="Classes\Utilities.cs" />
+    <Compile Include="FormKeyPad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKeyPad.Designer.cs">
+      <DependentUpon>FormKeyPad.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLoadingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     <Compile Include="Controls\UCScrollingLeftText.Designer.cs">
       <DependentUpon>UCScrollingLeftText.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormKeyPad.resx">
+      <DependentUpon>FormKeyPad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLoadingDialog.resx">
       <DependentUpon>FormLoadingDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,6 +279,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Bunifu_UI_v1.5.3.dll" />
+    <Content Include="Resources\receipt_sample.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

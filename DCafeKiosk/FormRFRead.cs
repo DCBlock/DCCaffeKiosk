@@ -73,7 +73,7 @@ namespace DCafeKiosk
             }
             XApiResponse = APIController.API_PostPurchaseId(XstrHashedRFid);
 
-            if (XApiResponse != null)
+            if (XApiResponse != null && XApiResponse.code == 200)
                 apiResult = true;
             else
                 apiResult = false;
@@ -131,6 +131,7 @@ namespace DCafeKiosk
             if (!apiResult) // 인증 실패
             {
                 DCafeKiosk.FormMessageBox dlg = new DCafeKiosk.FormMessageBox();
+                dlg.StartPosition = FormStartPosition.CenterParent;
                 DialogResult dlgResult = dlg.ShowDialog("사용자 카드를 조회할 수 없습니다.", "인증 실패", CustomMessageBoxButtons.RetryCancel);
 
                 if (dlgResult == DialogResult.Retry)

@@ -37,6 +37,17 @@ namespace DCafeKiosk
                 PAGES.FormPayType,
             };
 
+        /// <summary>
+        /// 주문 취소 페이지 순서 지정
+        /// </summary>
+        List<PAGES> ListOderCancellation = new List<PAGES>
+            {
+                PAGES.FormPayType,
+                PAGES.FormRFRead,
+                PAGES.FormKeyPad,
+                PAGES.FormPayType,
+            };
+
         //========================================
         /// <summary>
         /// 현재 결제 타입
@@ -60,6 +71,7 @@ namespace DCafeKiosk
         FormRFRead          mFormRFRead;
         FormMenuBoard       mFormMenuBoard;
         FormOrderResult     mFormOrderResult;
+        FormKeyPad          mFormKeyPad;
 
         //========================================
         public FormMain()
@@ -70,55 +82,58 @@ namespace DCafeKiosk
 
 
 
-            DTOPurchasesRequest obj = new DTOPurchasesRequest
-            {
-                purchases = new List<VOMenu>
-                {
-                    new VOMenu
-                    {
-                        category = 100,
-                        code = 1,
-                        price = 1000,
-                        type = "HOT",
-                        size = "REGULAR",
-                        count = 5
-                    },
-                }
-            };
-            APIController.API_PostPurchaseSuccess("0032", obj);
+
+            //DTOPurchasesRequest obj = new DTOPurchasesRequest
+            //{
+            //    purchases = new List<VOMenu>
+            //    {
+            //        new VOMenu
+            //        {
+            //            category = 100,
+            //            code = 1,
+            //            price = 1000,
+            //            type = "HOT",
+            //            size = "REGULAR",
+            //            count = 5
+            //        },
+            //    }
+            //};
+            //APIController.API_PostPurchaseSuccess("0032", obj);
 
 
 
-            
-            if (!ReceiptController.Instance.ConnectToUSB())
-            {
-                Application.ExitThread();
-                Environment.Exit(0);
-                return;
-            }
 
-            List<VOPrintList> list = new List<VOPrintList>
-            {
-                new VOPrintList{
-                    name ="아메리카노",
-                    size ="Regular",
-                    type="Hot",
-                    amount="3"
-                },
-                new VOPrintList{
-                    name ="아메리카노",
-                    size ="Regular",
-                    type="Iced",
-                    amount="2"
-                },
-                new VOPrintList{
-                    name ="까페라떼",
-                    size ="Regular",
-                    type="Hot",
-                    amount="1"
-                },
-            };
-            ReceiptController.Instance.Print("정병옥님(DigiCAPS)", "7777", "월말공제", list, "2018-12-22 17:21:11");
+
+            //if (!ReceiptController.Instance.ConnectToUSB())
+            //{
+            //    Application.ExitThread();
+            //    Environment.Exit(0);
+            //    return;
+            //}
+
+            //List<VOPrintList> list = new List<VOPrintList>
+            //{
+            //    new VOPrintList{
+            //        name ="아메리카노",
+            //        size ="Regular",
+            //        type="Hot",
+            //        amount="3"
+            //    },
+            //    new VOPrintList{
+            //        name ="아메리카노",
+            //        size ="Regular",
+            //        type="Iced",
+            //        amount="2"
+            //    },
+            //    new VOPrintList{
+            //        name ="까페라떼",
+            //        size ="Regular",
+            //        type="Hot",
+            //        amount="1"
+            //    },
+            //};
+            //ReceiptController.Instance.Print("정병옥님(DigiCAPS)", "7777", "월말공제", list, "2018-12-22 17:21:11");
+
 
 
 
@@ -167,11 +182,19 @@ namespace DCafeKiosk
                 mFormOrderResult.PageCancle += OnPageCancle;
             }
 
+            // 취소 키패드 폼
+            mFormKeyPad = new FormKeyPad();
+            {
+                mFormKeyPad.PageSuccess += OnPageSuccess;
+                mFormKeyPad.PageCancle += OnPageCancle;
+            }
+
             // 판넬에 페이지 추가
             AddForms2Panel(mFormPayType);
             AddForms2Panel(mFormRFRead);
             AddForms2Panel(mFormMenuBoard);
             AddForms2Panel(mFormOrderResult);
+            AddForms2Panel(mFormKeyPad);
 
             // 시작 페이지 보이기
             DisplayPage(nameof(FormPayType));
@@ -223,14 +246,39 @@ namespace DCafeKiosk
         /// </summary>
         private string NextPage(PAY_TYPE aPayType, PAGES aCurrentPages)
         {
-            //string currentPageName = Enum.GetName(typeof(PAGES), aCurrentPages);
-            int pageIdx = this.ListMonthlyDeductionSequence.IndexOf(aCurrentPages);
+            string nextPageName = string.Empty;
 
-            string nextPageName;
-            if (pageIdx++ <= this.ListMonthlyDeductionSequence.Count - 1)
-                nextPageName = this.ListMonthlyDeductionSequence[pageIdx++].ToString();
-            else
-                nextPageName = string.Empty;
+            switch (mCurrentPayType)
+            {
+                case PAY_TYPE.MonthlyDeduction:
+                    {                        
+                        //string currentPageName = Enum.GetName(typeof(PAGES), aCurrentPages);
+                        int pageIdx = this.ListMonthlyDeductionSequence.IndexOf(aCurrentPages);
+                        if (pageIdx++ <= this.ListMonthlyDeductionSequence.Count - 1)
+                            nextPageName = this.ListMonthlyDeductionSequence[pageIdx++].ToString();
+                        else
+                            nextPageName = string.Empty;
+                    }
+                    break;
+                case PAY_TYPE.CustomerPayment:
+                    {
+                        int pageIdx = this.ListCustomerPayment.IndexOf(aCurrentPages);
+                        if (pageIdx++ <= this.ListCustomerPayment.Count - 1)
+                            nextPageName = this.ListCustomerPayment[pageIdx++].ToString();
+                        else
+                            nextPageName = string.Empty;
+                    }
+                    break;
+                case PAY_TYPE.OderCancellation:
+                    {
+                        int pageIdx = this.ListOderCancellation.IndexOf(aCurrentPages);
+                        if (pageIdx++ <= this.ListOderCancellation.Count - 1)
+                            nextPageName = this.ListOderCancellation[pageIdx++].ToString();
+                        else
+                            nextPageName = string.Empty;
+                    }
+                    break;
+            }
 
             return nextPageName;
         }
@@ -284,7 +332,10 @@ namespace DCafeKiosk
                     }
                     else if (nextPageName == PAGES.FormKeyPad.ToString())
                     {
+                        mFormKeyPad.XCompany = mCompany;
+                        mFormKeyPad.XName = mName;
 
+                        mFormKeyPad.InitializeForm();
                     }
                     else if (nextPageName == PAGES.FormInqueryResult.ToString())
                     {

@@ -57,15 +57,19 @@ namespace DCafeKiosk
             }
         }
 
-        public bool Connected { get; set; } = false;
         public bool ConnectToUSB()
         {
+            ////-------------
+            //if (GetStatus() != PRINT_STATUS.BXL_STS_ERROR)
+            //    return true;
+
+            //-------------
             if (BXLAPI.PrinterOpen(BXLAPI.IUsb, "", 0, 0, 0, 0) != BXLAPI.BXL_SUCCESS)
             {
                 MessageBox.Show("Connect fail [USB]");
-                return Connected = false;
+                return false;
             }
-            return Connected = true;
+            return true;
         }
 
         public PRINT_STATUS GetStatus()
@@ -170,7 +174,7 @@ namespace DCafeKiosk
             if (BXLAPI.TransactionEnd(true, 3000 /* 3 seconds */) != BXLAPI.BXL_SUCCESS)
             {
                 // failed to read a response from the printer after sending the print-data.
-                MessageBox.Show("TransactionEnd failed.");
+                MessageBox.Show("TransactionEnd failed.", "Receipt Printer");
                 return false;
             }
 

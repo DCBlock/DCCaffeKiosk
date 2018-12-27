@@ -84,7 +84,8 @@ namespace DCafeKiosk
     /// </summary>
     class APIController
     {
-        static readonly string DCCAFFE_URL = "http://10.1.203.12:8080/api/caffe";
+        //static readonly string DCCAFFE_URL = "http://10.1.203.12:8080/api/caffe";
+        static readonly string DCCAFFE_URL = "http://1ed85c8a.ngrok.io/api/caffe";
         static readonly string GET_MENUS = "/menus";
         static readonly string GET_PURCHASE_ID = "/purchases/purchase/receipt/id";
         static readonly string POST_PURCHASE = "/purchases/purchase/receipt/{receipt_id}";
