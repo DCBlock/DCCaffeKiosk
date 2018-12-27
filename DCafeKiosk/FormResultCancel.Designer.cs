@@ -1,6 +1,6 @@
 ﻿namespace DCafeKiosk
 {
-    partial class FormOrderResult
+    partial class FormResultCancel
     {
         /// <summary>
         /// Required designer variable.
@@ -34,9 +34,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label_PayTypeInfoText = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label_UserInfoText = new System.Windows.Forms.Label();
+            this.label_ResultInfo = new System.Windows.Forms.Label();
+            this.label_UserInfo = new System.Windows.Forms.Label();
             this.bunifuFlatButton_cancle = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -85,43 +84,33 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(504, 100);
+            this.label1.Location = new System.Drawing.Point(0, 100);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(900, 101);
+            this.label1.Size = new System.Drawing.Size(1920, 101);
             this.label1.TabIndex = 20;
-            this.label1.Text = "주문 완료";
+            this.label1.Text = "주문 취소 완료";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_PayTypeInfoText
             // 
-            this.label_PayTypeInfoText.Font = new System.Drawing.Font("SpoqaHanSans-Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_PayTypeInfoText.Location = new System.Drawing.Point(441, 316);
-            this.label_PayTypeInfoText.Name = "label_PayTypeInfoText";
-            this.label_PayTypeInfoText.Size = new System.Drawing.Size(1000, 63);
-            this.label_PayTypeInfoText.TabIndex = 21;
-            this.label_PayTypeInfoText.Text = "월말 공제로 주문이 완료 되었습니다.";
-            this.label_PayTypeInfoText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("SpoqaHanSans-Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(441, 379);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1000, 63);
-            this.label4.TabIndex = 53;
-            this.label4.Text = "출력된 주문 영수증을 제출하여 음료를 수령해 주세요.";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_ResultInfo.Font = new System.Drawing.Font("SpoqaHanSans-Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label_ResultInfo.Location = new System.Drawing.Point(0, 316);
+            this.label_ResultInfo.Name = "label_PayTypeInfoText";
+            this.label_ResultInfo.Size = new System.Drawing.Size(1920, 63);
+            this.label_ResultInfo.TabIndex = 21;
+            this.label_ResultInfo.Text = "{7777} 승인번호 주문이 취소 요청 되었습니다.";
+            this.label_ResultInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_UserInfoText
             // 
-            this.label_UserInfoText.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_UserInfoText.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label_UserInfoText.Location = new System.Drawing.Point(441, 253);
-            this.label_UserInfoText.Name = "label_UserInfoText";
-            this.label_UserInfoText.Size = new System.Drawing.Size(1000, 63);
-            this.label_UserInfoText.TabIndex = 21;
-            this.label_UserInfoText.Text = "XYZ 님 (디지캡)";
-            this.label_UserInfoText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_UserInfo.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label_UserInfo.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label_UserInfo.Location = new System.Drawing.Point(0, 253);
+            this.label_UserInfo.Name = "label_UserInfoText";
+            this.label_UserInfo.Size = new System.Drawing.Size(1920, 63);
+            this.label_UserInfo.TabIndex = 21;
+            this.label_UserInfo.Text = "XYZ 님 (디지캡)";
+            this.label_UserInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // bunifuFlatButton_cancle
             // 
@@ -158,22 +147,21 @@
             this.bunifuFlatButton_cancle.Textcolor = System.Drawing.Color.White;
             this.bunifuFlatButton_cancle.TextFont = new System.Drawing.Font("SpoqaHanSans-Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             // 
-            // FormOrderResult
+            // FormCancelResult
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1920, 1061);
             this.Controls.Add(this.bunifuFlatButton_cancle);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label_UserInfoText);
-            this.Controls.Add(this.label_PayTypeInfoText);
+            this.Controls.Add(this.label_UserInfo);
+            this.Controls.Add(this.label_ResultInfo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormOrderResult";
+            this.Name = "FormCancelResult";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -186,10 +174,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label_PayTypeInfoText;
+        private System.Windows.Forms.Label label_ResultInfo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label_UserInfoText;
+        private System.Windows.Forms.Label label_UserInfo;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton_cancle;
     }
 }

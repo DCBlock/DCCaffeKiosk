@@ -21,7 +21,7 @@ namespace DCafeKiosk
                 PAGES.FormPayType,
                 PAGES.FormRFRead,
                 PAGES.FormMenuBoard,
-                PAGES.FormOrderResult,
+                PAGES.FormResultOrder,
                 PAGES.FormPayType,
             };
 
@@ -33,7 +33,7 @@ namespace DCafeKiosk
                 PAGES.FormPayType,
                 PAGES.FormRFRead,
                 PAGES.FormMenuBoard,
-                PAGES.FormOrderResult,
+                PAGES.FormResultOrder,
                 PAGES.FormPayType,
             };
 
@@ -45,8 +45,12 @@ namespace DCafeKiosk
                 PAGES.FormPayType,
                 PAGES.FormRFRead,
                 PAGES.FormKeyPad,
+                PAGES.FormResultCancel,
                 PAGES.FormPayType,
             };
+
+
+
 
         //========================================
         /// <summary>
@@ -70,8 +74,11 @@ namespace DCafeKiosk
         FormPayType         mFormPayType;
         FormRFRead          mFormRFRead;
         FormMenuBoard       mFormMenuBoard;
-        FormOrderResult     mFormOrderResult;
+        FormResultOrder     mFormOrderResult;
         FormKeyPad          mFormKeyPad;
+
+
+
 
         //========================================
         public FormMain()
@@ -100,9 +107,9 @@ namespace DCafeKiosk
             //};
             //APIController.API_PostPurchaseSuccess("0032", obj);
 
+            //DTOPurchaseCancelResponse rsp = APIController.API_PatchPurchaseCancel("0017");
 
-
-
+            //DTOPurchaseHistoryOnetimeURLResponse rsp = APIController.API_PostPurchaseHistoryOnetimeURL("C26A1932A19823A8AF176AD8B80CA8AEACDDFFD3DA63695EB12B77534026DD4C", 1545004800, 1545283124);
 
             //if (!ReceiptController.Instance.ConnectToUSB())
             //{
@@ -133,10 +140,6 @@ namespace DCafeKiosk
             //    },
             //};
             //ReceiptController.Instance.Print("정병옥님(DigiCAPS)", "7777", "월말공제", list, "2018-12-22 17:21:11");
-
-
-
-
 
             // 결제 방식 폼
             mFormPayType = new FormPayType();
@@ -176,7 +179,7 @@ namespace DCafeKiosk
             }
 
             // 결제 완료 폼
-            mFormOrderResult = new FormOrderResult();
+            mFormOrderResult = new FormResultOrder();
             {
                 mFormOrderResult.PageSuccess += OnPageSuccess;
                 mFormOrderResult.PageCancle += OnPageCancle;
@@ -305,39 +308,35 @@ namespace DCafeKiosk
         ///================================================================================
         private void OnPageSuccess(object sender, EventArgs e)
         {
-            if((sender.GetType()).Name.CompareTo(PAGES.FormRFRead.ToString()) == 0)
+            //------------------
+            // from FormRFReader
+            //------------------
+            if ((sender.GetType()).Name.CompareTo(PAGES.FormRFRead.ToString()) == 0)
             {
-                //this.panelFormLayer.SuspendLayout();
-                //{
-                //    _formRFReader.Invoke(new MethodInvoker(_formRFReader.Hide));
-                //    _formMenuBoard.Invoke(new MethodInvoker(_formMenuBoard.Show));
-                //}
-                //this.panelFormLayer.ResumeLayout();
-
+                // 현재 사용자 인증 정보 임시 저장
                 {
                     this.mCurrentRFID = mFormRFRead.XstrHashedRFid;
                     this.mName = mFormRFRead.XApiResponse.name;
                     this.mCompany = mFormRFRead.XApiResponse.company;
-                    this.mReceiptId = mFormRFRead.XApiResponse.receipt_id;
+                    this.mReceiptId = mFormRFRead.XApiResponse.receipt_id; // new receipt id
                 }
                 
+                // 다음 페이지 화면 보이기
                 string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormRFRead);
                 {
                     if (nextPageName == PAGES.FormMenuBoard.ToString())
                     {
                         mFormMenuBoard.XCompany = mCompany;
                         mFormMenuBoard.XName = mName;
-
                         mFormMenuBoard.InitializeForm();
                     }
                     else if (nextPageName == PAGES.FormKeyPad.ToString())
                     {
                         mFormKeyPad.XCompany = mCompany;
                         mFormKeyPad.XName = mName;
-
                         mFormKeyPad.InitializeForm();
                     }
-                    else if (nextPageName == PAGES.FormInqueryResult.ToString())
+                    else if (nextPageName == PAGES.FormResultInquery.ToString())
                     {
 
                     }
@@ -345,29 +344,44 @@ namespace DCafeKiosk
                 DisplayPage(nextPageName);
             }
 
+            //--------------------
+            // from FormMenuBoard
+            //--------------------
             if ((sender.GetType()).Name.CompareTo(PAGES.FormMenuBoard.ToString()) == 0)
             {
                 string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormMenuBoard);
                 DisplayPage(nextPageName);
             }
 
-            if ((sender.GetType()).Name.CompareTo(PAGES.FormOrderResult.ToString()) == 0)
+            //---------------------
+            // from FormResultOrder
+            //---------------------
+            if ((sender.GetType()).Name.CompareTo(PAGES.FormResultOrder.ToString()) == 0)
             {
-                string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormOrderResult);
+                string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormResultOrder);
                 DisplayPage(nextPageName);
             }
 
+            //------------------
+            // from FormKeyPad
+            //------------------
             if ((sender.GetType()).Name.CompareTo(PAGES.FormKeyPad.ToString()) == 0)
             {
 
             }
 
-            if ((sender.GetType()).Name.CompareTo(PAGES.FormCancleResult.ToString()) == 0)
+            //-----------------------
+            // from FormResultCancel
+            //-----------------------
+            if ((sender.GetType()).Name.CompareTo(PAGES.FormResultCancel.ToString()) == 0)
             {
 
             }
 
-            if ((sender.GetType()).Name.CompareTo(PAGES.FormInqueryResult.ToString()) == 0)
+            //------------------------
+            // from FormResultInquery
+            //------------------------
+            if ((sender.GetType()).Name.CompareTo(PAGES.FormResultInquery.ToString()) == 0)
             {
 
             }

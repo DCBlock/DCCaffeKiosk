@@ -87,6 +87,15 @@ namespace DCafeKiosk
         private void KeypadButtonOk_Click(object sender, EventArgs e)
         {
             // 취소 요청
+            DTOPurchaseCancelResponse rsp = APIController.API_PatchPurchaseCancel(this.label_Display.Text);
+            if (rsp.code == 200)
+            {
+                OnPageSuccess();
+            }
+            else
+            {
+                return;
+            }
 
             // 완료
 

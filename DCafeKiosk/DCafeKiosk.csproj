@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Bixolon\BXLAPI.cs" />
     <Compile Include="Classes\APIController.cs" />
+    <Compile Include="Classes\APIControllerObjects.cs" />
     <Compile Include="Classes\Enum.cs" />
     <Compile Include="Classes\EventArgs.cs" />
     <Compile Include="Classes\IPage.cs" />
@@ -110,11 +111,17 @@
     <Compile Include="FormMessageBox.Designer.cs">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOrderResult.cs">
+    <Compile Include="FormResultCancel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOrderResult.Designer.cs">
-      <DependentUpon>FormOrderResult.cs</DependentUpon>
+    <Compile Include="FormResultCancel.Designer.cs">
+      <DependentUpon>FormResultCancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormResultOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormResultOrder.Designer.cs">
+      <DependentUpon>FormResultOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRFRead.cs">
       <SubType>Form</SubType>
@@ -202,8 +209,11 @@
     <EmbeddedResource Include="FormMessageBox.resx">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOrderResult.resx">
-      <DependentUpon>FormOrderResult.cs</DependentUpon>
+    <EmbeddedResource Include="FormResultCancel.resx">
+      <DependentUpon>FormResultCancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormResultOrder.resx">
+      <DependentUpon>FormResultOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRFRead.resx">
       <DependentUpon>FormRFRead.cs</DependentUpon>

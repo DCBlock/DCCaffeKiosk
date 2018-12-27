@@ -14,7 +14,7 @@ using SharpLib.Win32;
 
 namespace DCafeKiosk
 {
-    public partial class FormOrderResult : Form, IPage
+    public partial class FormResultOrder : Form, IPage
     {
         #region 'IPage'
         public event EventHandler<EventArgs> PageSuccess;
@@ -59,7 +59,7 @@ namespace DCafeKiosk
         }
         #endregion
 
-        public FormOrderResult()
+        public FormResultOrder()
         {            
             InitializeComponent();
 

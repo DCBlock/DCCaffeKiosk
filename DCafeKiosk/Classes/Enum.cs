@@ -30,17 +30,20 @@ namespace DCafeKiosk
 
     public enum  PAGES
     {
-        // FormPayType -> FormRFReader -> FormMenuBoard -> FormOrderResult -> FormPayType
-        // FormPayType -> FormRFReader -> FormMenuBoard -> FormOrderResult -> FormPayType
-        // FormPayType -> FormRFReader -> FormKeyPad -> FormCancleResult -> FormPayType
-        // FormPayType -> FormRFReader -> FormInqueryResult -> FormPayType
+        // FormPayType -> FormRFReader -> FormMenuBoard -> FormResultOrder -> 처음으로
+        // FormPayType -> FormRFReader -> FormMenuBoard -> FormResultOrder -> 처음으로
+        // FormPayType -> FormRFReader -> FormKeyPad -> FormResultCancle -> 처음으로
+        // FormPayType -> FormRFReader -> FormResultInquery -> 처음으로
 
-        FormPayType,
-        FormRFRead,
-        FormMenuBoard,
-        FormOrderResult,
-        FormKeyPad,
-        FormCancleResult,
-        FormInqueryResult,
+        FormPayType,        //common
+        FormRFRead,         //common
+
+        FormMenuBoard,      //for order
+        FormResultOrder,    //for order
+
+        FormKeyPad,         //for cancel
+        FormResultCancel,   //for cancel
+
+        FormResultInquery,  //for inquery
     }
 }
