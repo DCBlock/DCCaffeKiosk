@@ -248,7 +248,7 @@
             this.label_Display.Name = "label_Display";
             this.label_Display.Size = new System.Drawing.Size(598, 102);
             this.label_Display.TabIndex = 32;
-            this.label_Display.Text = "***5";
+            this.label_Display.Text = "******";
             this.label_Display.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonClear
@@ -293,7 +293,7 @@
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.button6);
-            this.panel2.Location = new System.Drawing.Point(775, 286);
+            this.panel2.Location = new System.Drawing.Point(628, 291);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(605, 600);
             this.panel2.TabIndex = 33;
@@ -302,9 +302,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1424, 286);
+            this.pictureBox1.Location = new System.Drawing.Point(1277, 291);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(307, 447);
+            this.pictureBox1.Size = new System.Drawing.Size(307, 491);
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
             // 
@@ -359,6 +359,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormKeyPad";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormKeyPad";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

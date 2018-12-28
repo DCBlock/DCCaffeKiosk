@@ -280,8 +280,15 @@ namespace DCafeKiosk
         /// </summary>
         /// <param name="aReceiptId"></param>
         /// <returns></returns>
-        public static DTOPurchaseCancelResponse API_PatchPurchaseCancel(string aReceiptId)
+        public static DTOPurchaseCancelResponse API_PatchPurchaseCancel(string aRfid, string aReceiptId)
         {
+            //----------------------------------------
+            DTOPurchaseCancelRequest req = new DTOPurchaseCancelRequest();
+            {
+                req.rfid = aRfid;
+            }
+
+            //----------------------------------------
             RestSharp.RestClient client = new RestSharp.RestClient(URL_DCCAFFE);
             RestSharp.RestRequest request = new RestSharp.RestRequest();
             request.AddHeader("Content-Type", "application/json;charset=UTF-8");
@@ -291,12 +298,13 @@ namespace DCafeKiosk
             request.Resource = URI_PATCH_PURCHASE_CANCEL;
 
             request.AddParameter("receipt_id", aReceiptId, RestSharp.ParameterType.UrlSegment);
+            request.AddJsonBody(req);
 
             //----------------------------------------
             var t1 = client.ExecuteTaskAsync(request);
             t1.Wait();
 
-            //----------------
+            //----------------------------------------
             // error handling
             if (t1.Result.ErrorException != null)
             {
@@ -306,12 +314,12 @@ namespace DCafeKiosk
 
             string json = t1.Result.Content;
 
-            //--------------
+            //----------------------------------------
             // debug output
             json = JsonFormatting(json);
             System.Diagnostics.Debug.WriteLine("[RESPONSE] " + json);
 
-            //-----------------------
+            //----------------------------------------
             // desirialized json data
             DTOPurchaseCancelResponse dto = new DTOPurchaseCancelResponse();
 
@@ -337,15 +345,15 @@ namespace DCafeKiosk
         /// <returns></returns>
         public static DTOPurchaseHistoryOnetimeURLResponse API_PostPurchaseHistoryOnetimeURL(string aRfid, int aBeforeTimestamp, int aAfterTimestamp)
         {
-            //
-            DTOPurchaseHistoryOnetimeURLRequest aPurchaseHistoryOnetimeURLRequest = new DTOPurchaseHistoryOnetimeURLRequest();
+            //----------------------------------------
+            DTOPurchaseHistoryOnetimeURLRequest req = new DTOPurchaseHistoryOnetimeURLRequest();
             { 
-                aPurchaseHistoryOnetimeURLRequest.rfid = aRfid;
-                aPurchaseHistoryOnetimeURLRequest.purchase_before = aBeforeTimestamp;
-                aPurchaseHistoryOnetimeURLRequest.purchase_after = aAfterTimestamp;
+                req.rfid = aRfid;
+                req.purchase_before = aBeforeTimestamp;
+                req.purchase_after = aAfterTimestamp;
             }
 
-            //
+            //----------------------------------------
             RestSharp.RestClient client = new RestSharp.RestClient(URL_DCCAFFE);
             RestSharp.RestRequest request = new RestSharp.RestRequest();
             request.AddHeader("Content-Type", "application/json;charset=UTF-8");
@@ -353,13 +361,13 @@ namespace DCafeKiosk
             request.Method = RestSharp.Method.POST;
             request.RequestFormat = RestSharp.DataFormat.Json;
             request.Resource = URI_POST_PURCHASE_HISTORY_TEMPORARY_URL;
-            request.AddJsonBody(aPurchaseHistoryOnetimeURLRequest);
+            request.AddJsonBody(req);
 
             //----------------------------------------
             var t1 = client.ExecuteTaskAsync(request);
             t1.Wait();
 
-            //----------------
+            //----------------------------------------
             // error handling
             if (t1.Result.ErrorException != null)
             {
@@ -369,12 +377,12 @@ namespace DCafeKiosk
 
             string json = t1.Result.Content;
 
-            //--------------
+            //----------------------------------------
             // debug output
             json = JsonFormatting(json);
             System.Diagnostics.Debug.WriteLine("[RESPONSE] " + json);
 
-            //-----------------------
+            //----------------------------------------
             // desirialized json data
             DTOPurchaseHistoryOnetimeURLResponse dto = new DTOPurchaseHistoryOnetimeURLResponse();
 

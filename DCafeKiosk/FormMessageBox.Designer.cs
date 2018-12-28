@@ -64,7 +64,7 @@
             // 
             this.labelText.BackColor = System.Drawing.Color.Transparent;
             this.labelText.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelText.Font = new System.Drawing.Font("SpoqaHanSans-Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.labelText.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.labelText.Location = new System.Drawing.Point(0, 43);
             this.labelText.Name = "labelText";
             this.labelText.Size = new System.Drawing.Size(419, 74);
@@ -104,7 +104,7 @@
             this.bunifuThinButton_left.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(248)))), ((int)(((byte)(252)))));
             this.bunifuThinButton_left.ActiveForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(134)))), ((int)(((byte)(206)))));
             this.bunifuThinButton_left.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(149)))), ((int)(((byte)(255)))));
-            this.bunifuThinButton_left.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuThinButton_left.BackColor = System.Drawing.Color.WhiteSmoke;
             this.bunifuThinButton_left.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton_left.BackgroundImage")));
             this.bunifuThinButton_left.ButtonText = "left";
             this.bunifuThinButton_left.Cursor = System.Windows.Forms.Cursors.Hand;

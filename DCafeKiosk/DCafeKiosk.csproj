@@ -111,6 +111,12 @@
     <Compile Include="FormMessageBox.Designer.cs">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormResultInquery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormResultInquery.Designer.cs">
+      <DependentUpon>FormResultInquery.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormResultCancel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMessageBox.resx">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormResultInquery.resx">
+      <DependentUpon>FormResultInquery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormResultCancel.resx">
       <DependentUpon>FormResultCancel.cs</DependentUpon>

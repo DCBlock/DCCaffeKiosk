@@ -50,6 +50,7 @@ namespace DCafeKiosk
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public class DTOPurchasesRequest
     {
+        public int purchase_type { get; set; }        
         public IList<VOMenu> purchases { get; set; }
     }
 
@@ -100,6 +101,11 @@ namespace DCafeKiosk
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 구매 취소 요청 응답
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    public class DTOPurchaseCancelRequest
+    {
+        public string rfid { get; set; }
+    }
+
     public class DTOPurchaseCancelResponse
     {
         public List<VOPurchaseCancelMenu> purchase_cancels { get; set; }

@@ -61,7 +61,7 @@ namespace DCafeKiosk
         /// <summary>
         /// RFID 정보
         /// </summary>
-        string      mCurrentRFID;
+        string      mRFID;
         string      mName;
         string      mCompany;
         string      mReceiptId;
@@ -315,7 +315,7 @@ namespace DCafeKiosk
             {
                 // 현재 사용자 인증 정보 임시 저장
                 {
-                    this.mCurrentRFID = mFormRFRead.XstrHashedRFid;
+                    this.mRFID = mFormRFRead.XstrHashedRFid;
                     this.mName = mFormRFRead.XApiResponse.name;
                     this.mCompany = mFormRFRead.XApiResponse.company;
                     this.mReceiptId = mFormRFRead.XApiResponse.receipt_id; // new receipt id
@@ -328,12 +328,14 @@ namespace DCafeKiosk
                     {
                         mFormMenuBoard.XCompany = mCompany;
                         mFormMenuBoard.XName = mName;
+                        mFormMenuBoard.XPayType = mCurrentPayType;
                         mFormMenuBoard.InitializeForm();
                     }
                     else if (nextPageName == PAGES.FormKeyPad.ToString())
                     {
                         mFormKeyPad.XCompany = mCompany;
                         mFormKeyPad.XName = mName;
+                        mFormKeyPad.XRfid = mRFID;
                         mFormKeyPad.InitializeForm();
                     }
                     else if (nextPageName == PAGES.FormResultInquery.ToString())

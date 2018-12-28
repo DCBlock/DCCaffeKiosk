@@ -12,8 +12,10 @@ namespace DCafeKiosk
 {
     public partial class FormKeyPad : Form, IPage
     {
-        //===============================================
-        #region 'IPageEventHandler'
+        /// <summary>
+        /// 인터페이스
+        /// </summary>
+        #region 'IPage'
         public event EventHandler<EventArgs> PageSuccess;
         public event EventHandler<EventArgs> PageCancle;
 
@@ -45,11 +47,16 @@ namespace DCafeKiosk
         /// <summary>
         /// 프로퍼티
         /// </summary>
+        #region 'properties'
         [Browsable(false)]
         public string XName { get; set; }
 
         [Browsable(false)]
         public string XCompany { get; set; }
+
+        [Browsable(false)]
+        public string XRfid { get; set; }
+        #endregion
 
         private StringBuilder sbNumberDisplay = new StringBuilder();
 
@@ -78,7 +85,7 @@ namespace DCafeKiosk
         {
             string number = (sender as Button).Text;
 
-            if (sbNumberDisplay.Length < 4) {
+            if (sbNumberDisplay.Length < 6) {
                 sbNumberDisplay.Append(number);
                 this.label_Display.Text = sbNumberDisplay.ToString();
             }
@@ -87,19 +94,25 @@ namespace DCafeKiosk
         private void KeypadButtonOk_Click(object sender, EventArgs e)
         {
             // 취소 요청
-            DTOPurchaseCancelResponse rsp = APIController.API_PatchPurchaseCancel(this.label_Display.Text);
-            if (rsp.code == 200)
+            DTOPurchaseCancelResponse rsp = APIController.API_PatchPurchaseCancel(XRfid, this.label_Display.Text);
+
+            // 완료
+            if (rsp.code == 200) 
             {
                 OnPageSuccess();
             }
+            // 실패
             else
             {
-                return;
+                using (FormMessageBox dlg = new FormMessageBox())
+                {
+                    DialogResult dlgResult =
+                        dlg.ShowDialog(@"취소 요청 처리되지 않았습니다.\n\r승인번호를 확인 후 다시 입력해주세요.", @"취소 요청 결과", CustomMessageBoxButtons.OK);
+
+                    if (dlgResult == DialogResult.OK)
+                        OnPageSuccess();
+                }
             }
-
-            // 완료
-
-            // 실패
         }
 
         private void KeypadButtonClear_Click(object sender, EventArgs e)

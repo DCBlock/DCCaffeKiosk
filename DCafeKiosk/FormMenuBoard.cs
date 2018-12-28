@@ -12,16 +12,21 @@ namespace DCafeKiosk
 {
     public partial class FormMenuBoard : Form, IPage
     {
-        #region 'IPageEventHandler'
+        /// <summary>
+        /// 인터페이스
+        /// </summary>
+        #region 'IPage'
         public event EventHandler<EventArgs> PageSuccess;
         public event EventHandler<EventArgs> PageCancle;
 
-        public void OnPageSuccess() {
+        public void OnPageSuccess()
+        {
             if (PageSuccess != null)
                 PageSuccess(this, EventArgs.Empty);
         }
 
-        public void OnPageCancle() {
+        public void OnPageCancle()
+        {
             if (PageCancle != null)
                 PageCancle(this, EventArgs.Empty);
         }
@@ -37,7 +42,7 @@ namespace DCafeKiosk
             // 사용자 정보
             this.label_UserInfo.Text = string.Format("{0} 님 ({1})", XName, XCompany);
 
-            // 분리선 콘트롤
+            // 분리선 콘트롤 초기화
             this.bunifuSeparator_SelectedCategoryLine.LineThickness = 5;
             this.bunifuSeparator_SelectedCategoryLine.Location = new System.Drawing.Point(0, 98);
             this.bunifuSeparator_SelectedCategoryLine.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
@@ -49,7 +54,27 @@ namespace DCafeKiosk
             this.bunifuSeparator1.Size = new System.Drawing.Size(1350, 5);
         }
         #endregion
-        
+
+        /// <summary>
+        /// 프로퍼티
+        /// </summary>
+        #region 'properties'
+        [Browsable(false)]
+        public DataSet XCategoriesAndMenusDataset { get; set; }
+
+        [Browsable(false)]
+        public string XName { get; set; }
+
+        [Browsable(false)]
+        public string XCompany { get; set; }
+
+        [Browsable(false)]
+        public string XReceiptId { get; set; }
+
+        [Browsable(false)]
+        public PAY_TYPE XPayType { get; set; }
+        #endregion
+
         /// <summary>
         /// category name : flowlayoutpanel menus page 맵핑 저장
         /// </summary>
@@ -59,18 +84,6 @@ namespace DCafeKiosk
         /// 현재 포커스된 카테고리
         /// </summary>
         private string CurrentCategoryName;
-
-        /// <summary>
-        /// 프로퍼티
-        /// </summary>
-        [Browsable(false)]
-        public DataSet XCategoriesAndMenusDataset { get; set; }
-
-        [Browsable(false)]
-        public string XName { get; set; }
-
-        [Browsable(false)]
-        public string XCompany { get; set; }
 
         public FormMenuBoard()
         {
@@ -118,6 +131,7 @@ namespace DCafeKiosk
         /// <param name="e"></param>
         private void OnOkButton(object sender, EventArgs e)
         {
+            //-------------------------------------------------------------------------------------
             using (FormMessageBox dlg = new FormMessageBox())
             {
                 {
@@ -125,17 +139,69 @@ namespace DCafeKiosk
                     dlg.Top = this.Location.X + (ClientSize.Height / 2) - 100;
                     dlg.XColorTitle = Color.FromArgb(73, 156, 188);
                 }
-
                 DialogResult dlgResult =
                     dlg.ShowDialog(@"구매를 완료 하시겠습니까?", @"최종 확인", CustomMessageBoxButtons.YesNo);
 
                 if (dlgResult == DialogResult.Yes)
                 {
-                    OnPageSuccess();
+                    //-----------------------------------------------------------------------------
+                    // 구매 확정 API 호출
+                    DTOPurchasesRequest _req = GetDTOPurchaseRequest();
+                    DTOPurchasesResponse _rsp = APIController.API_PostPurchaseSuccess(XReceiptId, _req);
+
+                    if (_rsp.code == 200)
+                    {
+                        OnPageSuccess();
+                    }
+                    else
+                    {
+                        //-------------------------------------------------------------------------
+                        using (FormMessageBox dlg1 = new FormMessageBox())
+                        {
+                            {
+                                dlg1.Left = 1430;
+                                dlg1.Top = this.Location.X + (ClientSize.Height / 2) - 100;
+                                dlg1.XColorTitle = Color.FromArgb(73, 156, 188);
+                            }
+                            DialogResult dlgResult1 =
+                                dlg.ShowDialog(@"구매 처리를 완료하지 못했습니다.", @"구매 확정 처리 결과", CustomMessageBoxButtons.OK);
+                        }//using
+                    }                    
                 }
-            }
+            }//using
         }
         #endregion
+
+        /// <summary>
+        /// API 전달용 DTOPurchasesRequest 객체 데이터 만들기
+        /// </summary>
+        /// <returns></returns>
+        private DTOPurchasesRequest GetDTOPurchaseRequest()
+        {
+            //-------------------------------------------------------------------------------------
+            DTOPurchasesRequest _req = new DTOPurchasesRequest();
+            _req.purchase_type = (int)XPayType;
+
+            //-------------------------------------------------------------------------------------
+            int count = this.flowLayoutPanel_OrderCartLayout.Controls.Count;
+            for (int index = 1; index < count; index++)
+            {
+                UCOrderItem _obj = this.flowLayoutPanel_OrderCartLayout.Controls[index] as UCOrderItem;
+
+                //---------------------------------------------------------------------------------
+                VOMenu _menu = new VOMenu();
+                {
+                    _menu.category = _obj.XMenuButtonObject.XCategoryCode;
+                    _menu.code = _obj.XMenuButtonObject.XMenuCode;
+                    _menu.price = _obj.XMenuButtonObject.XMenuPrice;
+                    _menu.type = _obj.XMenuButtonObject.XMenuType;
+                    _menu.size = _obj.XMenuButtonObject.XMenuSize;
+                    _menu.count = _obj.XMenuTotalAmount;
+                }
+                _req.purchases.Add(_menu);
+            }
+            return _req;
+        }
 
         /// <summary>
         /// 메뉴를 초기화하고 다시 생성
@@ -202,10 +268,10 @@ namespace DCafeKiosk
             if (dicMenuPages.Count > 0)
                 dicMenuPages[CurrentCategoryName].BringToFront();
         }
+               
 
 
-
-        #region '주문 카트 추가/삭제 영역'
+        #region '주문 카트 추가/삭제 영역'        
         /// <summary>
         /// 주문 내역 전체 지우기
         /// </summary>

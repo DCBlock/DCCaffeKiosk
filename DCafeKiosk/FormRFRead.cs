@@ -10,7 +10,9 @@ namespace DCafeKiosk
 {
     public partial class FormRFRead : Form, IPage
     {
-        //===============================================
+        /// <summary>
+        /// 인터페이스
+        /// </summary>
         #region 'IPage'
         public event EventHandler<EventArgs> PageSuccess;
         public event EventHandler<EventArgs> PageCancle;
@@ -36,8 +38,11 @@ namespace DCafeKiosk
             StartEventCapture();
         }
         #endregion
-        //===============================================
-
+        
+        /// <summary>
+        /// 프로퍼티
+        /// </summary>        
+        #region 'properties'
         /// <summary>
         /// HID에서 읽은 RFID 값 저장
         /// </summary>
@@ -49,10 +54,8 @@ namespace DCafeKiosk
         /// </summary>
         private bool apiResult = false;
         public DTOGetPurchaseIdResponse XApiResponse { get; set; }
+        #endregion
 
-        /// <summary>
-        /// 생성자
-        /// </summary>
         public FormRFRead()
         {            
             InitializeComponent();

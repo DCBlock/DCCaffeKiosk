@@ -79,4 +79,17 @@ namespace DCafeKiosk.Utilities
             return DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
         }
     }
+
+    class QRCode
+    {
+        public static System.Drawing.Bitmap GetQRCodeBitmap(string aUrl)
+        {
+            QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
+            QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(aUrl, QRCoder.QRCodeGenerator.ECCLevel.Q);
+            QRCoder.QRCode qrCode = new QRCoder.QRCode(qrCodeData);
+            System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(10);
+
+            return qrCodeImage;
+        }
+    }
 }

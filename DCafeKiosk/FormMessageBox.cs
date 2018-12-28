@@ -163,7 +163,7 @@ namespace DCafeKiosk
                 rect.Height -= 1;
             }
             
-            e.Graphics.DrawRectangle(new Pen(Color.DarkGray, 1), rect);
+            e.Graphics.DrawRectangle(new Pen(Color.FromArgb(26, 160, 225), 1), rect);
         }
 
         //public FormMessageBox(string text, string caption, MessageBoxButtons buttons)

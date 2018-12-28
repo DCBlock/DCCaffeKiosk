@@ -21,11 +21,11 @@ namespace DCafeKiosk
 
     public enum PAY_TYPE
     {
-        MonthlyDeduction,           // 월공제
-        CustomerPayment,            // 손님결제
-        DigicapTokenPayment,        // 디지캡 토큰 결제
-        OderCancellation,           // 주문 취소
-        UserUsageHistoryInquiry,    // 사용자 이용 내역조회
+        MonthlyDeduction        = 0,    // 월공제
+        CustomerPayment         = 1,    // 손님결제
+        DigicapTokenPayment     = 2,    // 디지캡 토큰 결제
+        OderCancellation        = 3,    // 주문 취소
+        UserUsageHistoryInquiry = 4,    // 사용자 이용 내역조회
     }
 
     public enum  PAGES
