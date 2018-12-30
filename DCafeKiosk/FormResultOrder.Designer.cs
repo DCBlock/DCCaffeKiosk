@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -40,13 +38,6 @@
             this.bunifuFlatButton_cancle = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this;
-            this.bunifuDragControl1.Vertical = true;
             // 
             // panel1
             // 
@@ -95,7 +86,7 @@
             // label_PayTypeInfoText
             // 
             this.label_PayTypeInfoText.Font = new System.Drawing.Font("SpoqaHanSans-Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_PayTypeInfoText.Location = new System.Drawing.Point(0, 316);
+            this.label_PayTypeInfoText.Location = new System.Drawing.Point(0, 411);
             this.label_PayTypeInfoText.Name = "label_PayTypeInfoText";
             this.label_PayTypeInfoText.Size = new System.Drawing.Size(1920, 63);
             this.label_PayTypeInfoText.TabIndex = 21;
@@ -105,7 +96,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("SpoqaHanSans-Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(0, 379);
+            this.label4.Location = new System.Drawing.Point(0, 482);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(1920, 63);
             this.label4.TabIndex = 53;
@@ -116,7 +107,7 @@
             // 
             this.label_UserInfoText.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label_UserInfoText.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label_UserInfoText.Location = new System.Drawing.Point(0, 253);
+            this.label_UserInfoText.Location = new System.Drawing.Point(0, 340);
             this.label_UserInfoText.Name = "label_UserInfoText";
             this.label_UserInfoText.Size = new System.Drawing.Size(1920, 63);
             this.label_UserInfoText.TabIndex = 21;
@@ -145,7 +136,7 @@
             this.bunifuFlatButton_cancle.IconVisible = true;
             this.bunifuFlatButton_cancle.IconZoom = 90D;
             this.bunifuFlatButton_cancle.IsTab = false;
-            this.bunifuFlatButton_cancle.Location = new System.Drawing.Point(871, 595);
+            this.bunifuFlatButton_cancle.Location = new System.Drawing.Point(1707, 965);
             this.bunifuFlatButton_cancle.Name = "bunifuFlatButton_cancle";
             this.bunifuFlatButton_cancle.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
             this.bunifuFlatButton_cancle.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
@@ -182,7 +173,6 @@
         }
 
         #endregion
-        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;

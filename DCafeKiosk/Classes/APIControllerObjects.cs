@@ -83,8 +83,8 @@ namespace DCafeKiosk
     public class DTOPurchaseHistoryOnetimeURLRequest
     {
         public string rfid { get; set; }
-        public int purchase_before { get; set; }
-        public int purchase_after { get; set; }
+        public long purchase_before { get; set; }
+        public long purchase_after { get; set; }
     }
 
     public class DTOPurchaseHistoryOnetimeURLResponse

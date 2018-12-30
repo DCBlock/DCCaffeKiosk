@@ -11,43 +11,51 @@ namespace DCafeKiosk.Utilities
     /// </summary>
     class TimeStamp
     {
-        public static int getUnixTimeStamp(DateTime datetime)
+        /// <summary>
+        /// http://gigi.nullneuron.net/gigilabs/converting-tofrom-unix-timestamp-in-c/
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <returns></returns>
+        public static long getUnixTimeStamp(DateTime datetime)
         {
-            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(datetime)).TotalSeconds;
-
-            /*
-            DateTime foo = DateTime.UtcNow;
-            long unixTime = ((DateTimeOffset)foo).ToUnixTimeSeconds();
-            */
-
-            return unixTimestamp;
+            //-----------------------------------------------------------------
+            //var dateTime = new DateTime(2015, 05, 24, 10, 2, 0, DateTimeKind.Local);
+            var dateTimeOffset = new DateTimeOffset(datetime);
+            var unixDateTime = dateTimeOffset.ToUnixTimeSeconds();
+            //-----------------------------------------------------------------
+            return unixDateTime;
         }
 
-        public static int getUnixTimeStamp(DateTime datetime, int spanDays = 0)
+        public static long getUnixTimeStamp(DateTime datetime, int spanDays = 0)
         {
             datetime.AddDays(spanDays);
 
-            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(datetime)).TotalSeconds;
-
-            return unixTimestamp;
+            //-----------------------------------------------------------------
+            var dateTimeOffset = new DateTimeOffset(datetime);
+            var unixDateTime = dateTimeOffset.ToUnixTimeSeconds();
+            //-----------------------------------------------------------------
+            return unixDateTime;
         }
 
-        public static int getUnixTimeStamp(string dateFormatString, int spanDays = 0)
+        public static long getUnixTimeStamp(string dateFormatString, int spanDays = 0)
         {
             DateTime datetime = DateTime.Parse(dateFormatString);
             datetime.AddDays(spanDays);
 
-            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(datetime)).TotalSeconds;
-
-            return unixTimestamp;
+            //-----------------------------------------------------------------
+            var dateTimeOffset = new DateTimeOffset(datetime);
+            var unixDateTime = dateTimeOffset.ToUnixTimeSeconds();
+            //-----------------------------------------------------------------
+            return unixDateTime;
         }
 
-        public static DateTime UnixTimeStampToDateTime(Int32 unixTimeStamp)
+        public static DateTime UnixTimeStampToDateTime(long unixDateTime)
         {
             // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            return dtDateTime;
+            //-----------------------------------------------------------------
+            var localDateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.ToLocalTime();
+            //-----------------------------------------------------------------
+            return localDateTimeOffset;
         }
     }
 

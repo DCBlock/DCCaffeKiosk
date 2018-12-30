@@ -18,7 +18,7 @@ namespace DCafeKiosk
         /// 처음 페이지 이동
         /// </summary>
         void OnPageCancle();
-        event EventHandler<EventArgs> PageCancle;
+        event EventHandler<EventArgs> PageCancel;
 
         /// <summary>
         /// 폼 데이터 초기화

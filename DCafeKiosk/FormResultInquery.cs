@@ -21,7 +21,7 @@ namespace DCafeKiosk
         /// </summary>
         #region 'IPage'
         public event EventHandler<EventArgs> PageSuccess;
-        public event EventHandler<EventArgs> PageCancle;
+        public event EventHandler<EventArgs> PageCancel;
 
         public void OnPageSuccess()
         {
@@ -31,8 +31,8 @@ namespace DCafeKiosk
 
         public void OnPageCancle()
         {
-            if (PageCancle != null)
-                PageCancle(this, EventArgs.Empty);
+            if (PageCancel != null)
+                PageCancel(this, EventArgs.Empty);
         }
 
         public void ResetForm()

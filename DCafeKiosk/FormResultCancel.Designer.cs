@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -39,13 +37,6 @@
             this.bunifuFlatButton_cancle = new Bunifu.Framework.UI.BunifuFlatButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this;
-            this.bunifuDragControl1.Vertical = true;
             // 
             // panel1
             // 
@@ -91,22 +82,22 @@
             this.label1.Text = "주문 취소 완료";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label_PayTypeInfoText
+            // label_ResultInfo
             // 
             this.label_ResultInfo.Font = new System.Drawing.Font("SpoqaHanSans-Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_ResultInfo.Location = new System.Drawing.Point(0, 316);
-            this.label_ResultInfo.Name = "label_PayTypeInfoText";
+            this.label_ResultInfo.Location = new System.Drawing.Point(0, 487);
+            this.label_ResultInfo.Name = "label_ResultInfo";
             this.label_ResultInfo.Size = new System.Drawing.Size(1920, 63);
             this.label_ResultInfo.TabIndex = 21;
             this.label_ResultInfo.Text = "{7777} 승인번호 주문이 취소 요청 되었습니다.";
             this.label_ResultInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label_UserInfoText
+            // label_UserInfo
             // 
             this.label_UserInfo.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label_UserInfo.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label_UserInfo.Location = new System.Drawing.Point(0, 253);
-            this.label_UserInfo.Name = "label_UserInfoText";
+            this.label_UserInfo.Location = new System.Drawing.Point(0, 424);
+            this.label_UserInfo.Name = "label_UserInfo";
             this.label_UserInfo.Size = new System.Drawing.Size(1920, 63);
             this.label_UserInfo.TabIndex = 21;
             this.label_UserInfo.Text = "XYZ 님 (디지캡)";
@@ -134,7 +125,7 @@
             this.bunifuFlatButton_cancle.IconVisible = true;
             this.bunifuFlatButton_cancle.IconZoom = 90D;
             this.bunifuFlatButton_cancle.IsTab = false;
-            this.bunifuFlatButton_cancle.Location = new System.Drawing.Point(847, 596);
+            this.bunifuFlatButton_cancle.Location = new System.Drawing.Point(1707, 965);
             this.bunifuFlatButton_cancle.Name = "bunifuFlatButton_cancle";
             this.bunifuFlatButton_cancle.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
             this.bunifuFlatButton_cancle.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
@@ -147,7 +138,7 @@
             this.bunifuFlatButton_cancle.Textcolor = System.Drawing.Color.White;
             this.bunifuFlatButton_cancle.TextFont = new System.Drawing.Font("SpoqaHanSans-Bold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             // 
-            // FormCancelResult
+            // FormResultCancel
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -170,7 +161,6 @@
         }
 
         #endregion
-        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;

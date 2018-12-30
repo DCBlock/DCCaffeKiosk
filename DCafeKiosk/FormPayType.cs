@@ -17,7 +17,7 @@ namespace DCafeKiosk
         //-------------------------------------------------------------
 
         public event EventHandler<EventArgs> PageSuccess;
-        public event EventHandler<EventArgs> PageCancle;
+        public event EventHandler<EventArgs> PageCancel;
 
         public void OnPageSuccess()
         {

@@ -63,7 +63,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2240, 45);
+            this.panel1.Size = new System.Drawing.Size(1920, 45);
             this.panel1.TabIndex = 28;
             // 
             // label3
@@ -92,9 +92,9 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("SpoqaHanSans-Light", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(563, 165);
+            this.label2.Location = new System.Drawing.Point(0, 165);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1050, 70);
+            this.label2.Size = new System.Drawing.Size(1920, 70);
             this.label2.TabIndex = 30;
             this.label2.Text = "취소할 주문의 \'승인번호\' 4자리를 입력하세요.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -102,9 +102,9 @@
             // label_UserInfo
             // 
             this.label_UserInfo.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label_UserInfo.Location = new System.Drawing.Point(563, 64);
+            this.label_UserInfo.Location = new System.Drawing.Point(0, 64);
             this.label_UserInfo.Name = "label_UserInfo";
-            this.label_UserInfo.Size = new System.Drawing.Size(1050, 98);
+            this.label_UserInfo.Size = new System.Drawing.Size(1920, 98);
             this.label_UserInfo.TabIndex = 29;
             this.label_UserInfo.Text = "OOO 님 (DigiCAP)";
             this.label_UserInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -330,13 +330,13 @@
             this.btnCancle.IconVisible = true;
             this.btnCancle.IconZoom = 90D;
             this.btnCancle.IsTab = false;
-            this.btnCancle.Location = new System.Drawing.Point(1991, 891);
+            this.btnCancle.Location = new System.Drawing.Point(1707, 965);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
             this.btnCancle.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
             this.btnCancle.OnHoverTextColor = System.Drawing.Color.White;
             this.btnCancle.selected = false;
-            this.btnCancle.Size = new System.Drawing.Size(211, 65);
+            this.btnCancle.Size = new System.Drawing.Size(181, 70);
             this.btnCancle.TabIndex = 52;
             this.btnCancle.Text = "처음으로";
             this.btnCancle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -349,7 +349,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(2240, 997);
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);

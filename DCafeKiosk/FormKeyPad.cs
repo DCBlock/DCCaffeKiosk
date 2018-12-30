@@ -17,7 +17,7 @@ namespace DCafeKiosk
         /// </summary>
         #region 'IPage'
         public event EventHandler<EventArgs> PageSuccess;
-        public event EventHandler<EventArgs> PageCancle;
+        public event EventHandler<EventArgs> PageCancel;
 
         public void OnPageSuccess()
         {
@@ -27,8 +27,8 @@ namespace DCafeKiosk
 
         public void OnPageCancle()
         {
-            if (PageCancle != null)
-                PageCancle(this, EventArgs.Empty);
+            if (PageCancel != null)
+                PageCancel(this, EventArgs.Empty);
         }
 
         public void ResetForm()
@@ -90,14 +90,34 @@ namespace DCafeKiosk
                 this.label_Display.Text = sbNumberDisplay.ToString();
             }
         }
+                
+        DTOPurchaseCancelResponse rsp;
+        private void Action_API_PatchPurchaseCancel()
+        {
+            System.Threading.Thread.Sleep(2000);
+
+            // 취소 요청
+            rsp = APIController.API_PatchPurchaseCancel(XRfid, this.label_Display.Text);
+        }
 
         private void KeypadButtonOk_Click(object sender, EventArgs e)
         {
+            //-----------------------------------------------------------------
             // 취소 요청
-            DTOPurchaseCancelResponse rsp = APIController.API_PatchPurchaseCancel(XRfid, this.label_Display.Text);
+            // DTOPurchaseCancelResponse rsp = APIController.API_PatchPurchaseCancel(XRfid, this.label_Display.Text);
 
+            //-----------------------------------------------------------------
+            // 데이터 로딩 다이얼로그
+            using (FormLoadingDialog form = new FormLoadingDialog(Action_API_PatchPurchaseCancel))
+            {
+                form.TopLevel = true;
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.ShowDialog();
+            }
+
+            //-----------------------------------------------------------------
             // 완료
-            if (rsp.code == 200) 
+            if (rsp.code == 200)
             {
                 OnPageSuccess();
             }
@@ -106,11 +126,11 @@ namespace DCafeKiosk
             {
                 using (FormMessageBox dlg = new FormMessageBox())
                 {
-                    DialogResult dlgResult =
-                        dlg.ShowDialog(@"취소 요청 처리되지 않았습니다.\n\r승인번호를 확인 후 다시 입력해주세요.", @"취소 요청 결과", CustomMessageBoxButtons.OK);
+                    dlg.StartPosition = FormStartPosition.CenterParent;
 
-                    if (dlgResult == DialogResult.OK)
-                        OnPageSuccess();
+                    DialogResult dlgResult =
+                        dlg.ShowDialog(@"취소 요청 처리되지 않았습니다." + Environment.NewLine + rsp.reason, @"취소 요청 결과", CustomMessageBoxButtons.OK);
+                    return;
                 }
             }
         }

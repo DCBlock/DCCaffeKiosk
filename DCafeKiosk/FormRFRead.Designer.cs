@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRFRead));
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,13 +41,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this;
-            this.bunifuDragControl1.Vertical = true;
             // 
             // panel1
             // 
@@ -88,9 +79,9 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(504, 100);
+            this.label1.Location = new System.Drawing.Point(0, 100);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(900, 101);
+            this.label1.Size = new System.Drawing.Size(1920, 101);
             this.label1.TabIndex = 20;
             this.label1.Text = "본인 확인";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -98,9 +89,9 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("SpoqaHanSans-Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(442, 201);
+            this.label2.Location = new System.Drawing.Point(0, 208);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1000, 63);
+            this.label2.Size = new System.Drawing.Size(1920, 63);
             this.label2.TabIndex = 21;
             this.label2.Text = "직원 카드를 RF Reader에 태그해 주세요.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -252,7 +243,6 @@
         }
 
         #endregion
-        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;

@@ -67,7 +67,7 @@
             this.labelText.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.labelText.Location = new System.Drawing.Point(0, 43);
             this.labelText.Name = "labelText";
-            this.labelText.Size = new System.Drawing.Size(419, 74);
+            this.labelText.Size = new System.Drawing.Size(419, 92);
             this.labelText.TabIndex = 1;
             this.labelText.Text = "Here is message description ...\r\nbla bla bla ...";
             this.labelText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -90,10 +90,10 @@
             this.bunifuThinButton_right.IdleFillColor = System.Drawing.Color.White;
             this.bunifuThinButton_right.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(134)))), ((int)(((byte)(206)))));
             this.bunifuThinButton_right.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(149)))), ((int)(((byte)(255)))));
-            this.bunifuThinButton_right.Location = new System.Drawing.Point(236, 122);
+            this.bunifuThinButton_right.Location = new System.Drawing.Point(236, 149);
             this.bunifuThinButton_right.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.bunifuThinButton_right.Name = "bunifuThinButton_right";
-            this.bunifuThinButton_right.Size = new System.Drawing.Size(120, 60);
+            this.bunifuThinButton_right.Size = new System.Drawing.Size(120, 70);
             this.bunifuThinButton_right.TabIndex = 2;
             this.bunifuThinButton_right.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -115,10 +115,10 @@
             this.bunifuThinButton_left.IdleFillColor = System.Drawing.Color.White;
             this.bunifuThinButton_left.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(134)))), ((int)(((byte)(206)))));
             this.bunifuThinButton_left.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(149)))), ((int)(((byte)(255)))));
-            this.bunifuThinButton_left.Location = new System.Drawing.Point(70, 122);
+            this.bunifuThinButton_left.Location = new System.Drawing.Point(70, 149);
             this.bunifuThinButton_left.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.bunifuThinButton_left.Name = "bunifuThinButton_left";
-            this.bunifuThinButton_left.Size = new System.Drawing.Size(120, 60);
+            this.bunifuThinButton_left.Size = new System.Drawing.Size(120, 70);
             this.bunifuThinButton_left.TabIndex = 2;
             this.bunifuThinButton_left.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -127,7 +127,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(419, 201);
+            this.ClientSize = new System.Drawing.Size(419, 247);
             this.Controls.Add(this.bunifuThinButton_left);
             this.Controls.Add(this.bunifuThinButton_right);
             this.Controls.Add(this.labelText);

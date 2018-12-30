@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,13 +39,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_QRCode)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this;
-            this.bunifuDragControl1.Vertical = true;
             // 
             // panel1
             // 
@@ -136,7 +127,7 @@
             this.bunifuFlatButton_cancle.IconVisible = true;
             this.bunifuFlatButton_cancle.IconZoom = 90D;
             this.bunifuFlatButton_cancle.IsTab = false;
-            this.bunifuFlatButton_cancle.Location = new System.Drawing.Point(865, 858);
+            this.bunifuFlatButton_cancle.Location = new System.Drawing.Point(1707, 965);
             this.bunifuFlatButton_cancle.Name = "bunifuFlatButton_cancle";
             this.bunifuFlatButton_cancle.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
             this.bunifuFlatButton_cancle.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(102)))), ((int)(((byte)(107)))));
@@ -152,9 +143,9 @@
             // pictureBox_QRCode
             // 
             this.pictureBox_QRCode.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_QRCode.Location = new System.Drawing.Point(794, 407);
+            this.pictureBox_QRCode.Location = new System.Drawing.Point(674, 419);
             this.pictureBox_QRCode.Name = "pictureBox_QRCode";
-            this.pictureBox_QRCode.Size = new System.Drawing.Size(327, 303);
+            this.pictureBox_QRCode.Size = new System.Drawing.Size(574, 513);
             this.pictureBox_QRCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox_QRCode.TabIndex = 55;
             this.pictureBox_QRCode.TabStop = false;
@@ -184,7 +175,6 @@
         }
 
         #endregion
-        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;

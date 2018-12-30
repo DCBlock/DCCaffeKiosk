@@ -49,7 +49,15 @@ namespace DCafeKiosk
                 PAGES.FormPayType,
             };
 
-
+        /// <summary>
+        /// 사용자 내역 조회 페이지 순서 지정
+        /// </summary>
+        List<PAGES> ListUserUsageHistoryInquiry = new List<PAGES>
+            {
+                PAGES.FormPayType,
+                PAGES.FormRFRead,
+                PAGES.FormResultInquery,
+            };
 
 
         //========================================
@@ -71,10 +79,15 @@ namespace DCafeKiosk
         /// </summary>
         DTOGetMenusResponse mMenus;
 
+        /// <summary>
+        /// 화면
+        /// </summary>
         FormPayType         mFormPayType;
         FormRFRead          mFormRFRead;
         FormMenuBoard       mFormMenuBoard;
         FormResultOrder     mFormResultOrder;
+        FormResultCancel    mFormResultCancel;
+        FormResultInquery   mFormResultInquery;
         FormKeyPad          mFormKeyPad;
 
 
@@ -121,14 +134,14 @@ namespace DCafeKiosk
             mFormRFRead = new FormRFRead();
             {
                 mFormRFRead.PageSuccess += OnPageSuccess;
-                mFormRFRead.PageCancle += OnPageCancle;
+                mFormRFRead.PageCancel += OnPageCancel;
             }
 
             // 메뉴 폼
             mFormMenuBoard = new FormMenuBoard();
             {
                 mFormMenuBoard.PageSuccess += OnPageSuccess;
-                mFormMenuBoard.PageCancle += OnPageCancle;
+                mFormMenuBoard.PageCancel += OnPageCancel;
 
                 //-----------------------------------
                 // 메뉴가 변경되면 프로그램 재시작 필요
@@ -152,14 +165,28 @@ namespace DCafeKiosk
             mFormResultOrder = new FormResultOrder();
             {
                 mFormResultOrder.PageSuccess += OnPageSuccess;
-                mFormResultOrder.PageCancle += OnPageCancle;
+                mFormResultOrder.PageCancel += OnPageCancel;
             }
 
             // 취소 키패드 폼
             mFormKeyPad = new FormKeyPad();
             {
                 mFormKeyPad.PageSuccess += OnPageSuccess;
-                mFormKeyPad.PageCancle += OnPageCancle;
+                mFormKeyPad.PageCancel += OnPageCancel;
+            }
+
+            // 취소 완료 폼
+            mFormResultCancel = new FormResultCancel();
+            {
+                mFormResultCancel.PageSuccess += OnPageSuccess;
+                mFormResultCancel.PageCancel += OnPageCancel;
+            }
+
+            // 내역 조회 완료 폼
+            mFormResultInquery = new FormResultInquery();
+            {
+                mFormResultInquery.PageSuccess += OnPageSuccess;
+                mFormResultInquery.PageCancel += OnPageCancel;
             }
 
             // 판넬에 페이지 추가
@@ -168,6 +195,8 @@ namespace DCafeKiosk
             AddForms2Panel(mFormMenuBoard);
             AddForms2Panel(mFormResultOrder);
             AddForms2Panel(mFormKeyPad);
+            AddForms2Panel(mFormResultCancel);
+            AddForms2Panel(mFormResultInquery);
 
             // 시작 페이지 보이기
             DisplayPage(nameof(FormPayType));
@@ -251,6 +280,15 @@ namespace DCafeKiosk
                             nextPageName = string.Empty;
                     }
                     break;
+                case PAY_TYPE.UserUsageHistoryInquiry:
+                    {
+                        int pageIdx = this.ListUserUsageHistoryInquiry.IndexOf(aCurrentPages);
+                        if (pageIdx++ <= this.ListUserUsageHistoryInquiry.Count - 1)
+                            nextPageName = this.ListUserUsageHistoryInquiry[pageIdx++].ToString();
+                        else
+                            nextPageName = string.Empty;
+                    }
+                    break;
             }
 
             return nextPageName;
@@ -311,7 +349,30 @@ namespace DCafeKiosk
                     }
                     else if (nextPageName == PAGES.FormResultInquery.ToString())
                     {
+                        mFormResultInquery.XCompany = mCompany;
+                        mFormResultInquery.XName = mName;
+                        mFormResultInquery.XReceiptId = mReceiptId;
 
+                        //----------------------------------------------
+                        // 사용자 사용내역 URI 가져와서 QRCod Image 만들기
+                        //----------------------------------------------
+                        DateTime afterDt = DateTime.Now;
+                        DateTime beforeDt = new DateTime(afterDt.Year, afterDt.Month, 1);
+
+                        long beforeTimestamp = Utilities.TimeStamp.getUnixTimeStamp(beforeDt);
+                        long afterTimestamp = Utilities.TimeStamp.getUnixTimeStamp(afterDt);
+
+                        //-------------------------------------------------
+                        DTOPurchaseHistoryOnetimeURLResponse _rsp =
+                            APIController.API_PostPurchaseHistoryOnetimeURL(mRFID, beforeTimestamp, afterTimestamp);
+
+                        if (_rsp.code == 200)
+                            mFormResultInquery.XBitmapQRCode = Utilities.QRCode.GetQRCodeBitmap(_rsp.uri);
+                        else
+                            mFormResultInquery.XBitmapQRCode = null;
+                        //-------------------------------------------------
+
+                        mFormResultInquery.ResetForm();
                     }
                 }
                 DisplayPage(nextPageName);
@@ -346,7 +407,13 @@ namespace DCafeKiosk
             //------------------
             if ((sender.GetType()).Name.CompareTo(PAGES.FormKeyPad.ToString()) == 0)
             {
-
+                string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormKeyPad);
+                {
+                    mFormResultCancel.XCompany = mCompany;
+                    mFormResultCancel.XName = mName;
+                    mFormResultCancel.XReceiptId = mReceiptId;
+                }
+                DisplayPage(nextPageName);
             }
 
             //-----------------------
@@ -366,7 +433,7 @@ namespace DCafeKiosk
             }
         }
 
-        private void OnPageCancle(object sender, EventArgs e)
+        private void OnPageCancel(object sender, EventArgs e)
         {
             DisplayPage(PAGES.FormPayType.ToString());
         }

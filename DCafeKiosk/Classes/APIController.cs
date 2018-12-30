@@ -343,7 +343,7 @@ namespace DCafeKiosk
         /// <param name="aRfid"></param>
         /// <param name="aPurchaseHistoryOnetimeURL"></param>
         /// <returns></returns>
-        public static DTOPurchaseHistoryOnetimeURLResponse API_PostPurchaseHistoryOnetimeURL(string aRfid, int aBeforeTimestamp, int aAfterTimestamp)
+        public static DTOPurchaseHistoryOnetimeURLResponse API_PostPurchaseHistoryOnetimeURL(string aRfid, long aBeforeTimestamp, long aAfterTimestamp)
         {
             //----------------------------------------
             DTOPurchaseHistoryOnetimeURLRequest req = new DTOPurchaseHistoryOnetimeURLRequest();

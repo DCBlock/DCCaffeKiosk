@@ -49,6 +49,8 @@ namespace DCafeKiosk
     public partial class FormMessageBox : Form
     {
         //==========================================================================================
+        // 폼 쉐도우 효과 적용
+        //
         // Shadow + Mouse Move for Borderless Windows Forms Application C#
         // https://jailbreakvideo.ru/shadow-and-mouse-move-for-borderless-windows-forms-application
         //==========================================================================================
@@ -214,7 +216,7 @@ namespace DCafeKiosk
                 this.DialogResult = DialogResult.Retry;
             }
 
-            if (((Bunifu.Framework.UI.BunifuThinButton2)sender).ButtonText.CompareTo(@"네") == 0)
+            if (((Bunifu.Framework.UI.BunifuThinButton2)sender).ButtonText.CompareTo(@"예") == 0)
             {
                 this.DialogResult = DialogResult.Yes;
             }
@@ -286,7 +288,7 @@ namespace DCafeKiosk
                         }
                     case CustomMessageBoxButtons.YesNo: // 네-아니오
                         {
-                            this.bunifuThinButton_left.ButtonText = @"네";
+                            this.bunifuThinButton_left.ButtonText = @"예";
                             this.bunifuThinButton_right.ButtonText = @"아니오";
 
                             break;

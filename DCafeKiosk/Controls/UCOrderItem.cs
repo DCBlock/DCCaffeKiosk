@@ -66,7 +66,12 @@ namespace DCafeKiosk
         public int XMenuAmount
         {
             get { return MenuAmount; }
-            set { MenuAmount = value; Invalidate(); }
+            set
+            {
+                MenuAmount = value;
+                XMenuTotalAmount = XMenuUnitPrice * XMenuAmount;
+                Invalidate();
+            }
         }
 
         /// <summary>
