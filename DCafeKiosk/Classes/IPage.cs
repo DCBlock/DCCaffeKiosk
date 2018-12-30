@@ -23,6 +23,6 @@ namespace DCafeKiosk
         /// <summary>
         /// 폼 데이터 초기화
         /// </summary>
-        void InitializeForm();
+        void ResetForm();
     }
 }

@@ -20,7 +20,7 @@ namespace DCafeKiosk
         BXL_STS_ERROR, //OFFLINE
     }
 
-    public class VOPrintList
+    public class VOPrintMenu
     {
         public string name { get; set; }
         public string size { get; set; }
@@ -66,7 +66,6 @@ namespace DCafeKiosk
             //-------------
             if (BXLAPI.PrinterOpen(BXLAPI.IUsb, "", 0, 0, 0, 0) != BXLAPI.BXL_SUCCESS)
             {
-                MessageBox.Show("Connect fail [USB]");
                 return false;
             }
             return true;
@@ -124,7 +123,7 @@ namespace DCafeKiosk
         주시기 바랍니다. 결제 취소는 1시간 이내에 
         요청해야 합니다.
         */
-        public bool Print(string aUsernameCompany, string aReceiptId, string aPaytype, List<VOPrintList> printList, string aPurchasedDateString)
+        public bool Print(string aUsernameCompany, string aReceiptId, string aPaytype, List<VOPrintMenu> printList, string aPurchasedDateString, string aTotalPrice, string aTotalDcPrice, string aPaymentPrice)
         {
             string str;
 
@@ -136,9 +135,9 @@ namespace DCafeKiosk
             BXLAPI.SetInterChrSet(BXLAPI.BXL_ICS_USA);
 
             // 제목 출력            
-            BXLAPI.PrintText("DigiCAP Campus Caffe\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_BOLD | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_1WIDTH | BXLAPI.BXL_TS_1HEIGHT);
+            BXLAPI.PrintText("DCaffe\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_BOLD | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_1WIDTH | BXLAPI.BXL_TS_1HEIGHT);
             BXLAPI.PrintText("==========================================\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
-            BXLAPI.LineFeed(2);
+            BXLAPI.LineFeed(1);
 
             // 정보 출력
             BXLAPI.PrintText("구매일자: " + aPurchasedDateString + "\n", BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
@@ -148,7 +147,7 @@ namespace DCafeKiosk
             BXLAPI.LineFeed(1);
             BXLAPI.PrintText("승인번호\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_BOLD | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_1WIDTH | BXLAPI.BXL_TS_1HEIGHT);
             BXLAPI.PrintText(aReceiptId + "\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_BOLD | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_1WIDTH | BXLAPI.BXL_TS_1HEIGHT);
-            BXLAPI.LineFeed(2);
+            BXLAPI.LineFeed(1);
 
             // 목록 헤더 출력
             BXLAPI.PrintText("-----------------------------------------\n", BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
@@ -162,6 +161,10 @@ namespace DCafeKiosk
                 BXLAPI.PrintText(str + "\n", BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
             });
             BXLAPI.PrintText("-----------------------------------------\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
+            BXLAPI.PrintText(string.Format("구매총액:{0}\n", aTotalPrice), BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
+            BXLAPI.PrintText(string.Format("할인총액:{0}\n", aTotalDcPrice), BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
+            BXLAPI.PrintText(string.Format("결제총액:{0}\n", aPaymentPrice), BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
+            BXLAPI.LineFeed(1);
 
             //하단 출력
             string strFooter = "결제 취소시 반드시 영수증을 지참해 주시기 바랍니다. 결제 취소는 1시간 이내에 요청해야 합니다.";
@@ -179,6 +182,11 @@ namespace DCafeKiosk
             }
 
             return true;
+        }
+
+        public int PrinterClose()
+        {
+            return BXLAPI.PrinterClose();
         }
     }
 }

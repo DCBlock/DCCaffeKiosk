@@ -31,7 +31,7 @@ namespace DCafeKiosk
                 PageCancle(this, EventArgs.Empty);
         }
 
-        public void InitializeForm()
+        public void ResetForm()
         {
             // UI 초기화
             sbNumberDisplay.Clear();
@@ -64,7 +64,7 @@ namespace DCafeKiosk
         {
             InitializeComponent();
 
-            InitializeForm();
+            ResetForm();
 
             button0.Click += KeypadNumber_Click;
             button1.Click += KeypadNumber_Click;

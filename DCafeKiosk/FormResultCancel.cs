@@ -32,7 +32,7 @@ namespace DCafeKiosk
                 PageCancle(this, EventArgs.Empty);
         }
 
-        public void InitializeForm()
+        public void ResetForm()
         {
             // 사용자 정보 출력
             this.label_UserInfo.Text = string.Format("{0} 님 ({1})", XName, XCompany);

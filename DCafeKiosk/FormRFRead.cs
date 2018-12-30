@@ -29,7 +29,7 @@ namespace DCafeKiosk
                 PageCancle(this, EventArgs.Empty);
         }
 
-        public void InitializeForm()
+        public void ResetForm()
         {
             apiResult = false;
             XApiResponse = null;
@@ -67,7 +67,7 @@ namespace DCafeKiosk
         /// </summary>
         private void RestAPI_CheckRFID()
         {
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(2000);
 
             HashLib.IHash hash = HashLib.HashFactory.Crypto.CreateSHA256();
             HashLib.HashResult digest = hash.ComputeString(strRfid.ToString(), Encoding.ASCII);
@@ -139,7 +139,7 @@ namespace DCafeKiosk
 
                 if (dlgResult == DialogResult.Retry)
                 {
-                    InitializeForm(); // 재시도
+                    ResetForm(); // 재시도
                 }
                 else if(dlgResult == DialogResult.Cancel)
                 {

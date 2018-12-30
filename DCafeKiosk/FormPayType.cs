@@ -29,7 +29,7 @@ namespace DCafeKiosk
             throw new NotImplementedException();
         }
 
-        public void InitializeForm()
+        public void ResetForm()
         {
         }
 

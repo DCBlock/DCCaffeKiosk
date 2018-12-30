@@ -31,7 +31,7 @@ namespace DCafeKiosk
                 PageCancle(this, EventArgs.Empty);
         }
 
-        public void InitializeForm()
+        public void ResetForm()
         {
             // 주문 카트 내역 초기화
             OrderCartClearAll();
@@ -95,7 +95,7 @@ namespace DCafeKiosk
             bunifuFlatButton_Ok.Click += OnOkButton;
 
             // 초기화
-            InitializeForm();
+            ResetForm();
         }
 
         #region '버튼 이벤트'
@@ -145,12 +145,56 @@ namespace DCafeKiosk
                 if (dlgResult == DialogResult.Yes)
                 {
                     //-----------------------------------------------------------------------------
+                    // 영수증 프린터 연결 확인
+                    //if (!ReceiptController.Instance.ConnectToUSB()) // 영수증 프린터 연결 실패
+                    if(ReceiptController.Instance.GetStatus() != PRINT_STATUS.BXL_STS_CASHDRAWER_HIGH)
+                    {
+                        using (FormMessageBox dlgPrint = new FormMessageBox())
+                        {
+                            {
+                                dlgPrint.Left = 1430;
+                                dlgPrint.Top = this.Location.X + (ClientSize.Height / 2) - 100;
+                                dlgPrint.XColorTitle = Color.FromArgb(73, 156, 188);
+                            }
+
+                            PRINT_STATUS printStatus = ReceiptController.Instance.GetStatus();
+
+                            DialogResult dlgPrintResult =
+                                dlgPrint.ShowDialog(@"영수증 프린터를 점검해 주세요." + Environment.NewLine + printStatus.ToString(), @"영수증 프린터 점검", CustomMessageBoxButtons.OK);
+                        }
+                        return;
+                    }
+
+                    //-----------------------------------------------------------------------------
                     // 구매 확정 API 호출
                     DTOPurchasesRequest _req = GetDTOPurchaseRequest();
                     DTOPurchasesResponse _rsp = APIController.API_PostPurchaseSuccess(XReceiptId, _req);
+                    //-----------------------------------------------------------------------------
 
                     if (_rsp.code == 200)
                     {
+                        // 영수증 출력
+                        string _strUserInfo = string.Format("{0}님 ({1})", XName, XCompany);
+                        string _strPayType = "";
+                        if (XPayType == PAY_TYPE.MonthlyDeduction)
+                            _strPayType = "월말공제";
+                        else if (XPayType == PAY_TYPE.CustomerPayment)
+                            _strPayType = "손님결제";
+                        string _strCurrentDateTime = Utilities.DateTimeFormatString.getNowDateTimeFormatString();
+                        List<VOPrintMenu> _printMenuList = GetPurchasePrintObject();
+
+                        ReceiptController.Instance.Print(
+                            _strUserInfo, 
+                            XReceiptId, 
+                            _strPayType, 
+                            _printMenuList, 
+                            _strCurrentDateTime, 
+                            _rsp.total_price.ToString("N0"), // 구매 총액
+                            _rsp.total_dc_price.ToString("N0"),  // 할인 총액
+                            (_rsp.total_price-_rsp.total_dc_price).ToString("N0") // 결제 총액
+                            );
+
+                        // 완료
                         OnPageSuccess();
                     }
                     else
@@ -164,7 +208,7 @@ namespace DCafeKiosk
                                 dlg1.XColorTitle = Color.FromArgb(73, 156, 188);
                             }
                             DialogResult dlgResult1 =
-                                dlg.ShowDialog(@"구매 처리를 완료하지 못했습니다.", @"구매 확정 처리 결과", CustomMessageBoxButtons.OK);
+                                dlg.ShowDialog(@"구매 처리를 완료하지 못했습니다."+ Environment.NewLine + _rsp.reason, @"구매 확정 처리 결과", CustomMessageBoxButtons.OK);
                         }//using
                     }                    
                 }
@@ -181,6 +225,7 @@ namespace DCafeKiosk
             //-------------------------------------------------------------------------------------
             DTOPurchasesRequest _req = new DTOPurchasesRequest();
             _req.purchase_type = (int)XPayType;
+            _req.purchases = new List<VOMenu>();
 
             //-------------------------------------------------------------------------------------
             int count = this.flowLayoutPanel_OrderCartLayout.Controls.Count;
@@ -194,13 +239,60 @@ namespace DCafeKiosk
                     _menu.category = _obj.XMenuButtonObject.XCategoryCode;
                     _menu.code = _obj.XMenuButtonObject.XMenuCode;
                     _menu.price = _obj.XMenuButtonObject.XMenuPrice;
-                    _menu.type = _obj.XMenuButtonObject.XMenuType;
+                    _menu.type = _obj.XMenuType;
                     _menu.size = _obj.XMenuButtonObject.XMenuSize;
-                    _menu.count = _obj.XMenuTotalAmount;
+                    _menu.count = _obj.XMenuAmount;
                 }
                 _req.purchases.Add(_menu);
             }
             return _req;
+        }
+
+        private List<VOPrintMenu> GetPurchasePrintObject()
+        {
+            // 영수증 출력 데이터 객체
+            //List<VOPrintList> list = new List<VOPrintList>
+            //{
+            //    new VOPrintList{
+            //        name ="아메리카노",
+            //        size ="Regular",
+            //        type="Hot",
+            //        amount="3"
+            //    },
+            //    new VOPrintList{
+            //        name ="아메리카노",
+            //        size ="Regular",
+            //        type="Iced",
+            //        amount="2"
+            //    },
+            //    new VOPrintList{
+            //        name ="까페라떼",
+            //        size ="Regular",
+            //        type="Hot",
+            //        amount="1"
+            //    },
+            //};
+
+            List<VOPrintMenu> list = new List<VOPrintMenu>();
+
+            //-------------------------------------------------------------------------------------
+            int count = this.flowLayoutPanel_OrderCartLayout.Controls.Count;
+            for (int index = 1; index < count; index++)
+            {
+                UCOrderItem _obj = this.flowLayoutPanel_OrderCartLayout.Controls[index] as UCOrderItem;
+
+                //---------------------------------------------------------------------------------
+                VOPrintMenu menu = new VOPrintMenu();
+                {
+                    menu.name = _obj.XMenuNameKR;
+                    menu.size = _obj.XMenuSize;
+                    menu.type = _obj.XMenuType;
+                    menu.amount = _obj.XMenuAmount.ToString();
+                }
+                list.Add(menu);
+            }
+
+            return list;
         }
 
         /// <summary>

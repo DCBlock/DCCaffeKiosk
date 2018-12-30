@@ -161,7 +161,7 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormCancelResult";
+            this.Name = "FormResultCancel";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

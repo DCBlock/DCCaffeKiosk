@@ -51,7 +51,7 @@ namespace DCafeKiosk
     public class DTOPurchasesRequest
     {
         public int purchase_type { get; set; }        
-        public IList<VOMenu> purchases { get; set; }
+        public List<VOMenu> purchases { get; set; }
     }
 
     public class VOMenu

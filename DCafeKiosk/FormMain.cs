@@ -74,7 +74,7 @@ namespace DCafeKiosk
         FormPayType         mFormPayType;
         FormRFRead          mFormRFRead;
         FormMenuBoard       mFormMenuBoard;
-        FormResultOrder     mFormOrderResult;
+        FormResultOrder     mFormResultOrder;
         FormKeyPad          mFormKeyPad;
 
 
@@ -111,36 +111,6 @@ namespace DCafeKiosk
 
             //DTOPurchaseHistoryOnetimeURLResponse rsp = APIController.API_PostPurchaseHistoryOnetimeURL("C26A1932A19823A8AF176AD8B80CA8AEACDDFFD3DA63695EB12B77534026DD4C", 1545004800, 1545283124);
 
-            //if (!ReceiptController.Instance.ConnectToUSB())
-            //{
-            //    Application.ExitThread();
-            //    Environment.Exit(0);
-            //    return;
-            //}
-
-            //List<VOPrintList> list = new List<VOPrintList>
-            //{
-            //    new VOPrintList{
-            //        name ="아메리카노",
-            //        size ="Regular",
-            //        type="Hot",
-            //        amount="3"
-            //    },
-            //    new VOPrintList{
-            //        name ="아메리카노",
-            //        size ="Regular",
-            //        type="Iced",
-            //        amount="2"
-            //    },
-            //    new VOPrintList{
-            //        name ="까페라떼",
-            //        size ="Regular",
-            //        type="Hot",
-            //        amount="1"
-            //    },
-            //};
-            //ReceiptController.Instance.Print("정병옥님(DigiCAPS)", "7777", "월말공제", list, "2018-12-22 17:21:11");
-
             // 결제 방식 폼
             mFormPayType = new FormPayType();
             {
@@ -168,7 +138,7 @@ namespace DCafeKiosk
 
                 if (mMenus != null) {
                     mFormMenuBoard.XCategoriesAndMenusDataset = mMenus.dataset;
-                    mFormMenuBoard.InitializeForm();
+                    mFormMenuBoard.ResetForm();
                 }
                 else {
                     MessageBox.Show("DCCaffe 서버로 부터 메뉴 정보를 가져오지 못했습니다.\n\r인터넷 연결을 점검한 후 다시 실행해야 합니다.", "문제 보고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -179,10 +149,10 @@ namespace DCafeKiosk
             }
 
             // 결제 완료 폼
-            mFormOrderResult = new FormResultOrder();
+            mFormResultOrder = new FormResultOrder();
             {
-                mFormOrderResult.PageSuccess += OnPageSuccess;
-                mFormOrderResult.PageCancle += OnPageCancle;
+                mFormResultOrder.PageSuccess += OnPageSuccess;
+                mFormResultOrder.PageCancle += OnPageCancle;
             }
 
             // 취소 키패드 폼
@@ -196,7 +166,7 @@ namespace DCafeKiosk
             AddForms2Panel(mFormPayType);
             AddForms2Panel(mFormRFRead);
             AddForms2Panel(mFormMenuBoard);
-            AddForms2Panel(mFormOrderResult);
+            AddForms2Panel(mFormResultOrder);
             AddForms2Panel(mFormKeyPad);
 
             // 시작 페이지 보이기
@@ -240,7 +210,7 @@ namespace DCafeKiosk
             if (this.panelFormLayer.Controls.ContainsKey(formName))
             {
                 this.panelFormLayer.Controls[formName].BringToFront();
-                (this.panelFormLayer.Controls[formName] as IPage).InitializeForm();
+                (this.panelFormLayer.Controls[formName] as IPage).ResetForm();
             }
         }
 
@@ -295,16 +265,16 @@ namespace DCafeKiosk
         /// 
         ///================================================================================
         /// 월말 공제 프로세스 시작
-        /// FormPayType -> FormRFReader -> FormMenuBoard -> FormOrderResult -> FormPayType
+        /// FormPayType -> FormRFReader -> FormMenuBoard -> FormResultOrder -> FormPayType
         /// 
         /// 손님 결제 프로세스 시작
-        /// FormPayType -> FormRFReader -> FormMenuBoard -> FormOrderResult -> FormPayType
+        /// FormPayType -> FormRFReader -> FormMenuBoard -> FormResultOrder -> FormPayType
         /// 
         /// 주문 취소
-        /// FormPayType -> FormRFReader -> FormKeyPad -> FormCancleResult -> FormPayType
+        /// FormPayType -> FormRFReader -> FormKeyPad -> FormResultCancle -> FormPayType
         /// 
         /// 사용자 이용 내역 조회
-        /// FormPayType -> FormRFReader -> FormInqueryResult -> FormPayType
+        /// FormPayType -> FormRFReader -> FormResultInquery -> FormPayType
         ///================================================================================
         private void OnPageSuccess(object sender, EventArgs e)
         {
@@ -329,14 +299,15 @@ namespace DCafeKiosk
                         mFormMenuBoard.XCompany = mCompany;
                         mFormMenuBoard.XName = mName;
                         mFormMenuBoard.XPayType = mCurrentPayType;
-                        mFormMenuBoard.InitializeForm();
+                        mFormMenuBoard.XReceiptId = mReceiptId;
+                        mFormMenuBoard.ResetForm();
                     }
                     else if (nextPageName == PAGES.FormKeyPad.ToString())
                     {
                         mFormKeyPad.XCompany = mCompany;
                         mFormKeyPad.XName = mName;
                         mFormKeyPad.XRfid = mRFID;
-                        mFormKeyPad.InitializeForm();
+                        mFormKeyPad.ResetForm();
                     }
                     else if (nextPageName == PAGES.FormResultInquery.ToString())
                     {
@@ -352,6 +323,12 @@ namespace DCafeKiosk
             if ((sender.GetType()).Name.CompareTo(PAGES.FormMenuBoard.ToString()) == 0)
             {
                 string nextPageName = NextPage(this.mCurrentPayType, PAGES.FormMenuBoard);
+                {
+                    mFormResultOrder.XCompany = mCompany;
+                    mFormResultOrder.XName = mName;
+                    mFormResultOrder.XPayType = mCurrentPayType;
+                    mFormResultOrder.ResetForm();
+                }
                 DisplayPage(nextPageName);
             }
 
@@ -392,6 +369,46 @@ namespace DCafeKiosk
         private void OnPageCancle(object sender, EventArgs e)
         {
             DisplayPage(PAGES.FormPayType.ToString());
+        }
+
+        /// <summary>
+        /// 프린터 초기화
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            if (!ReceiptController.Instance.ConnectToUSB()) // 영수증 프린터 연결 실패
+            {
+                using (FormMessageBox dlgPrint = new FormMessageBox())
+                {
+                    {
+                        //dlgPrint.Left = 1430;
+                        //dlgPrint.Top = this.Location.X + (ClientSize.Height / 2) - 100;
+                        //dlgPrint.XColorTitle = Color.FromArgb(73, 156, 188);
+                        dlgPrint.StartPosition = FormStartPosition.CenterParent;
+                    }
+
+                    //PRINT_STATUS printStatus = ReceiptController.Instance.GetStatus();
+
+                    DialogResult dlgPrintResult =
+                        dlgPrint.ShowDialog(@"영수증 프린터를 점검해 주세요." + Environment.NewLine + "프린터 연결 실패", @"영수증 프린터 점검", CustomMessageBoxButtons.OK);
+
+                    // 프린터 연결될 때까지 재시도
+                    if (dlgPrintResult == DialogResult.OK)
+                        this.FormMain_Load(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 프린터 종료
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ReceiptController.Instance.PrinterClose();
         }
     }
 }

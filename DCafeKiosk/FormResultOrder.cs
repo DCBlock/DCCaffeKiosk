@@ -31,6 +31,18 @@ namespace DCafeKiosk
             if (PageCancle != null)
                 PageCancle(this, EventArgs.Empty);
         }
+
+        public void ResetForm()
+        {
+            label_UserInfoText.Text = string.Format("{0}님 ({1})", XName, XCompany);
+
+            string strPayType = "";
+            if (XPayType == PAY_TYPE.MonthlyDeduction)
+                strPayType = "월말공제";
+            else if(XPayType == PAY_TYPE.CustomerPayment)
+                strPayType = "손님결제";
+            label_PayTypeInfoText.Text = string.Format("{0}로 주문이 완료 되었습니다.", strPayType);
+        }
         #endregion
 
         #region 'PROPERTIES'
@@ -57,6 +69,15 @@ namespace DCafeKiosk
                 Invalidate();
             }
         }
+
+        [Browsable(false)]
+        public string XName { get; set; }
+
+        [Browsable(false)]
+        public string XCompany { get; set; }
+
+        [Browsable(false)]
+        public PAY_TYPE XPayType { get; set; }
         #endregion
 
         public FormResultOrder()
@@ -64,11 +85,6 @@ namespace DCafeKiosk
             InitializeComponent();
 
             bunifuFlatButton_cancle.Click += cancle_Click;
-        }
-
-        public void InitializeForm()
-        {
-
         }
 
         private void cancle_Click(object sender, EventArgs e)
