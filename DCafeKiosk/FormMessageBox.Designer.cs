@@ -83,10 +83,10 @@
             this.bunifuThinButton_right.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton_right.BackgroundImage")));
             this.bunifuThinButton_right.ButtonText = "right";
             this.bunifuThinButton_right.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton_right.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuThinButton_right.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.bunifuThinButton_right.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(134)))), ((int)(((byte)(206)))));
             this.bunifuThinButton_right.IdleBorderThickness = 1;
-            this.bunifuThinButton_right.IdleCornerRadius = 15;
+            this.bunifuThinButton_right.IdleCornerRadius = 10;
             this.bunifuThinButton_right.IdleFillColor = System.Drawing.Color.White;
             this.bunifuThinButton_right.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(134)))), ((int)(((byte)(206)))));
             this.bunifuThinButton_right.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(149)))), ((int)(((byte)(255)))));
@@ -108,10 +108,10 @@
             this.bunifuThinButton_left.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton_left.BackgroundImage")));
             this.bunifuThinButton_left.ButtonText = "left";
             this.bunifuThinButton_left.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton_left.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuThinButton_left.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.bunifuThinButton_left.ForeColor = System.Drawing.Color.SeaGreen;
             this.bunifuThinButton_left.IdleBorderThickness = 1;
-            this.bunifuThinButton_left.IdleCornerRadius = 15;
+            this.bunifuThinButton_left.IdleCornerRadius = 10;
             this.bunifuThinButton_left.IdleFillColor = System.Drawing.Color.White;
             this.bunifuThinButton_left.IdleForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(134)))), ((int)(((byte)(206)))));
             this.bunifuThinButton_left.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(149)))), ((int)(((byte)(255)))));

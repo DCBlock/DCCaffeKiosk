@@ -156,10 +156,15 @@ namespace DCafeKiosk
             BXLAPI.PrintText("-----------------------------------------\n", BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
 
             // 목록 출력
-            printList.ForEach(item => {
-                str = string.Format("{0}\t{1}\t{2}\t{3}", item.name, item.size, item.type, item.amount);
-                BXLAPI.PrintText(str + "\n", BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
-            });
+            printList.ForEach(
+                item => {
+                    if (item.name.Length < 8)  // 8글자 이하는 우측에 공백 패딩하여 8글자 맞추기
+                        item.name = item.name.PadRight(8, ' ');
+
+                    str = string.Format("{0}\t{1}\t{2}\t{3}", item.name, item.size, item.type, item.amount);
+                    BXLAPI.PrintText(str + "\n", BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
+                }
+                );
             BXLAPI.PrintText("-----------------------------------------\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
             BXLAPI.PrintText(string.Format("구매총액:{0}\n", aTotalPrice), BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
             BXLAPI.PrintText(string.Format("할인총액:{0}\n", aTotalDcPrice), BXLAPI.BXL_ALIGNMENT_LEFT, BXLAPI.BXL_FT_DEFAULT | BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);

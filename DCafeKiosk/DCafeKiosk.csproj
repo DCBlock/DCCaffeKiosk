@@ -99,12 +99,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMenuOptionDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormMenuOptionDialog.Designer.cs">
-      <DependentUpon>FormMenuOptionDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,9 +202,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormMenuOptionDialog.resx">
-      <DependentUpon>FormMenuOptionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMessageBox.resx">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
