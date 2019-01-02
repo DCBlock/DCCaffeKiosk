@@ -387,6 +387,7 @@ namespace DCafeKiosk
                     mFormResultCancel.XCompany = mCompany;
                     mFormResultCancel.XName = mName;
                     mFormResultCancel.XReceiptId = mReceiptId;
+                    mFormResultCancel.ResetForm();
                 }
                 DisplayPage(nextPageName);
             }
@@ -396,7 +397,7 @@ namespace DCafeKiosk
             //-----------------------
             if ((sender.GetType()).Name.CompareTo(PAGES.FormResultCancel.ToString()) == 0)
             {
-
+                // nothing ...
             }
 
             //------------------------
@@ -404,12 +405,13 @@ namespace DCafeKiosk
             //------------------------
             if ((sender.GetType()).Name.CompareTo(PAGES.FormResultInquery.ToString()) == 0)
             {
-
+                // nothing ...
             }
         }
 
         private void OnPageCancel(object sender, EventArgs e)
         {
+            // 처음 화면으로 이동
             DisplayPage(PAGES.FormPayType.ToString());
         }
 

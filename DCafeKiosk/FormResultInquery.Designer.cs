@@ -36,6 +36,7 @@
             this.label_UserInfo = new System.Windows.Forms.Label();
             this.bunifuFlatButton_cancle = new Bunifu.Framework.UI.BunifuFlatButton();
             this.pictureBox_QRCode = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_QRCode)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +92,7 @@
             this.label_ResultInfo.Name = "label_ResultInfo";
             this.label_ResultInfo.Size = new System.Drawing.Size(1920, 63);
             this.label_ResultInfo.TabIndex = 21;
-            this.label_ResultInfo.Text = "상세 내역은 QR 코드를 스마트폰으로 스캔하세요. (1회 호출 가능)";
+            this.label_ResultInfo.Text = "상세 내역은 QR 코드를 스마트폰으로 스캔하세요.";
             this.label_ResultInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_UserInfo
@@ -143,12 +144,22 @@
             // pictureBox_QRCode
             // 
             this.pictureBox_QRCode.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_QRCode.Location = new System.Drawing.Point(674, 419);
+            this.pictureBox_QRCode.Location = new System.Drawing.Point(674, 471);
             this.pictureBox_QRCode.Name = "pictureBox_QRCode";
             this.pictureBox_QRCode.Size = new System.Drawing.Size(574, 513);
             this.pictureBox_QRCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox_QRCode.TabIndex = 55;
             this.pictureBox_QRCode.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("SpoqaHanSans-Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(0, 384);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1920, 63);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "QRCode URL은 1회만 호출 가능한 임시 URL 입니다.";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormResultInquery
             // 
@@ -159,6 +170,7 @@
             this.Controls.Add(this.pictureBox_QRCode);
             this.Controls.Add(this.bunifuFlatButton_cancle);
             this.Controls.Add(this.label_UserInfo);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label_ResultInfo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -183,6 +195,7 @@
         private System.Windows.Forms.Label label_UserInfo;
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton_cancle;
         private System.Windows.Forms.PictureBox pictureBox_QRCode;
+        private System.Windows.Forms.Label label2;
     }
 }
 
