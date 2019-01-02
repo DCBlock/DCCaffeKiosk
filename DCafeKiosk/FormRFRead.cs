@@ -72,7 +72,7 @@ namespace DCafeKiosk
             HashLib.IHash hash = HashLib.HashFactory.Crypto.CreateSHA256();
             HashLib.HashResult digest = hash.ComputeString(strRfid.ToString(), Encoding.ASCII);
             {
-                XstrHashedRFid = digest.ToString().Replace("-", "");
+                XstrHashedRFid = digest.ToString().Replace("-", "").ToLower();
             }
             XApiResponse = APIController.API_PostPurchaseId(XstrHashedRFid);
 
