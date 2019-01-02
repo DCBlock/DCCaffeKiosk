@@ -99,31 +99,6 @@ namespace DCafeKiosk
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-
-
-
-
-            //DTOPurchasesRequest obj = new DTOPurchasesRequest
-            //{
-            //    purchases = new List<VOMenu>
-            //    {
-            //        new VOMenu
-            //        {
-            //            category = 100,
-            //            code = 1,
-            //            price = 1000,
-            //            type = "HOT",
-            //            size = "REGULAR",
-            //            count = 5
-            //        },
-            //    }
-            //};
-            //APIController.API_PostPurchaseSuccess("0032", obj);
-
-            //DTOPurchaseCancelResponse rsp = APIController.API_PatchPurchaseCancel("0017");
-
-            //DTOPurchaseHistoryOnetimeURLResponse rsp = APIController.API_PostPurchaseHistoryOnetimeURL("C26A1932A19823A8AF176AD8B80CA8AEACDDFFD3DA63695EB12B77534026DD4C", 1545004800, 1545283124);
-
             // 결제 방식 폼
             mFormPayType = new FormPayType();
             {

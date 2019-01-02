@@ -36,6 +36,9 @@ namespace DCafeKiosk
             // 주문 카트 내역 초기화
             OrderCartClearAll();
 
+            // 총액 초기화
+            OrderCartUpdateTotalPrice();
+
             // 카테고리 메뉴 설정
             CategoriesAndMenusReload();
 
