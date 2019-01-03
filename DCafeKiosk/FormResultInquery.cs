@@ -58,7 +58,7 @@ namespace DCafeKiosk
         public string XCompany { get; set; }            // 회사 이름
 
         [Browsable(false)]
-        public string XReceiptId { get; set; }          // 취소한 영수증 ID
+        public int XReceiptId { get; set; }          // 취소한 영수증 ID
 
         [Browsable(false)]
         public Bitmap XBitmapQRCode { get; set; }       // QRCode 이미지

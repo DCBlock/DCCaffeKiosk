@@ -72,7 +72,7 @@ namespace DCafeKiosk
         public string XCompany { get; set; }
 
         [Browsable(false)]
-        public string XReceiptId { get; set; }
+        public int XReceiptId { get; set; }
 
         [Browsable(false)]
         public PAY_TYPE XPayType { get; set; }
@@ -171,7 +171,7 @@ namespace DCafeKiosk
                     //-----------------------------------------------------------------------------
                     // 구매 확정 API 호출
                     DTOPurchasesRequest _req = GetDTOPurchaseRequest();
-                    DTOPurchasesResponse _rsp = APIController.API_PostPurchaseSuccess(XReceiptId, _req);
+                    DTOPurchasesResponse _rsp = APIController.API_PostPurchaseSuccess(XReceiptId.ToString(), _req);
                     //-----------------------------------------------------------------------------
 
                     if (_rsp.code == 200)
@@ -179,22 +179,35 @@ namespace DCafeKiosk
                         // 영수증 출력
                         string _strUserInfo = string.Format("{0}님 ({1})", XName, XCompany);
                         string _strPayType = "";
+                        string _totalPayment = "0";
                         if (XPayType == PAY_TYPE.MonthlyDeduction)
+                        {
                             _strPayType = "월말공제";
+
+                            // 결제 총액 계산
+                            _totalPayment = (_rsp.total_price - _rsp.total_dc_price).ToString("N0");
+                        }                            
                         else if (XPayType == PAY_TYPE.CustomerPayment)
+                        {
                             _strPayType = "손님결제";
+
+                            // 손님결제일 경우, 영수증 결제 총액을 0원으로 표시
+                            _totalPayment = "0"; 
+                        }
+                            
+
                         string _strCurrentDateTime = Utilities.DateTimeFormatString.getNowDateTimeFormatString();
                         List<VOPrintMenu> _printMenuList = GetPurchasePrintObject();
 
                         ReceiptController.Instance.Print(
                             _strUserInfo, 
-                            XReceiptId, 
+                            XReceiptId.ToString(), 
                             _strPayType, 
                             _printMenuList, 
                             _strCurrentDateTime, 
-                            _rsp.total_price.ToString("N0"), // 구매 총액
-                            _rsp.total_dc_price.ToString("N0"),  // 할인 총액
-                            (_rsp.total_price-_rsp.total_dc_price).ToString("N0") // 결제 총액
+                            _rsp.total_price.ToString("N0"),        // 구매 총액
+                            _rsp.total_dc_price.ToString("N0"),     // 할인 총액
+                            _totalPayment                           // 결제 총액
                             );
 
                         // 완료

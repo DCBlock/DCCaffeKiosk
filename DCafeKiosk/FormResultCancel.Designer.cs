@@ -89,7 +89,7 @@
             this.label_ResultInfo.Name = "label_ResultInfo";
             this.label_ResultInfo.Size = new System.Drawing.Size(1920, 63);
             this.label_ResultInfo.TabIndex = 21;
-            this.label_ResultInfo.Text = "{7777} 승인번호 주문이 취소 요청 되었습니다.";
+            this.label_ResultInfo.Text = "일자:{xxxxx}/승인번호:{xx} 주문이 취소 요청 되었습니다.";
             this.label_ResultInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_UserInfo

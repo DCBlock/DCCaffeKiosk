@@ -33,7 +33,7 @@ namespace DCafeKiosk
 
     public class DTOGetPurchaseIdResponse
     {
-        public string receipt_id { get; set; }
+        public int receipt_id { get; set; }
         public string name { get; set; }
         public string company { get; set; }
         public string date { get; set; }
@@ -108,6 +108,8 @@ namespace DCafeKiosk
 
     public class DTOPurchaseCancelResponse
     {
+        public int receipt_id { get; set; }
+        public string purchased_date { get; set; }
         public List<VOPurchaseCancelMenu> purchase_cancels { get; set; }
 
         // Error Template

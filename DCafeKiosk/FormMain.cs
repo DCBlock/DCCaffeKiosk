@@ -72,7 +72,7 @@ namespace DCafeKiosk
         string      mRFID;
         string      mName;
         string      mCompany;
-        string      mReceiptId;
+        int         mReceiptId;
 
         /// <summary>
         /// 메뉴 정보
@@ -386,7 +386,8 @@ namespace DCafeKiosk
                 {
                     mFormResultCancel.XCompany = mCompany;
                     mFormResultCancel.XName = mName;
-                    mFormResultCancel.XReceiptId = mReceiptId;
+                    mFormResultCancel.XReceiptId = mFormKeyPad.XApiResponse.receipt_id;
+                    mFormResultCancel.XPurchasedDate = mFormKeyPad.XApiResponse.purchased_date;
                     mFormResultCancel.ResetForm();
                 }
                 DisplayPage(nextPageName);

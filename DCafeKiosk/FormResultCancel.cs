@@ -37,8 +37,8 @@ namespace DCafeKiosk
             // 사용자 정보 출력
             this.label_UserInfo.Text = string.Format("{0} 님 ({1})", XName, XCompany);
 
-            // {7777} 승인번호 주문이 취소 요청 되었습니다.
-            this.label_ResultInfo.Text = string.Format("{0} 승인번호 주문이 취소 요청 되었습니다.", XReceiptId);
+            // 일자:{xxxxx}/승인번호:{xx} 주문이 취소 요청 되었습니다.
+            this.label_ResultInfo.Text = string.Format("일자:{0} / 승인번호:{1} 주문이 취소 요청 되었습니다.", XPurchasedDate, XReceiptId);
         }
         #endregion
 
@@ -46,13 +46,16 @@ namespace DCafeKiosk
 
         #region 'PROPERTIES'
         [Browsable(false)]
-        public string XName { get; set; }       // 사용자명
+        public string XName { get; set; }           // 사용자명
 
         [Browsable(false)]
-        public string XCompany { get; set; }    // 회사 이름
+        public string XCompany { get; set; }        // 회사 이름
 
         [Browsable(false)]
-        public string XReceiptId { get; set; }  // 취소한 영수증 ID
+        public int XReceiptId { get; set; }         // 취소한 영수증 ID
+
+        [Browsable(false)]
+        public string XPurchasedDate { get; set; }  // 구매한 일자
         #endregion
 
 

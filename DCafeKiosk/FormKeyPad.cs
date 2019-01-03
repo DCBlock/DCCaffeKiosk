@@ -56,6 +56,9 @@ namespace DCafeKiosk
 
         [Browsable(false)]
         public string XRfid { get; set; }
+
+        [Browsable(false)]
+        public DTOPurchaseCancelResponse XApiResponse { get; set; }
         #endregion
 
         private StringBuilder sbNumberDisplay = new StringBuilder();
@@ -98,6 +101,9 @@ namespace DCafeKiosk
 
             // 취소 요청
             rsp = APIController.API_PatchPurchaseCancel(XRfid, this.label_Display.Text);
+
+            // 외부에서 결과 내용 사용하도록 노출
+            XApiResponse = rsp;
         }
 
         private void KeypadButtonOk_Click(object sender, EventArgs e)
