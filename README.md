@@ -4,11 +4,15 @@
 
 ## Building the source
 
-.
+Visual Studio 2017 .NET C#
 
 ## Executables
 
-.
+1. Swordsoft/mousetrack 설치
+2. Spoqa Han Sans Font 설치
+3. BIXOLON SRP-330II 프린터 USB 연결 확인
+4. RFID Reader USB 연결 확인
+5. DCCaffeKisok.exe 실행
 
 ## Running Application
 
@@ -44,21 +48,35 @@ for Mouse Click Effect
 
 ## License
 
+GNU GENERAL PUBLIC LICENSE 3.0
+
 ### [HashLib](https://archive.codeplex.com/?p=hashlib#HashLib/)
-V2.0.1
-MIT License
+- V2.0.1
+- MIT License
+- SHA256 사용
+
 ### [Newtonsoft.Json](https://www.newtonsoft.com/json)
-V12.0.1
-MIT License
+- V12.0.1
+- MIT License
+- RESTAPI 요청/응답 데이터 Serialize/Deserialize 사용
+
 ### [QRCoder](https://github.com/codebude/QRCoder/)
-v1.3.5
-The MIT License (MIT)
+- v1.3.5
+- The MIT License (MIT)
+- 사용내역 조회를 위한 일회용 임시 URL QRCode 생성에 사용
+
 ### [RestSharp](http://restsharp.org/)
-V106.5.4
-Apache License 2.0
+- V106.5.4
+- Apache License 2.0
+- RESTAPI Request/Response를 위한 Client 구현 사용
+
 ### [SharpLibHid](https://github.com/Slion/SharpLibHid)
-V1.4.3
-GNU General Public License
+- V1.4.3
+- GNU General Public License
+- RFID Reader 기기가 HID 장치로 인식되어, 입력되는 RAW Key Data를 버퍼에서 직접 읽기위해 사용
+
 ### [SharpLibWin32](https://github.com/Slion/SharpLibWin32)
-V0.1.7
-GNU General Public License
+- V0.1.7
+- GNU General Public License
+- SharpLibHid를 위한 win32 Wrapper
+
