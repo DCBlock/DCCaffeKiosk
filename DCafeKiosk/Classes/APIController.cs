@@ -15,7 +15,6 @@ namespace DCafeKiosk
     class APIController
     {
         static readonly string URL_DCCAFFE = "http://10.1.203.12:8080/api/caffe";
-        //static readonly string URL_DCCAFFE = "http://1ed85c8a.ngrok.io/api/caffe";
         static readonly string URI_GET_MENUS = "/menus";
         static readonly string URI_GET_PURCHASE_ID = "/purchases/purchase/receipt/id";
         static readonly string URI_POST_PURCHASE = "/purchases/purchase/receipt/{receipt_id}";
@@ -72,12 +71,12 @@ namespace DCafeKiosk
             //-----------------------
             // desirialized json data
             DTOGetMenusResponse dto = new DTOGetMenusResponse();
-
+                        
             try
             {
                 if (t1.Result.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    dto.dataset = JsonConvert.DeserializeObject<DataSet>(json);
+                    dto.dicCategoryMenus = JsonConvert.DeserializeObject<Dictionary<string, List<VOCategoryMenuList>>>(json);
                     dto.code = (int)t1.Result.StatusCode;
                 }
                 else

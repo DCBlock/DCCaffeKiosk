@@ -63,7 +63,7 @@ namespace DCafeKiosk
         /// </summary>
         #region 'properties'
         [Browsable(false)]
-        public DataSet XCategoriesAndMenusDataset { get; set; }
+        public Dictionary<string, List<VOCategoryMenuList>> XCategoriesAndMenusDictionary { get; set; }
 
         [Browsable(false)]
         public string XName { get; set; }
@@ -320,48 +320,50 @@ namespace DCafeKiosk
             CategoriesAndMenusClearAll();
 
             // 
-            if (this.XCategoriesAndMenusDataset == null)
+            if (this.XCategoriesAndMenusDictionary == null)
                 return;
 
-            int category_cnt = XCategoriesAndMenusDataset.Tables.Count;
+            int category_cnt = XCategoriesAndMenusDictionary.Count;
+
             for (int i = 0; i < category_cnt; i++)
             {
                 // Add categories
-                AddCategory(XCategoriesAndMenusDataset.Tables[i].TableName);
+                AddCategory(XCategoriesAndMenusDictionary.ElementAt(i).Key);
+
                 //-----------------------------------
                 {
                     // Add menus
-                    foreach (DataRow dr in XCategoriesAndMenusDataset.Tables[i].Rows)
+                    foreach (VOCategoryMenuList dr in XCategoriesAndMenusDictionary.ElementAt(i).Value)
                     {
                         /*
                         'Coffee':[
                           {
-                            'category':100,
-                            'code': 1,
-                            'name_en': 'americano',
-                            'name_kr': '아메리카노',
-                            'price': 2500,
-                            'dc_digicap': 1500,
-                            'dc_covision': 0,
-                            'type': 'HOT',
-                            'size': 'REGULAR',
-                            'event_name': ''
+                              "category": 100,
+                              "code": 1,
+                              "name_en": "americano",
+                              "name_kr": "아메리카노",
+                              "price": 2500,
+                              "type": "HOT",
+                              "size": "REGULAR",
+                              "event_name": "",
+                              "discounts": {
+                                "digicap": 1000,
+                                "covision": 0
+                              }
                           },
                         */
 
                         AddMenu(
-                            // category_name
-                            XCategoriesAndMenusDataset.Tables[i].TableName, 
-                            Int32.Parse(dr["category"].ToString()),
-                            Int32.Parse(dr["code"].ToString()),
-                            // event_name
-                            dr["event_name"].ToString(),
-                            dr["name_kr"].ToString(),
-                            dr["size"].ToString(),
-                            dr["type"].ToString(),
-                            Int32.Parse(dr["price"].ToString()),
-                            Int32.Parse(dr["dc_digicap"].ToString()),
-                            Int32.Parse(dr["dc_covision"].ToString())
+                            // category name
+                            XCategoriesAndMenusDictionary.ElementAt(i).Key,
+                            dr.category,
+                            dr.code,
+                            dr.event_name,
+                            dr.name_kr,
+                            dr.size,
+                            dr.type,
+                            dr.price,
+                            dr.discounts
                             );
                         //----------------------------------
                     }
@@ -656,8 +658,11 @@ namespace DCafeKiosk
             string aSize, 
             string aType, 
             int aPrice, 
-            int aDCDigicap, 
-            int aDCCovision)
+            //int aDCDigicap, 
+            //int aDCCovision
+            Dictionary<string, int> aDiscounts
+            )
+
         {
             UCMenuButton _menuButton = new UCMenuButton();
             {

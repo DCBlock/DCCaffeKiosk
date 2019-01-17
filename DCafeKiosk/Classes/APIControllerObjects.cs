@@ -14,13 +14,28 @@ namespace DCafeKiosk
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public class DTOGetMenusResponse
     {
-        public DataSet dataset { get; set; }
+        public Dictionary<string, List<VOCategoryMenuList>> dicCategoryMenus;
 
         // Error
         public int code { get; set; }
         public string reason { get; set; }
     }
 
+    public class VOCategoryMenuList
+    {
+        public int category { get; set; }
+        public int code { get; set; }
+        public string name_en { get; set; }
+        public string name_kr { get; set; }
+        public int price { get; set; }
+        public string type { get; set; }
+        public string size { get; set; }
+        public string event_name { get; set; }
+        
+        //k:company_name, value:dcprice
+        public Dictionary<string, int> discounts { get; set; }
+    }
+    
 
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++

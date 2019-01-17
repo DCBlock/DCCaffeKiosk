@@ -77,7 +77,7 @@ namespace DCafeKiosk
         /// <summary>
         /// 메뉴 정보
         /// </summary>
-        DTOGetMenusResponse mMenus;
+        DTOGetMenusResponse mCategoryMenus;
 
         /// <summary>
         /// 화면
@@ -122,10 +122,10 @@ namespace DCafeKiosk
                 // 메뉴가 변경되면 프로그램 재시작 필요
                 // 메뉴는 프로그램 시작될때 설정됨
                 //-----------------------------------
-                mMenus = APIController.API_GetMenus();
+                mCategoryMenus = APIController.API_GetMenus();
 
-                if (mMenus != null) {
-                    mFormMenuBoard.XCategoriesAndMenusDataset = mMenus.dataset;
+                if (mCategoryMenus != null) {
+                    mFormMenuBoard.XCategoriesAndMenusDictionary = mCategoryMenus.dicCategoryMenus;
                     mFormMenuBoard.ResetForm();
                 }
                 else {

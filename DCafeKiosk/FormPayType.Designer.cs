@@ -40,6 +40,7 @@
             this.ucPayTypeButton_CustomerPayment = new DCafeKiosk.UCPayTypeButton2();
             this.ucPayTypeButton_DigicapTokenPayment = new DCafeKiosk.UCPayTypeButton2();
             this.ucPayTypeButton_MonthlyDeduction = new DCafeKiosk.UCPayTypeButton2();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -194,12 +195,24 @@
             this.ucPayTypeButton_MonthlyDeduction.XTitle = "월말 공제";
             this.ucPayTypeButton_MonthlyDeduction.Click += new System.EventHandler(this.ucPayTypeButton_MonthlyDeduction_Click);
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(483, 260);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(900, 76);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "2019년 1월 부터 2월 28일까지 디지캡 직원 대상으로 베타 서비스 예정 입니다.";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormPayType
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -232,6 +245,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 
