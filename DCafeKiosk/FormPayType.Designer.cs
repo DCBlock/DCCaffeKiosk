@@ -106,7 +106,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(900, 76);
             this.label2.TabIndex = 21;
-            this.label2.Text = "DigiCAP과 Covison 직원만 이용 가능합니다.";
+            this.label2.Text = "DigiCAP과 Covision 직원만 이용 가능합니다.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucPayTypeButton_UserUsageHistoryInquiry

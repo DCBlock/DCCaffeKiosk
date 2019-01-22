@@ -96,7 +96,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(1920, 70);
             this.label2.TabIndex = 30;
-            this.label2.Text = "취소할 주문의 \'승인번호\' 4자리를 입력하세요.";
+            this.label2.Text = "취소할 주문의 \'승인번호\'를 입력하세요.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_UserInfo
@@ -128,7 +128,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(203, 109);
+            this.button2.Location = new System.Drawing.Point(204, 109);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(198, 120);
             this.button2.TabIndex = 31;
@@ -167,7 +167,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button5.Location = new System.Drawing.Point(203, 231);
+            this.button5.Location = new System.Drawing.Point(204, 231);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(198, 120);
             this.button5.TabIndex = 31;
@@ -206,7 +206,7 @@
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button8.Location = new System.Drawing.Point(203, 353);
+            this.button8.Location = new System.Drawing.Point(204, 353);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(198, 120);
             this.button8.TabIndex = 31;
@@ -232,7 +232,7 @@
             this.button0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button0.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button0.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button0.Location = new System.Drawing.Point(203, 474);
+            this.button0.Location = new System.Drawing.Point(204, 474);
             this.button0.Name = "button0";
             this.button0.Size = new System.Drawing.Size(198, 120);
             this.button0.TabIndex = 31;
