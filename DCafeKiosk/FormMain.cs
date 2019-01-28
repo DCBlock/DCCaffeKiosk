@@ -434,8 +434,6 @@ namespace DCafeKiosk
                         dlgPrint.StartPosition = FormStartPosition.CenterParent;
                     }
 
-                    //PRINT_STATUS printStatus = ReceiptController.Instance.GetStatus();
-
                     DialogResult dlgPrintResult =
                         dlgPrint.ShowDialog(@"영수증 프린터를 점검해 주세요." + Environment.NewLine + "프린터 연결 실패", @"영수증 프린터 점검", CustomMessageBoxButtons.OK);
 
