@@ -172,8 +172,10 @@ namespace DCafeKiosk
             BXLAPI.LineFeed(1);
 
             //하단 출력
-            string strFooter = "결제 취소시 반드시 영수증을 지참해 주시기 바랍니다. 결제 취소는 1시간 이내에 요청해야 합니다.";
-            BXLAPI.PrintText(strFooter + "\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
+            string strFooter1 = "결제 취소시 반드시 영수증을 카운터에 제출해 주시기 바랍니다. 결제 취소는 30분 이내에 요청해야 합니다.";
+            string strFooter2 = "결제 취소는 30분 이내에 요청해야 합니다.";
+            BXLAPI.PrintText(strFooter1 + "\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
+            BXLAPI.PrintText(strFooter2 + "\n", BXLAPI.BXL_ALIGNMENT_CENTER, BXLAPI.BXL_FT_DEFAULT, BXLAPI.BXL_TS_0WIDTH | BXLAPI.BXL_TS_0HEIGHT);
             //--------------------------------------------------------------------
 
             BXLAPI.CutPaper();
