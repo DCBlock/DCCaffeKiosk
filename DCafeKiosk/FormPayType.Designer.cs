@@ -35,12 +35,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.ucPayTypeButton_UserUsageHistoryInquiry = new DCafeKiosk.UCPayTypeButton2();
             this.ucPayTypeButton_OderCancellation = new DCafeKiosk.UCPayTypeButton2();
             this.ucPayTypeButton_CustomerPayment = new DCafeKiosk.UCPayTypeButton2();
             this.ucPayTypeButton_DigicapTokenPayment = new DCafeKiosk.UCPayTypeButton2();
             this.ucPayTypeButton_MonthlyDeduction = new DCafeKiosk.UCPayTypeButton2();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -69,11 +69,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(1854, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 16);
+            this.label3.Size = new System.Drawing.Size(74, 20);
             this.label3.TabIndex = 22;
             this.label3.Text = "Ver 1.0";
             // 
@@ -81,17 +81,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label5.Location = new System.Drawing.Point(43, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(301, 30);
+            this.label5.Size = new System.Drawing.Size(389, 29);
             this.label5.TabIndex = 49;
             this.label5.Text = "DigiCAP Campus Caffe (기능 선택)";
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("SpoqaHanSans-Bold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(483, 91);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(900, 90);
@@ -101,7 +101,7 @@
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("SpoqaHanSans-Light", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.Location = new System.Drawing.Point(483, 184);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(900, 76);
@@ -109,10 +109,21 @@
             this.label2.Text = "DigiCAP과 Covision 직원만 이용 가능합니다.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DimGray;
+            this.label4.Location = new System.Drawing.Point(483, 310);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(900, 26);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "copyrightⓒ2019 All rights reserved by bojung crew.";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ucPayTypeButton_UserUsageHistoryInquiry
             // 
             this.ucPayTypeButton_UserUsageHistoryInquiry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(179)))), ((int)(((byte)(224)))));
-            this.ucPayTypeButton_UserUsageHistoryInquiry.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucPayTypeButton_UserUsageHistoryInquiry.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ucPayTypeButton_UserUsageHistoryInquiry.ForeColor = System.Drawing.Color.White;
             this.ucPayTypeButton_UserUsageHistoryInquiry.Location = new System.Drawing.Point(1082, 648);
             this.ucPayTypeButton_UserUsageHistoryInquiry.Name = "ucPayTypeButton_UserUsageHistoryInquiry";
@@ -129,7 +140,7 @@
             // ucPayTypeButton_OderCancellation
             // 
             this.ucPayTypeButton_OderCancellation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(99)))), ((int)(((byte)(62)))));
-            this.ucPayTypeButton_OderCancellation.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucPayTypeButton_OderCancellation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ucPayTypeButton_OderCancellation.ForeColor = System.Drawing.Color.White;
             this.ucPayTypeButton_OderCancellation.Location = new System.Drawing.Point(782, 648);
             this.ucPayTypeButton_OderCancellation.Name = "ucPayTypeButton_OderCancellation";
@@ -146,7 +157,7 @@
             // ucPayTypeButton_CustomerPayment
             // 
             this.ucPayTypeButton_CustomerPayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(184)))), ((int)(((byte)(59)))));
-            this.ucPayTypeButton_CustomerPayment.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucPayTypeButton_CustomerPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ucPayTypeButton_CustomerPayment.ForeColor = System.Drawing.Color.White;
             this.ucPayTypeButton_CustomerPayment.Location = new System.Drawing.Point(782, 348);
             this.ucPayTypeButton_CustomerPayment.Name = "ucPayTypeButton_CustomerPayment";
@@ -164,7 +175,7 @@
             // 
             this.ucPayTypeButton_DigicapTokenPayment.BackColor = System.Drawing.Color.SeaGreen;
             this.ucPayTypeButton_DigicapTokenPayment.Enabled = false;
-            this.ucPayTypeButton_DigicapTokenPayment.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucPayTypeButton_DigicapTokenPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ucPayTypeButton_DigicapTokenPayment.ForeColor = System.Drawing.Color.White;
             this.ucPayTypeButton_DigicapTokenPayment.Location = new System.Drawing.Point(1082, 348);
             this.ucPayTypeButton_DigicapTokenPayment.Name = "ucPayTypeButton_DigicapTokenPayment";
@@ -174,14 +185,14 @@
             this.ucPayTypeButton_DigicapTokenPayment.XActiveForeColor = System.Drawing.Color.Black;
             this.ucPayTypeButton_DigicapTokenPayment.XIdleBackColor = System.Drawing.Color.SeaGreen;
             this.ucPayTypeButton_DigicapTokenPayment.XIdleForeColor = System.Drawing.Color.White;
-            this.ucPayTypeButton_DigicapTokenPayment.XSubTitle = "직원 카드 및 \n가상화폐 월렛 가능";
-            this.ucPayTypeButton_DigicapTokenPayment.XTitle = "디지캡 코인 결제";
+            this.ucPayTypeButton_DigicapTokenPayment.XSubTitle = "디지캡 가상화폐 지갑 전용";
+            this.ucPayTypeButton_DigicapTokenPayment.XTitle = "가상화폐 결제";
             this.ucPayTypeButton_DigicapTokenPayment.Click += new System.EventHandler(this.ucPayTypeButton_DigicapTokenPayment_Click);
             // 
             // ucPayTypeButton_MonthlyDeduction
             // 
             this.ucPayTypeButton_MonthlyDeduction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(179)))), ((int)(((byte)(224)))));
-            this.ucPayTypeButton_MonthlyDeduction.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ucPayTypeButton_MonthlyDeduction.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ucPayTypeButton_MonthlyDeduction.ForeColor = System.Drawing.Color.White;
             this.ucPayTypeButton_MonthlyDeduction.Location = new System.Drawing.Point(482, 348);
             this.ucPayTypeButton_MonthlyDeduction.Name = "ucPayTypeButton_MonthlyDeduction";
@@ -194,17 +205,6 @@
             this.ucPayTypeButton_MonthlyDeduction.XSubTitle = "직원 카드만 가능";
             this.ucPayTypeButton_MonthlyDeduction.XTitle = "월말 공제";
             this.ucPayTypeButton_MonthlyDeduction.Click += new System.EventHandler(this.ucPayTypeButton_MonthlyDeduction_Click);
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("SpoqaHanSans-Regular", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(483, 260);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(900, 76);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "2019년 1월 부터 2월 28일까지 디지캡 직원 대상으로 베타 서비스 예정 입니다.";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormPayType
             // 
